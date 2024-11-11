@@ -3,9 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Collabify - Connecting Skills, Creating Futures</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
 </head>
 <body>
-    <a href="./src/pages/signup.html">click mee</a>
+
+    <!-- Header Section -->
+    <header>
+        
+<nav id="desktop-nav">
+    <div class="logo">Samuel Dibiah</div>
+    <div>
+      <ul class="nav-links">
+        <li><a href="#about">Home</a></li>
+        <li><a href="#experience">Testimonial</a></li>
+        <li><a href="#projects">Subscribe</a></li>
+        <li><a href="#contacts">Login</a></li>
+        <li><a href="#" class="sign-up">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <nav id="hamburger-nav">
+    <div class="logo">Samuel Dibiah</div>
+    <div class="hamburger-menu">
+    <div class="hamburger-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-links">
+      <li><a href="#about" onclick="toggleMenu()">Home</a></li>
+      <li><a href="#experience" onclick="toggleMenu()">Testimonial</a></li>
+      <li><a href="#projects" onclick="toggleMenu()">Subscribe</a></li>
+      <li><a href="#contacts" onclick="toggleMenu()">Login</a></li>
+      <li><a href="#" class="sign-up">Sign Up</a></li>
+    </div>
+    </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Empowering Connections, Building Futures</h1>
+            <p>Welcome to Collabify, where tech enthusiasts and learners unite. Discover peers, collaborate on projects, and unlock your potential in a vibrant community built for growth.</p>
+            <a href="#" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+    <!-- Third Section -->
+    <section class="features">
+        <div class="feature-card">
+            <img src="assets/third-section-image.png" alt="Collaboration Illustration">
+            <h3>Our Mission</h3>
+            <p>Our mission is to empower you with a supportive community to grow, share ideas, and thrive. Join us in a journey of continuous learning and collaboration!</p>
+        </div>
+    </section>
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="script.js"></script>
 </body>
 </html>
