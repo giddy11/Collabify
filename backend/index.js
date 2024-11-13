@@ -22,7 +22,13 @@ connectDB()
 // User Routes
 const userRoutes = require('./routes/userRoutes');
 
+//learner Route
+const learnerRoutes = require('./routes/learnerRoutes');
+
 app.use('/api/auth', userRoutes);
+app.use('/api', learnerRoutes);
+
+
 
 //connect to database
 mongoose.connection.once('open', () => {
