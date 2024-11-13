@@ -158,10 +158,16 @@
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
-                        <a href="login.html">
+                        <!-- <a href="login.html">
                             <i class="fa fa-sign-out" style="font-size:23px"></i>
                             <div class="details"><p>Log Out</p></div>
-                        </a>
+                        </a> -->
+                        <form id="logout">
+                            <button type="button" onclick="logout()" class="" style="display: flex; margin-left: 13px; margin-top: 6px; border: none; background-color: transparent; gap: 5px; cursor: pointer;">
+                                <i class="fa fa-sign-out" style="font-size:23px"></i>
+                                <div class="details"><p>Log Out</p></div>
+                            </button>
+                        </form>
                     </div>
                 </div>
 
@@ -394,5 +400,6 @@
     </main>
 
     <script src="../assets/scripts/index.js"></script>
+    <script src="../assets/scripts/logout.js"></script>
 </body>
 </html>
