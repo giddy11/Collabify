@@ -24,3 +24,18 @@ backToTopButton.addEventListener('click', (e) => {
       behavior: 'smooth'
   });
 });
+
+document.querySelector('.newsletter-form').addEventListener('submit', function(event) {
+  event.preventDefault();
+  
+  const emailInput = document.getElementById('email');
+  const errorMessage = document.querySelector('.error-message');
+  
+  if (!emailInput.value) {
+      errorMessage.style.display = 'block';
+  } else {
+      errorMessage.style.display = 'none';
+      alert("Thank you for subscribing!");
+      emailInput.value = ''; // Clear the input field
+  }
+});
