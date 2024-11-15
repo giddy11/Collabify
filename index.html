@@ -3,9 +3,157 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Collabify - Connecting Skills, Creating Futures</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="img/collabifyLogo.png">
+
+    <!-- AOS CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" rel="stylesheet">
+
 </head>
 <body>
-    <a href="./src/pages/signup.html">click mee</a>
+
+    <!-- Header Section -->
+    <header>
+        
+<nav id="desktop-nav">
+    <div class="logo"><img src="img/collabifyLogo.png" alt="Collabify Logo"></div>
+    <div>
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#testimonial">Testimonial</a></li>
+        <li><a href="#subscribe">Subscribe</a></li>
+        <li><a href="/src/pages/login.html">Login</a></li>
+        <li><a href="/src/pages/signup.html" class="sign-up">Sign Up</a></li>
+      </ul>
+    </div>
+  </nav>
+  
+  <nav id="hamburger-nav">
+    <div class="logo"><img src="img/collabifyLogo.png" alt="Collabify Logo"></div>
+    <div class="hamburger-menu">
+    <div class="hamburger-icon" onclick="toggleMenu()">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-links">
+      <li><a href="#home" onclick="toggleMenu()">Home</a></li>
+      <li><a href="#testimonial" onclick="toggleMenu()">Testimonial</a></li>
+      <li><a href="#subscribe" onclick="toggleMenu()">Subscribe</a></li>
+      <li><a href="/src/pages/login.html" onclick="toggleMenu()">Login</a></li>
+      <li><a href="/src/pages/signup.html" class="sign-up">Sign Up</a></li>
+    </div>
+    </div>
+    
+    </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content" >
+            <h1>Empowering Connections, Building Futures</h1>
+            <p>Welcome to Collabify, where tech enthusiasts and learners unite. Discover peers, collaborate on projects, and unlock your potential in a vibrant community built for growth.</p>
+            <a href="/src/pages/signup.html" class="cta-button">Get Started</a>
+        </div>
+    </section>
+
+   <!-- Features Section -->
+<section class="features-section">
+    <div class="features-container">
+        <div class="feature-box">
+            <i class="fas fa-share-alt"></i>
+            <h3>Share</h3>
+            <p>Connect and collaborate by sharing your knowledge with others. Together, we grow.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-lightbulb"></i>
+            <h3>Learn</h3>
+            <p>Gain insights and knowledge from like-minded peers, elevating your skills to new heights.</p>
+        </div>
+        <div class="feature-box">
+            <i class="fas fa-smile"></i>
+            <h3>Thrive</h3>
+            <p>Grow and succeed in a community that values innovation, growth, and connection.</p>
+        </div>
+    </div>
+</section>
+
+
+<section id="testimonial" class="section__container">
+    <h2>Testimonials</h2>
+    <h1>What our customers say</h1>
+    <div class="section__grid">
+      <div class="section__card">
+        <span><i class="ri-double-quotes-l"></i></span>
+        <h4>Transformed Learning Experience</h4>
+        <p>
+            "Collabify transformed my learning experience! I connected with fellow students who shared my passions, and together, we tackled challenging projects. The platform's seamless collaboration tools helped us achieve outstanding results."
+
+        </p>
+        <img src="img/user-1.jpg" alt="user" />
+        <h5>Samuel Ezealor</h5>
+        <h6>3MTT Fellow</h6>
+      </div>
+      <div class="section__card">
+        <span><i class="ri-double-quotes-l"></i></span>
+        <h4>Effortless Collaboration</h4>
+        <p>
+            "Collabify made group work effortless! The intuitive interface and robust features streamlined our communication, organization, and productivity. I highly recommend Collabify to any student seeking meaningful collaborations."
+
+        </p>
+        <img src="img/user-2.jpg" alt="user" />
+        <h5>Kelechi Onyekwere</h5>
+        <h6>Intermediate Software Engineer</h6>
+      </div>
+      <div class="section__card">
+        <span><i class="ri-double-quotes-l"></i></span>
+        <h4>Bridging Academia and Industry</h4>
+        <p>
+            "Collabify bridged the gap between academic and professional networking. I connected with peers from diverse backgrounds, exchanged ideas, and honed my skills through collaborative projects. Collabify is an essential tool for the modern student."
+        </p>
+        <img src="img/user-3.jpg" alt="user" />
+        <h5>Vivian Eze</h5>
+        <h6>Intermediate Backend Developer</h6>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Newsletter Section -->
+<section id="subscribe" class="newsletter-section">
+    <h2>Stay in the Loop!</h2>
+    <p>Subscribe to our newsletter and be the first to know about updates, collaborations, and more. 🚀✨ #SkillSyncUpdates</p>
+    <form class="newsletter-form">
+        <label for="email">Email Address <span>*</span></label>
+        <input type="email" id="email" name="email" required placeholder="Enter your email address">
+        <p class="error-message">This field is required.</p>
+        <button type="submit">Join</button>
+    </form>
+</section>
+
+<!-- Footer Section -->
+<footer class="footer-section">
+    <div class="footer-logo">
+        <img src="img/collabifyLogo.png" alt="SkillSync Logo">
+        <p>SkillSync</p>
+    </div>
+    <div class="footer-socials">
+        <a href="https://facebook.com/yourpage" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://twitter.com/yourpage" target="_blank"><i class="fab fa-twitter"></i></a>
+        <a href="https://instagram.com/yourpage" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://linkedin.com/in/yourprofile" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <p class="footer-copyright">Copyright © 2024 SkillSync</p>
+</footer>
+
+
+
+
+    <!-- Back to Top Button -->
+    <a href="#" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+    <script src="script.js"></script>
 </body>
 </html>
