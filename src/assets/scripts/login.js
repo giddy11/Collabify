@@ -11,7 +11,7 @@
 //     });
 //   }
 // Set up constants
-const apiUrl = 'http://localhost:4001/api/auth/login'; // Adjust to your login endpoint
+const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login'; // Adjust to your login endpoint
 const loader = document.getElementById('loader');
 const loginForm = document.getElementById('login-form');
 
