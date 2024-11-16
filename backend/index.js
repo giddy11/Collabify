@@ -22,6 +22,10 @@ connectDB()
 // User Routes
 const userRoutes = require('./routes/userRoutes');
 
+app.get('/', (req, res) => {
+    res.send('Welcome to the API!');
+});
+
 app.use('/api/auth', userRoutes);
 
 //connect to database
