@@ -1,35 +1,45 @@
-// set up the dotenv
+// Load environment variables
 const dotenv = require("dotenv");
 dotenv.config();
-const cors = require('cors')
+const cors = require('cors');
 const mongoose = require("mongoose");
 const connectDB = require("./config/dbConn");
-const corsOptions = require('./config/corsOptions')
-
-//set up the PORT
-const PORT = process.env.PORT || 3000;
+const corsOptions = require('./config/corsOptions');
 const express = require("express");
-var cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
+const http = require('http');
 
-// set up express
+// Set up the PORT
+const PORT = process.env.PORT || 3000;
+
 const app = express();
-app.use(cors(corsOptions))
+
+// Set up middleware
+app.use(cors(corsOptions));
 app.use(cookieParser()); 
 app.use(express.json());
 
-connectDB()
+// Connect to MongoDB
+connectDB();
 
 // User Routes
 const userRoutes = require('./routes/userRoutes');
 
+// Welcome route
 app.get('/', (req, res) => {
     res.send('Welcome to the API!');
 });
 
+// Use user routes under '/api/auth'
 app.use('/api/auth', userRoutes);
 
-//connect to database
+// Create an HTTP server and pass the Express app to it
+const server = http.createServer(app);
+
+// Start the server
 mongoose.connection.once('open', () => {
-    console.log("Connect to MongoDB");
-    app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+    console.log("Connected to MongoDB");
+    server.listen(PORT, () => {
+        console.log(`Server running on port ${PORT}`);
+    });
 });
