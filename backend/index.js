@@ -25,6 +25,9 @@ connectDB();
 // User Routes
 const userRoutes = require('./routes/userRoutes');
 
+//learner Route
+const learnerRoutes = require('./routes/learnerRoutes');
+
 // Welcome route
 app.get('/', (req, res) => {
     res.send('Welcome to the API!');
@@ -32,6 +35,11 @@ app.get('/', (req, res) => {
 
 // Use user routes under '/api/auth'
 app.use('/api/auth', userRoutes);
+
+//learnerRoutes apis
+app.use('/api', learnerRoutes);
+
+
 
 // Create an HTTP server and pass the Express app to it
 const server = http.createServer(app);
