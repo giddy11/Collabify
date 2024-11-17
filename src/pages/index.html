@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/index.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
@@ -22,11 +23,11 @@
         <div class="icons">4</div>
         <div class="icons">5</div>
     </div>
-    <section class="header red">
-        <div class="logo yellow">
+    <section class="header">
+        <div class="logo">
             <a href="index.html"><span class="logo-short">TFC</span><span class="logo-full">Collabify</span></span></a>
         </div>
-        <div class="container green">
+        <div class="container">
             <div class="dashboard">
                 <button id="dashboard-btn">
                     <i class="fa fa-align-justify" style="font-size:20px;"></i>
@@ -39,15 +40,20 @@
                     <i class="fa fa-search" style="font-size:20px"></i>
                     <input type="text" placeholder="Search"/>
                 </div>
-                <div class="profile">
-                    <select name="" id="">
-                        <option value="">Admin View</option>
-                        <option value="">Member View</option>
-                    </select>
+                <div class="profile" id="profileIcon">
+                    <i class="fa-regular fa-user"></i>
                 </div>
+            </div>
+            <!-- dropdown menu -->
+            <div class='dropdown-profile' id="dropdownMenu" style="display: none;">
+                <ul>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
             </div>
         </div>
     </section>
+
+    
 
     <main>
         <div class="container">

@@ -4,7 +4,7 @@ async function logout() {
 
   try {
     // Make the logout request to the backend
-    const response = await fetch('http://localhost:4001/api/auth/logout', {
+    const response = await fetch('https://collabify-oloy.onrender.com/api/auth/logout', {
       method: 'POST',
       credentials: 'include', // Ensure cookies are sent with the request
     });

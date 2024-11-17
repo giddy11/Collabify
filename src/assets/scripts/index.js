@@ -7,7 +7,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const side_bar = document.getElementById("side-bar");
   const side_bar_p = document.querySelectorAll(".details");
 
-
   let isToggled = false;
 
   dashboardBtn.addEventListener("click", function () {
@@ -31,8 +30,20 @@ document.addEventListener("DOMContentLoaded", function () {
 
       side_bar.style.width = "340px";
       side_bar_p.forEach((p) => (p.style.display = "inline"));
-
     }
     isToggled = !isToggled;
+  });
+
+  document.getElementById("profileIcon").addEventListener("click", function () {
+    const dropdownMenu = document.getElementById("dropdownMenu");
+    // Toggle the display style
+    if (
+      dropdownMenu.style.display === "none" ||
+      dropdownMenu.style.display === ""
+    ) {
+      dropdownMenu.style.display = "block";
+    } else {
+      dropdownMenu.style.display = "none";
+    }
   });
 });
