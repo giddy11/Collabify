@@ -1,114 +1,238 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Profile Page</title>
-  <link rel="stylesheet" href="../styles/profile.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/profile.css">
+    <link rel="stylesheet" href="../styles/follow_up.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
+    <title>Home</title>
 </head>
-<body>
-  <div class="profile-container">
-    <div class="sidebar">
-      <div class="brand-logo">
-        <img src="/img/collabifyLogo.png" alt="Collabify Logo">
-        <h2>Collabify</h2>
-      </div>
-      <ul class="nav-links">
-        <li><a href="#" class="active">Profile</a></li>
-      </ul>
+<body style="overflow: hidden;">
+    <div class="dashboard-md">Dashboard</div>
+    <div class="bottom-nav-md">
+        <div class="icons">
+            <i class="fa fa-dashboard" style="font-size:36px"></i>
+            <p>Dashboard</p>
+        </div>
+        <div class="icons">2</div>
+        <div class="icons">3</div>
+        <div class="icons">4</div>
+        <div class="icons">5</div>
     </div>
-
-    <div class="profile-content">
-      <div class="header">
-        <h1>Profile</h1>
-      </div>
-      <div class="profile-section">
-        <div class="profile-card">
-          <div class="profile-image">
-            <img src="/img/profile-picture.jpg" alt="Profile Picture">
-          </div>
-          <div class="profile-details">
-            <h2>Samuel Dibiah</h2>
-            <p>simeonshazam03@gmail.com</p>
-            <textarea class="bio" placeholder="Enter your bio here">I am a Software Developer and I'd like to Collaborate in learning and building projects!</textarea>
-          </div>
+    <section class="header">
+        <div class="logo">
+            <a href="index.html"><span class="logo-short">TFC</span><span class="logo-full">Collabify</span></span></a>
         </div>
-        <div class="skills-section">
-          <h3>My Skills</h3>
-          <ul class="skills-list">
-            <li>
-              <p>HTML</p>
-              <div class="progress-bar">
-                <div class="progress" style="width: 100%;"></div>
-              </div>
-            </li>
-            <li>
-              <p>CSS</p>
-              <div class="progress-bar">
-                <div class="progress" style="width: 90%;"></div>
-              </div>
-            </li>
-            <li>
-              <p>JavaScript</p>
-              <div class="progress-bar">
-                <div class="progress" style="width: 80%;"></div>
-              </div>
-            </li>
-            <li>
-              <p>React.js</p>
-              <div class="progress-bar">
-                <div class="progress" style="width: 60%;"></div>
-              </div>
-            </li>
-            <li>
-              <p>Node.js</p>
-              <div class="progress-bar">
-                <div class="progress" style="width: 50%;"></div>
-              </div>
-            </li>
-            <li>
-              <p>AWS</p>
-              <div class="progress-bar">
-                <div class="progress" style="width: 40%;"></div>
-              </div>
-            </li>
-          </ul>
-          <button class="add-skill-btn">Add Skill</button>
+        <div class="container">
+            <div class="dashboard">
+                <button id="dashboard-btn">
+                    <i class="fa fa-align-justify" style="font-size:20px;"></i>
+                    <p>Dashboard</p>
+                </button>
+                
+            </div>
+            <div class="right">
+                <div class="search">
+                    <i class="fa fa-search" style="font-size:20px"></i>
+                    <input type="text" placeholder="Search"/>
+                </div>
+                <div class="profile" id="profileIcon">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+            </div>
+            <!-- dropdown menu -->
+            <div class='dropdown-profile' id="dropdownMenu" style="display: none;">
+                <ul>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
         </div>
-      </div>
+    </section>
 
-      <div class="personal-info-section">
-        <div class="info-card">
-          <h3>Personal Information</h3>
-          <div class="info-item">
-            <p><strong>First Name:</strong> Samuel</p>
-            <p><strong>Last Name:</strong> Dibiah</p>
-          </div>
-          <div class="info-item">
-            <p><strong>Email Address:</strong> simeonshazam03@gmail.com</p>
-            <p><strong>Phone Number:</strong> 08119951308</p>
-          </div>
-          <div class="info-item">
-            <p><strong>Date of Birth:</strong> No date of birth added</p>
-            <p><strong>My Stack:</strong> No stack added</p>
-          </div>
+    
+
+    <main>
+        <div class="container">
+            <aside id="side-bar" class="red">
+                <div class="nav-icons red">
+                    <div class="dashboard active">
+                        <a href="index.html" style="color: white;">
+                            <i class="fa fa-dashboard" style="font-size:23px"></i>
+                            <div class="details"><p>Dashboard</p></div>
+                            <!-- <p id="details">Dashboard</p> -->
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="fellows.html">
+                            <i class="material-icons" style="font-size:23px">people</i>
+                            <div class="details"><p>Fellows</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="fa fa-group" style="font-size:23px"></i>
+                            <div class="details"><p>Groups</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="material-icons" style="font-size:23px">event</i>
+                            <div class="details"><p>Events</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="follow_up.html">
+                            <i class="fa fa-handshake-o" style="font-size:23px"></i>
+                            <div class="details"><p>Follow Up</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="onboarding.html">
+                            <i class="fa-solid fa-hand-holding-hand" style="font-size:23px"></i>
+                            <div class="details"><p>Onboarding</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="fa-solid fa-award" style="font-size:23px"></i>
+                            <!-- <i class="fa fa-calendar" style="font-size:23px"></i> -->
+                            <div class="details"><p>Awards and Appreciation</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard-not activec">
+                        <a href="index.html">
+                            <div class="notification">
+                                <i class="material-icons" style="font-size:23px">notifications</i>
+                                <div class="details"><p>Notifications</p></div>
+                            </div>
+                            <div class="red" style="color: blue; font-size: 15px; font-weight: bold;">3</div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="fa fa-users" style="font-size:23px"></i>
+                            <div class="details"><p>Users & Roles</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="material-icons" style="font-size:23px">settings</i>
+                            <div class="details"><p>Settings</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="material-icons" style="font-size:23px">help</i>
+                            <div class="details"><p>Help</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <!-- <a href="login.html">
+                            <i class="fa fa-sign-out" style="font-size:23px"></i>
+                            <div class="details"><p>Log Out</p></div>
+                        </a> -->
+                        <form id="logout">
+                            <button type="button" onclick="logout()" class="" style="display: flex; margin-left: 13px; margin-top: 6px; border: none; background-color: transparent; gap: 5px; cursor: pointer;">
+                                <i class="fa fa-sign-out" style="font-size:23px"></i>
+                                <div class="details"><p>Log Out</p></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+            </aside>
+            
+            <div class="body">
+                <div class="container">
+                    <div class="header">
+                        <button class="btn-follow-up">Edit Profile</button>
+                    </div>             
+                    <div class="profile-content">
+                        <div class="">
+                            <h1>Profile</h1>
+                        </div>
+                    
+                        <div class="personal-info-section">
+                            <div class="info-card">
+                                <h3>Personal Information</h3>
+                                <div class="info-item">
+                                    <p><strong>Full Name:</strong> Samuel Dibiah</p>
+                                </div>
+                                <div class="info-item">
+                                    <p><strong>Email Address:</strong> simeonshazam03@gmail.com</p>
+                                    <p><strong>Phone Number:</strong> 08119951308</p>
+                                </div>
+                                <div class="info-item">
+                                    <p><strong>Date of Birth:</strong> No date of birth added</p>
+                                    <p><strong>My Stack:</strong> No stack added</p>
+                                </div>
+                            </div>
+                    
+                            <div class="info-card">
+                                <h3>Location</h3>
+                                <div class="info-item">
+                                    <p><strong>Country:</strong> Nigeria</p>
+                                    <p><strong>State:</strong> Rivers</p>
+                                </div>
+                                <div class="info-item">
+                                    <p><strong>City:</strong> Port Harcourt</p>
+                                    <p><strong>House Address:</strong> #14 Government house, O</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                
+            </div>
         </div>
+        
+    </main>
 
-        <div class="info-card">
-          <h3>Location</h3>
-          <div class="info-item">
-            <p><strong>Country:</strong> Nigeria</p>
-            <p><strong>State:</strong> Rivers</p>
-          </div>
-          <div class="info-item">
-            <p><strong>City:</strong> Port Harcourt</p>
-            <p><strong>House Address:</strong> #14 Government house, O</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!-- <div class="body">
+                
+    </div> -->
 
-  <script src="../assets/scripts/profile.js"></script>
+    <script src="../assets/scripts/index.js"></script>
+    <script src="../assets/scripts/logout.js"></script>
 </body>
 </html>

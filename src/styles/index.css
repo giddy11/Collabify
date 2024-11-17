@@ -104,14 +104,72 @@
     border: none;
 }
 
-.header .container .right .profile select {
-    background-color: transparent;
-    color: white;
-    padding: 10px;
-    border-radius: 20px;
-    border: 1px solid white;
+.header .container .right .profile {
+    height: 3.2rem;
+    width: 3.2rem;
+    border-radius: 3.2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #437b81;
     cursor: pointer;
 }
+
+.dropdown-profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 6.0rem;
+    right: 1.5rem;
+    width: 100px;
+    padding: 15px;
+    border-radius: 15px;
+    background-color: white;
+    border: 1px solid gray;
+    color: #0C78A9;
+    z-index: 1;
+}
+
+.dropdown-profile::before {
+    content: '';
+    position: absolute;
+    top: -0.7rem;
+    right: 1.0rem;
+    width: 20px;
+    height: 20px;
+    transform: rotate(45deg);
+    background-color: white;
+    border-left: 1px solid gray;
+    border-top: 1px solid gray;
+}
+
+.dropdown-profile ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+}
+
+/* Remove underline from the Link components */
+.dropdown-profile a {
+    text-decoration: none;
+    color: #0C78A9;
+  }
+  
+  /* Optional: Add styles for hovered links (if needed) */
+  .dropdown-profile a:hover {
+    text-decoration: none; /* Ensure no underline on hover */
+  }
+
+.header .container .right .profile i {
+    font-size: 2rem;
+}
+
+
+
 
 main .container {
     display: flex;
@@ -420,7 +478,7 @@ main .container .body {
 
 
 
-/* .red {
+.red {
     border: 1px solid red;
 }
 
@@ -438,8 +496,4 @@ main .container .body {
 
 .yellow {
     border: 1px solid yellow;
-} */
-
-/* body{
-    overflow: hidden;
-} */
+}
