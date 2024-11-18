@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/index.css">
     <link rel="stylesheet" href="../styles/follow_up.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -27,7 +28,7 @@
     </div>
     <section class="header red">
         <div class="logo yellow">
-            <a href="index.html"><span class="logo-short">TFC</span><span class="logo-full">Collabify</span></span></a>
+            <a href="index.html"><span class="logo-short">CBY</span><span class="logo-full">Collabify</span></span></a>
         </div>
         <div class="container green">
             <div class="dashboard">
@@ -42,12 +43,15 @@
                     <i class="fa fa-search" style="font-size:20px"></i>
                     <input type="text" placeholder="Search"/>
                 </div>
-                <div class="profile">
-                    <select name="" id="">
-                        <option value="">Admin View</option>
-                        <option value="">Member View</option>
-                    </select>
+                <div class="profile" id="profileIcon">
+                    <i class="fa-regular fa-user"></i>
                 </div>
+            </div>
+            <!-- dropdown menu -->
+            <div class='dropdown-profile' id="dropdownMenu" style="display: none;">
+                <ul>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -69,37 +73,37 @@
                     <div class="dashboard active">
                         <a href="fellows.html" style="color: white;">
                             <i class="material-icons" style="font-size:23px">people</i>
-                            <div class="details"><p>Fellows</p></div>
+                            <div class="details"><p>Learners</p></div>
                         </a>
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="fa fa-group" style="font-size:23px"></i>
                             <div class="details"><p>Groups</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="material-icons" style="font-size:23px">event</i>
                             <div class="details"><p>Events</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="fa fa-handshake-o" style="font-size:23px"></i>
                             <div class="details"><p>Follow Up</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
@@ -110,25 +114,25 @@
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="onboarding.html">
                             <i class="fa-solid fa-award" style="font-size:23px"></i>
                             <div class="details"><p>Awards and Appreciation</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="fa fa-calendar" style="font-size:23px"></i>
                             <div class="details"><p>Calendar</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard-not activec">
                         <a href="index.html">
                             <div class="notification">
@@ -138,7 +142,7 @@
                             <div class="red" style="color: blue; font-size: 15px; font-weight: bold;">3</div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
@@ -149,30 +153,32 @@
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="material-icons" style="font-size:23px">settings</i>
                             <div class="details"><p>Settings</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="material-icons" style="font-size:23px">help</i>
                             <div class="details"><p>Help</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
-                        <a href="index.html">
-                            <i class="fa fa-sign-out" style="font-size:23px"></i>
-                            <div class="details"><p>Log Out</p></div>
-                        </a>
+                        <form id="logout">
+                            <button type="button" onclick="logout()" class="" style="display: flex; margin-left: 13px; margin-top: 6px; border: none; background-color: transparent; gap: 5px; cursor: pointer;">
+                                <i class="fa fa-sign-out" style="font-size:23px"></i>
+                                <div class="details"><p>Log Out</p></div>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 
@@ -181,10 +187,10 @@
             <div class="body">
                 <div class="container">
                     <div class="header red">
-                        <button class="btn-follow-up">+ Add Follow Up</button>
+                        <button class="btn-follow-up">+ Add Learner</button>
                         <div class="search-reports">
                             <input type="text" placeholder="Search by name, mobile">
-                            <button class="btn-reports">Reports</button>
+                            <button class="btn-reports">Search</button>
                         </div>
                     </div>
             
@@ -214,7 +220,7 @@
                                 <td>2</td>
                             </tr>
 
-                            <tr>
+                            <!-- <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="https://t4.ftcdn.net/jpg/03/26/98/51/360_F_326985142_1aaKcEjMQW6ULp6oI9MYuv8lN9f8sFmj.jpg" alt="Avatar"> Rita Patience</td>
                                 <td>Quality Assurance</td>
@@ -222,9 +228,9 @@
                                 <td>13</td>
                                 <td>rita@g.com</td>
                                 <td>5</td>
-                            </tr>
+                            </tr> -->
 
-                            <tr>
+                            <!-- <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="https://d1fufvy4xao6k9.cloudfront.net/images/blog/posts/2023/06/hock36.jpg" alt="Avatar"> Gods power</td>
                                 <td>Software Development</td>
@@ -232,9 +238,9 @@
                                 <td>3</td>
                                 <td>power@g.com</td>
                                 <td>2</td>
-                            </tr>
+                            </tr> -->
 
-                            <tr>
+                            <!-- <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyQvNh-gFXfuM_022WG3t-Bbd57aPzPCwjYQ&s" alt="Avatar"> Archibong Glory</td>
                                 <td>Software Development</td>
@@ -242,9 +248,9 @@
                                 <td>0</td>
                                 <td>glory@g.com</td>
                                 <td>1</td>
-                            </tr>
+                            </tr> -->
 
-                            <tr>
+                            <!-- <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="https://essa-africa.org/sites/default/files/2022-03/51131849887_d1c86f0e40_o_0.jpg" alt="Avatar"> Favour Ajeh</td>
                                 <td>Quality Assurance</td>
@@ -252,9 +258,9 @@
                                 <td>3</td>
                                 <td>favour@g.com</td>
                                 <td>2</td>
-                            </tr>
+                            </tr> -->
 
-                            <tr>
+                            <!-- <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="https://www.myjoyonline.com/wp-content/uploads/2020/07/Prof-Jane-Naana-Opoku-Agyemang1-711x424.jpg" alt="Avatar"> Amen Lory </td>
                                 <td>Software Development</td>
@@ -262,9 +268,9 @@
                                 <td>3</td>
                                 <td>daniel@.com</td>
                                 <td>2</td>
-                            </tr>
+                            </tr> -->
 
-                            <tr>
+                            <!-- <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="https://mybrytfmonline.com/wp-content/uploads/2020/07/WhatsApp-Image-2020-07-06-at-153903.jpg" alt="Avatar">Peter Emem</td>
                                 <td>Software Development</td>
@@ -272,9 +278,9 @@
                                 <td>3</td>
                                 <td>daniel@.com</td>
                                 <td>2</td>
-                            </tr>
+                            </tr> -->
 
-                            <tr>
+                            <!-- <tr>
                                 <td><input type="checkbox"></td>
                                 <td><img src="https://www.ouinolanguages.com/assets/French/vocab/48/images/pic8.jpg" alt="Avatar"> Micah Eli</td>
                                 <td>Software Development</td>
@@ -282,7 +288,7 @@
                                 <td>3</td>
                                 <td>daniel@.com</td>
                                 <td>2</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>
