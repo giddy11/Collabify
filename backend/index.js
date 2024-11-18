@@ -8,11 +8,17 @@ const corsOptions = require('./config/corsOptions');
 const express = require("express");
 const cookieParser = require('cookie-parser');
 const http = require('http');
+// Auth Routes
+const authRoutes = require('./routes/authRoutes');
+
+// User Routes
+const userRoutes = require('./routes/userRoutes');
 
 // Set up the PORT
 const PORT = process.env.PORT || 3000;
-
 const app = express();
+// Create an HTTP server and pass the Express app to it
+const server = http.createServer(app);
 
 // Set up middleware
 app.use(cors(corsOptions));
@@ -22,23 +28,14 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-// User Routes
-const userRoutes = require('./routes/userRoutes');
-
-
 // Welcome route
 app.get('/', (req, res) => {
     res.send('Welcome to the API!');
 });
 
-// Use user routes under '/api/auth'
-app.use('/api/auth', userRoutes);
-
-
-
-
-// Create an HTTP server and pass the Express app to it
-const server = http.createServer(app);
+// routes'
+app.use('/api/auth', authRoutes);
+app.use('/api', userRoutes);
 
 // Start the server
 mongoose.connection.once('open', () => {
