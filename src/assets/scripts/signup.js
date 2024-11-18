@@ -11,7 +11,8 @@
 //     });
 //   }
 
-const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/signup'; // Update with your actual endpoint
+// const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/signup';
+const apiUrl = 'http://localhost:4001/api/auth/signup';
 const loader = document.getElementById('loader');
 const registerForm = document.getElementById('register-form');
 
@@ -45,7 +46,7 @@ registerForm.onsubmit = async function (e) {
   e.preventDefault(); // Prevent default form submission
   showLoader(); // Show loader
 
-  const fullName = document.getElementById('alc-name').value;
+  const fullName = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   
@@ -53,12 +54,12 @@ registerForm.onsubmit = async function (e) {
 
   try {
     const response = await apiRequest(apiUrl, 'POST', formData);
-    console.log(`response: ${response.success}`);
 
     if (response.success) {
-      // Redirect to login page on success
-      console.log("hello")
-      window.location.href = 'login.html';
+      localStorage.setItem('accessToken', response.accessToken);
+      
+      // Redirect to the index page on successful signup
+      window.location.href = 'index.html';
     } else {
       alert('Signup failed. Please try again.');
     }

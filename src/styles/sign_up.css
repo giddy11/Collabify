@@ -47,6 +47,20 @@ body {
   gap: 15px;
 }
 
+.signup-form select {
+  color: #5c5454;
+  border: 2px solid #1fb5c2;
+  font-size: 1rem;
+  padding: 10px 15px;
+  border-radius: 5px;
+  outline: none;
+}
+
+.signup-form select:hover,
+.signup-form select:focus {
+  border-color: #1fb5c2;
+}
+
 .form-input {
   padding: 10px 15px;
   border: 2px solid #1fb5c2;
