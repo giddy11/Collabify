@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const followUpSchema = new Schema({
-    strugglingLearnerId: { type: Schema.Types.ObjectId, ref: 'Learner' },
-    tutorId: { type: Schema.Types.ObjectId, ref: 'Learner' },
+    strugglingLearnerId: { type: Schema.Types.ObjectId, ref: 'User' },
+    tutorId: { type: Schema.Types.ObjectId, ref: 'User' },
     startDate: Date,
     deadline: Date,
     Description: String,

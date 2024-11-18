@@ -25,8 +25,6 @@ connectDB();
 // User Routes
 const userRoutes = require('./routes/userRoutes');
 
-//learner Route
-const learnerRoutes = require('./routes/learnerRoutes');
 
 // Welcome route
 app.get('/', (req, res) => {
@@ -36,8 +34,6 @@ app.get('/', (req, res) => {
 // Use user routes under '/api/auth'
 app.use('/api/auth', userRoutes);
 
-//learnerRoutes apis
-app.use('/api', learnerRoutes);
 
 
 
