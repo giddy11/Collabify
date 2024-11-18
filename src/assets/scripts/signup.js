@@ -1,16 +1,6 @@
-// window.onload = function() {
-//     const registerForm = document.getElementById('register-form');
-    
-//     registerForm.addEventListener('submit', function(event) {
-//       // Prevent the default form submission
-//       event.preventDefault();
-      
-//       alert('Please log in');
-      
-//       window.location.href = 'login.html';
-//     });
-//   }
-
+/**
+ * TODO: Remember to switch to the deployment host name for signup
+ */
 // const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/signup';
 const apiUrl = 'http://localhost:4001/api/auth/signup';
 const loader = document.getElementById('loader');
