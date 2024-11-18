@@ -2,9 +2,18 @@ async function logout() {
   // Clear the access token from localStorage
   localStorage.removeItem('accessToken');
 
+  /**
+ * TODO: Remember to switch to the deployment host name for logout
+ */
   try {
     // Make the logout request to the backend
-    const response = await fetch('https://collabify-oloy.onrender.com/api/auth/logout', {
+    const apiUrl = 'http://localhost:4001/api/auth/signup';
+    // const response = await fetch('https://collabify-oloy.onrender.com/api/auth/logout', {
+    //   method: 'POST',
+    //   credentials: 'include', // Ensure cookies are sent with the request
+    // });
+
+    const response = await fetch('http://localhost:4001/api/auth/logout', {
       method: 'POST',
       credentials: 'include', // Ensure cookies are sent with the request
     });
@@ -13,7 +22,7 @@ async function logout() {
     if (data.success) {
       // Redirect to login page after successful logout
       console.log("Logout successful");
-      window.location.href = './login.html';
+      window.location.href = './signin.html';
     } else {
       alert('Logout failed, please try again.');
     }

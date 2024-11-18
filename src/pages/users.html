@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/index.css">
-  <link rel="stylesheet" href="../styles/matchmaking.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Home</title>
 </head>
@@ -59,9 +58,9 @@
     <main>
         <div class="container">
             <aside id="side-bar" class="red">
-                <div class="nav-icons red">
-                    <div class="dashboard active">
-                        <a href="index.html" style="color: white;">
+                <div class="nav-icons red" id="admin">
+                    <div class="dashboard activec">
+                        <a href="index.html">
                             <i class="fa fa-dashboard" style="font-size:23px"></i>
                             <div class="details"><p>Dashboard</p></div>
                             <!-- <p id="details">Dashboard</p> -->
@@ -69,7 +68,7 @@
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <div class="nav-icons red" id="admin">
                     <div class="dashboard activec">
                         <a href="fellows.html">
                             <i class="material-icons" style="font-size:23px">people</i>
@@ -97,17 +96,17 @@
                 </div>
 
                 <div class="nav-icons red">
-                    <div class="dashboard active">
-                        <a href="index.html" style="color: white;">
+                    <div class="dashboard activec">
+                        <a href="index.html">
                             <i class="fa fa-users" style="font-size:23px"></i>
                             <div class="details"><p>Matchmaking</p></div>
                         </a>
                     </div>
                 </div>
 
-                <div class="nav-icons red">
-                    <div class="dashboard activec">
-                        <a href="users.html">
+                <div class="nav-icons red" id="admin">
+                    <div class="dashboard active">
+                        <a href="users.html" style="color: white;">
                             <i class="fa fa-users" style="font-size:23px"></i>
                             <div class="details"><p>Users & Roles</p></div>
                         </a>
@@ -129,71 +128,13 @@
 
             <div class="body">
                 <div class="container">
-                    <div class="matchmaking-content">
-                        <header>
-                          <h1>Find Your Match</h1>
-                          <p>Search and connect with peers based on skills, learning goals, and projects.</p>
-                        </header>
-                  
-                        <section class="search-section">
-                          <input 
-                            type="text" 
-                            id="search-bar" 
-                            placeholder="Search for skills, interests, or projects..."
-                          />
-                          <button id="search-btn">Search</button>
-                        </section>
-                  
-                        <section class="filter-section">
-                          <h3>Filters</h3>
-                          <form id="filters-form">
-                            <div class="filter-group">
-                              <label for="skills">Skills</label>
-                              <select id="skills">
-                                <option value="">Select Skill</option>
-                                <option value="javascript">JavaScript</option>
-                                <option value="python">Python</option>
-                                <option value="react">React.js</option>
-                                <option value="ai">AI/ML</option>
-                              </select>
-                            </div>
-                            <div class="filter-group">
-                              <label for="location">Location</label>
-                              <select id="location">
-                                <option value="">Select Location</option>
-                                <option value="remote">Remote</option>
-                                <option value="lagos">Lagos</option>
-                                <option value="rivers">Rivers</option>
-                              </select>
-                            </div>
-                            <div class="filter-group">
-                              <label for="projects">Project Preferences</label>
-                              <select id="projects">
-                                <option value="">Select Preference</option>
-                                <option value="frontend">Frontend Development</option>
-                                <option value="backend">Backend Development</option>
-                                <option value="fullstack">Fullstack</option>
-                                <option value="data">Data Science</option>
-                              </select>
-                            </div>
-                            <button type="submit" id="filter-btn">Apply Filters</button>
-                          </form>
-                        </section>
-                  
-                        <section class="results-section">
-                          <h3>Matched Peers</h3>
-                          <div class="results-grid">
-                            <!-- Dynamic User Cards -->
-                          </div>
-                        </section>
-                      </div>
+                    users
                 </div>
             </div>
         </div>
         
     </main>
 
-  <script src="../assets/scripts/matchmaking.js"></script>
     <script src="../assets/scripts/index.js"></script>
     <script src="../assets/scripts/logout.js"></script>
 </body>

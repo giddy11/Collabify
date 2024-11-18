@@ -1,17 +1,8 @@
-// window.onload = function() {
-//     const loginForm = document.getElementById('login-form');
-    
-//     loginForm.addEventListener('submit', function(event) {
-//       // Prevent the default form submission
-//       event.preventDefault();
-      
-//       alert('Welcome');
-      
-//       window.location.href = 'index.html';
-//     });
-//   }
-// Set up constants
-const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login'; // Adjust to your login endpoint
+/**
+ * TODO: Remember to switch to the deployment host name for login
+ */
+const apiUrl = 'http://localhost:4001/api/auth/login';
+// const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login'; // Adjust to your login endpoint
 const loader = document.getElementById('loader');
 const loginForm = document.getElementById('login-form');
 

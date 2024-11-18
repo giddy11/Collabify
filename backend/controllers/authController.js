@@ -62,15 +62,18 @@ const signup = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
+    // Include the tokens in the response body
     return res.status(201).json({
-      success: true, // Include success field here
+      success: true,
       message: "Registration successful",
       user: {
         email: newUser.email,
         id: newUser._id,
         fullName: newUser.fullName,
-        role: newUser.role
+        role: newUser.role,
       },
+      accessToken, // Add the access token to the response body
+      refreshToken, // Add the refresh token to the response body (if needed)
     });
   } catch (error) {
     console.error(error);
@@ -79,6 +82,7 @@ const signup = async (req, res) => {
       .json({ success: false, message: "Server error", error: error.message });
   }
 };
+
 
 // Forgot Password Feature
 /** POST: http://localhost:4001/api/auth/forgot-password 
