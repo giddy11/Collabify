@@ -45,11 +45,11 @@ registerForm.onsubmit = async function (e) {
   e.preventDefault(); // Prevent default form submission
   showLoader(); // Show loader
 
-  const instituteName = document.getElementById('alc-name').value;
+  const fullName = document.getElementById('alc-name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
   
-  const formData = { instituteName, email, password };
+  const formData = { fullName, email, password };
 
   try {
     const response = await apiRequest(apiUrl, 'POST', formData);

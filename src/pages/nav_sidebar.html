@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Home</title>
+</head>
+<body style="overflow: hidden;">
+    <div class="dashboard-md">Dashboard</div>
+    <div class="bottom-nav-md">
+        <div class="icons">
+            <i class="fa fa-dashboard" style="font-size:36px"></i>
+            <p>Dashboard</p>
+        </div>
+        <div class="icons">2</div>
+        <div class="icons">3</div>
+        <div class="icons">4</div>
+        <div class="icons">5</div>
+    </div>
+    <section class="header">
+        <div class="logo">
+            <a href="index.html"><span class="logo-short">CBY</span><span class="logo-full">Collabify</span></span></a>
+        </div>
+        <div class="container">
+            <div class="dashboard">
+                <button id="dashboard-btn">
+                    <i class="fa fa-align-justify" style="font-size:20px;"></i>
+                    <p>Dashboard</p>
+                </button>
+                
+            </div>
+
+            <div class="right">
+                <div class="search">
+                    <i class="fa fa-search" style="font-size:20px"></i>
+                    <input type="text" placeholder="Search"/>
+                </div>
+                <div class="profile" id="profileIcon">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+            </div>
+            <!-- dropdown menu -->
+            <div class='dropdown-profile' id="dropdownMenu" style="display: none;">
+                <ul>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <main>
+        <div class="container">
+            <aside id="side-bar" class="red">
+                <div class="nav-icons red">
+                    <div class="dashboard active">
+                        <a href="index.html" style="color: white;">
+                            <i class="fa fa-dashboard" style="font-size:23px"></i>
+                            <div class="details"><p>Dashboard</p></div>
+                            <!-- <p id="details">Dashboard</p> -->
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="fellows.html">
+                            <i class="material-icons" style="font-size:23px">people</i>
+                            <div class="details"><p>Learners</p></div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="onboarding.html">
+                            <i class="fa-solid fa-hand-holding-hand" style="font-size:23px"></i>
+                            <div class="details"><p>Onboarding</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="fa fa-users" style="font-size:23px"></i>
+                            <div class="details"><p>Matchmaking</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="fa fa-users" style="font-size:23px"></i>
+                            <div class="details"><p>Users & Roles</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <form id="logout">
+                            <button type="button" onclick="logout()" class="" style="display: flex; margin-left: 13px; margin-top: 6px; border: none; background-color: transparent; gap: 5px; cursor: pointer;">
+                                <i class="fa fa-sign-out" style="font-size:23px"></i>
+                                <div class="details"><p>Log Out</p></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+            </aside>
+
+            <div class="body">
+                <div class="container">
+                    
+                </div>
+            </div>
+        </div>
+        
+    </main>
+
+    <script src="../assets/scripts/index.js"></script>
+    <script src="../assets/scripts/logout.js"></script>
+</body>
+</html>
