@@ -21,15 +21,15 @@ const API_BASE_URL = "http://localhost:4001/api/onboarding";
 
 async function fetchOnboardings() {
   const token = localStorage.getItem("accessToken");  // Get token from localStorage
-  
+
   if (!token) {
     throw new Error("No token found. Please log in first.");
   }
 
   const response = await fetch(`${API_BASE_URL}s`, {
-    method: "GET", // Ensure it's a GET request
+    method: "GET",  // Ensure it's a GET request
     headers: {
-      "Authorization": `Bearer ${token}`,
+      "Authorization": `Bearer ${token}`,  // Pass token in Authorization header
       "Content-Type": "application/json",
     },
   });
@@ -40,8 +40,9 @@ async function fetchOnboardings() {
 
   const data = await response.json();
   console.log("Fetched Onboardings:", data); // Inspect response
-  return data.onboardings; // Return the onboardings array
+  return data.onboardings;  // Return the onboardings array
 }
+
 
 
 async function createOnboarding(data) {

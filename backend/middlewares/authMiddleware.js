@@ -30,14 +30,12 @@ const jwt = require("jsonwebtoken");
 const asyncHandler = require("express-async-handler");
 
 const authMiddleware = asyncHandler(async (req, res, next) => {
-  // Check if the token is in the Authorization header
   const token = req.headers.authorization && req.headers.authorization.split(" ")[1];
 
   if (!token) {
     return res.status(401).json({ success: false, message: "Unauthorized" });
   }
 
-  // Verify the token
   jwt.verify(token, process.env.TOKEN_SECRET_KEY, (err, decoded) => {
     if (err) {
       return res.status(403).json({ success: false, message: "Invalid or expired token" });
@@ -45,7 +43,7 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
 
     // Attach user info to request object
     req.user = {
-      id: decoded.id,
+      id: decoded.id,  // Ensure that the token has the user id
       email: decoded.email,
       fullName: decoded.fullName,
     };
@@ -54,4 +52,5 @@ const authMiddleware = asyncHandler(async (req, res, next) => {
   });
 });
 
-module.exports = authMiddleware;
+
+module.exports = authMiddleware; 

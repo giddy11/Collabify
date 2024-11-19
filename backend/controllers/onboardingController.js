@@ -20,12 +20,18 @@ const createOnboarding = async (req, res) => {
   const { name, department, topic, noOfAcceptance, link } = req.body;
 
   try {
+    // Ensure the user is authenticated
+    if (!req.user || !req.user.id) {  // Use req.user.id instead of req.user._id
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
     const newOnboarding = new Onboarding({
       name,
       department,
       topic,
       noOfAcceptance,
       link,
+      userId: req.user.id, // Associate with the logged-in user
     });
 
     await newOnboarding.save();
@@ -43,14 +49,23 @@ const createOnboarding = async (req, res) => {
   }
 };
 
+
+
 /** 
  * GET: http://localhost:4001/api/onboardings
  * Fetches all onboarding items from the backend.
  * @returns {Promise<Array>} List of onboarding items.
  */
-const getAllOnboardings = async (req, res) => {
+const getAllOnboardings2 = async (req, res) => {
   try {
-    const onboardings = await Onboarding.find();
+    // Ensure the user is authenticated
+    if (!req.user || !req.user._id) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    // Fetch onboarding items for the logged-in user
+    const onboardings = await Onboarding.find({ userId: req.user._id });
+
     return res.status(200).json({ success: true, onboardings });
   } catch (error) {
     console.error(error);
@@ -59,6 +74,25 @@ const getAllOnboardings = async (req, res) => {
       .json({ success: false, message: "Server error", error: error.message });
   }
 };
+
+const getAllOnboardings = async (req, res) => {
+  try {
+    // Ensure the user is authenticated
+    if (!req.user || !req.user.id) {
+      return res.status(401).json({ success: false, message: "Unauthorized" });
+    }
+
+    // Fetch onboarding items for the logged-in user
+    const onboardings = await Onboarding.find({ userId: req.user.id });
+
+    return res.status(200).json({ success: true, onboardings });
+  } catch (error) {
+    console.error(error); 
+    return res.status(500).json({ success: false, message: "Server error", error: error.message });
+  }
+};
+
+
 
 // Get Onboarding by ID
 /** 
