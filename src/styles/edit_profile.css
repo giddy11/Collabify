@@ -1,9 +1,9 @@
 /* Reset and base styles */
-* {
+/* * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
+} */
 
 body {
   font-family: Arial, sans-serif;
@@ -22,32 +22,32 @@ body {
   padding: 20px;
 }
 
-.edit-profile-form {
+.edit-profile-container edit-profile-form {
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
 
 /* Row styles */
-.form-row {
+.edit-profile-container .form-row {
   display: flex;
   gap: 20px;
   justify-content: space-between;
 }
 
-.form-group {
+.edit-profile-container .form-group {
   flex: 1;
   display: flex;
   flex-direction: column;
 }
 
-.form-label {
+.edit-profile-container .form-label {
   margin-bottom: 5px;
   font-size: 0.9rem;
   color: #000;
 }
 
-.form-input {
+.edit-profile-container .form-input {
   padding: 10px 15px;
   border: 2px solid #1fb5c2;
   border-radius: 5px;
@@ -55,18 +55,19 @@ body {
   outline: none;
 }
 
-.form-input::placeholder {
+.edit-profile-container .form-input::placeholder {
   color: #aaa;
 }
 
 /* Button styles */
-.form-buttons {
+.edit-profile-container .form-buttons {
   display: flex;
   justify-content: center;
   gap: 20px;
+  margin-top: 20px;
 }
 
-.save-button {
+.edit-profile-container .save-button {
   padding: 12px 30px;
   font-size: 1rem;
   color: #ffffff;
@@ -76,11 +77,11 @@ body {
   cursor: pointer;
 }
 
-.save-button:hover {
+.edit-profile-container .save-button:hover {
   background-color: #168da0;
 }
 
-.cancel-button {
+.edit-profile-container .cancel-button {
   padding: 12px 30px;
   font-size: 1rem;
   color: #1fb5c2;
@@ -90,6 +91,6 @@ body {
   cursor: pointer;
 }
 
-.cancel-button:hover {
+.edit-profile-container .cancel-button:hover {
   background-color: #e6f8fa;
 }
