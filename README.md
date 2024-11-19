@@ -13,6 +13,8 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 - [API Endpoints](#api-endpoints)
 - [Usage](#usage)
 - [Deployment](#deployment)
+- [Challenges](#challenges)
+- [Acknowledgement](#acknowledgement)
 
 ---
 
@@ -27,7 +29,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 7. **Learners Directory**: Enable Learners to view their director so as to interact with them.
 8. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it diplays the list of all users and their roles.
 9. **Profile Page integration**: Functional Profile Page to be dynamic.
-10. **Protected Routes**: Makiing the pages protected for unauthorised users. 
+10. **Protected Routes**: Making the pages protected for unauthorised users. 
 11. **A functional Dashboard**: The dashboard will capture data for number of important information to display.
 12. **Admin / User View**: Some Views wont be visible by the users.
 13. **Notification**: Users and admin can have a functional notification for incomings.
@@ -36,7 +38,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 16. **Groups**: Groups can be created by he admin for the learners.
 18. **The Search Feature (Header)**: The feature searches for learners, groups, users, events.
 19. **Admin Creates multiple Communities**: So instead of one account for one learning location, we can now have multiple locations for one account as been added to the admin.
-20. **Mobile Responsiveness**: It will responsive across devices. 
+20. **Mobile Responsiveness**: It will be responsive across devices. 
 ---
 
 ## Tech Stack
@@ -160,6 +162,21 @@ The server will start on `http://localhost:3000` (or the port you set in `.env`)
 3. Deploy the application via Vercel.
 
 ### Deploying on Render, visit https://render.com/
+
+### Challenges
+
+Challenges Faced During Development
+
+1. Encountered significant redundancy with repeated implementations of the header and sidebar components across multiple pages. This made managing the UI flow overly complex and task-intensive. (SOLUTION: To look into frameworks like React that offers reusable componentization)
+
+2. Frontend Update Issue
+
+    During development, I struggled with windows not reloading automatically after updating a field. After troubleshooting, I resolved the issue by using window.location.reload() to refresh the page and reflect the updates.
+    Unrestricted Access (CONSIDERATION: UseState effects in React)
+
+3. Currently, there’s a challenge where any user can sign up and gain access to view my works and activities without restrictions. This raises concerns about content privacy and security, and I'm working on a solution to enforce proper user access control. (SOLUTION: This was handled after linking a user to the created model).
+
+4. Team member assigned to handle the frontend struggled to consume endpoints from the backend, thereby giving more workloads by the fellow who was handling the backend to also consume endpoints at the frontend. (SOLUTION: Impacting knowledge to the fellow and giving small projects to do that require endpoints consumption).
 
 
 ## Acknowledgments
