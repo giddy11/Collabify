@@ -37,6 +37,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 16. **Gruops**: Groups can be created by he admin for the learners.
 18. **The Search Feature (Header)**: The feature searches for learners, groups, users, events.
 19. **Admin Creates multiple Communities**: So instead of one account for one learning location, we can now have multiple locations for one account as been added to the admin.
+20. **Mobile Responsiveness**: It will responsive across devices. 
 ---
 
 ## Tech Stack
