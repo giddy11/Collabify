@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign In</title>
+    <link rel="stylesheet" href="../styles/sign_in.css" />
+    <link rel="stylesheet" href="../styles/index.css" />
+  </head>
+  <body>
+    <div class="signin-container">
+      <!-- Logo Section -->
+      <div class="logo-container">
+        <img
+          src="/img/collabifyLogo.png"
+          alt="Collabify Logo"
+          class="collabify-logo"
+        />
+      </div>
+
+      <div id="loader" class="loader" style="display: none"></div>
+      <!-- Form Section -->
+      <form id="login-form" class="signin-form">
+        <div class="form-group">
+          <input type="email" id="email" placeholder="Email" required />
+        </div>
+        <div class="form-group">
+          <input
+            type="password"
+            id="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+        <!--
+              TODO: fix the forgot password hover -->
+        <!-- Forgot Password Link -->
+        <a href="./forgot_password.html" class="forgot-password">Forgot password?</a>
+        <button type="submit" class="signin-btn">Sign In</button>
+      </form>
+
+      <!-- Signup Section -->
+      <div class="signup-link">
+        Don’t have an account? <a href="./signup.html">Sign up</a>
+      </div>
+    </div>
+
+    <script src="../assets/scripts/login.js"></script>
+  </body>
+</html>

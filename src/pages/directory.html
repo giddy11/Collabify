@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/directory.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Home</title>
 </head>
@@ -48,7 +49,6 @@
             <div class='dropdown-profile' id="dropdownMenu" style="display: none;">
                 <ul>
                     <li><a href="profile.html">Profile</a></li>
-                    <li><a href="./change_pass.html">Change Password</a></li>
                 </ul>
             </div>
         </div>
@@ -59,9 +59,9 @@
     <main>
         <div class="container">
             <aside id="side-bar" class="red">
-                <div class="nav-icons red">
-                    <div class="dashboard active">
-                        <a href="index.html" style="color: white;">
+                <div class="nav-icons red" id="admin">
+                    <div class="dashboard activec">
+                        <a href="index.html">
                             <i class="fa fa-dashboard" style="font-size:23px"></i>
                             <div class="details"><p>Dashboard</p></div>
                             <!-- <p id="details">Dashboard</p> -->
@@ -69,7 +69,7 @@
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <div class="nav-icons red" id="admin">
                     <div class="dashboard activec">
                         <a href="fellows.html">
                             <i class="material-icons" style="font-size:23px">people</i>
@@ -79,8 +79,8 @@
                 </div>
 
                 <div class="nav-icons red" id="admin">
-                    <div class="dashboard activec">
-                        <a href="directory.html">
+                    <div class="dashboard active">
+                        <a href="directory.html" style="color: white;">
                             <i class="material-icons" style="font-size:23px">people</i>
                             <div class="details"><p>Directory</p></div>
                         </a>
@@ -113,7 +113,7 @@
                         </a>
                     </div>
                 </div>
-
+                
                 <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="onboarding.html">
@@ -122,15 +122,6 @@
                         </a>
                     </div>
                 </div>
-
-                <!-- <div class="nav-icons red">
-                    <div class="dashboard activec">
-                        <a href="index.html">
-                            <i class="fa-solid fa-award" style="font-size:23px"></i>
-                            <div class="details"><p>Awards and Appreciation</p></div>
-                        </a>
-                    </div>
-                </div> -->
 
                 <div class="nav-icons red">
                     <div class="dashboard-not activec">
@@ -153,7 +144,7 @@
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <div class="nav-icons red" id="admin">
                     <div class="dashboard activec">
                         <a href="users.html">
                             <i class="fa fa-users" style="font-size:23px"></i>
@@ -195,90 +186,73 @@
 
             <div class="body">
                 <div class="container">
-                    <div class="up-overview">
-                        <a href="#" class="box-link red">
-                            <div class="two-details">
-                                <h1>1</h1>
-                                <p>Learners</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>1</h1>
-                                <p>Users</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>0</h1>
-                                <p>Groups</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>0</h1>
-                                <p class="topic">Pending Follow Up</p>
-                                <p class="date">This Week</p>
-                                <p><span>0</span> This Month</p>
-                            </div>
-                        </a>
-
-                    </div>
-                    <div class="down">
-                        <div class="upcoming">
-                            <div class="view-all">
-                                <h4>Upcoming events in 30 days</h4>
-                                <a href="#">View All</a>
-                            </div>
-                            <div class="container-upcoming">
-                                <div class="cont">
-                                    <!-- <div class="option">1</div> -->
-                                    <div class="cont-2">
-                                        <div>
-                                            <a href="#"><h3>HTML</h3></a>
-                                            <p>Sun 16th Dec 2024 | 07PM to 08PM</p>
-                                            <p>Organized by Mr Gideon Edoghotu</p>
-                                        </div>
-                                        <div class="check-in">
-                                            <a href="">Check In</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="cont">
-                                    <!-- <div class="option">1</div> -->
-                                    <div class="cont-2">
-                                        <div>
-                                            <a href="#"><h3>Private session on CSS</h3></a>
-                                            <p>Sun 17th Oct 2024 | 07PM to 08PM</p>
-                                            <p>Organized by Miss Precious O</p>
-                                        </div>
-                                        <div class="check-in">
-                                            <a href="">Check In</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="cont">
-                                    <!-- <div class="option">1</div> -->
-                                    <div class="cont-2">
-                                        <div>
-                                            <a href="#"><h3>Session on setting up testing environment</h3></a>
-                                            <p>Sun 19th Oct 2024 | 07PM to 08PM</p>
-                                            <p>Organised by Mr Samuel E.</p>
-                                        </div>
-                                        <div class="check-in">
-                                            <a href="">Check In</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
+                    <!--  -->
+                    <div class="users-container">
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Abigail Abi</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> atbyjamezz@gmail.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-search"></i> Data Analyst</p>
+                          </div>
                         </div>
-                        <div class="attendance" style="background-color: transparent;">No Attendance yet</div>
-                    </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Gideon Gideon</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> gideon.edghotu@cyphercrescent.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-lock"></i> Backend Developer</p>
+                          </div>
+                        </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Janny J</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> chidinduezeta1@gmail.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-user"></i> UI/UX Designer</p>
+                          </div>
+                        </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Sammy Gee</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> samuelchimdidibiah@gmail.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-code"></i> Frontend Developer</p>
+                          </div>
+                        </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Tim Edo</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> edoghotudaniel@yahoo.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-lock"></i> Backend Developer</p>
+                          </div>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>

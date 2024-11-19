@@ -30,29 +30,10 @@
     padding: 20px 0px 20px 0px;
 }
 
-#signup-section .container .church-name {
+#signup-section .container .name {
     display: flex;
     flex-direction: column;
     margin-bottom: 30px;
-}
-
-#signup-section .container .fname-lname {
-    display: flex;
-    margin-bottom: 30px;
-}
-
-#signup-section .container .fname {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-    width: 50%;
-}
-
-#signup-section .container .lname {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 30px;
-    width: 50%;
 }
 
 #signup-section .container .email {

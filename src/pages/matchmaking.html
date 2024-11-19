@@ -1,84 +1,257 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matchmaking | Collabify</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../styles/index.css">
   <link rel="stylesheet" href="../styles/matchmaking.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Home</title>
 </head>
-<body>
-  <div class="matchmaking-container">
-    <div class="sidebar">
-      <div class="brand-logo">
-        <img src="/img/collabifyLogo.png" alt="Collabify Logo">
-        <h2>Collabify</h2>
-      </div>
-      <ul class="nav-links">
-        <li><a href="profile.html">Profile</a></li>
-        <li><a href="matchmaking.html" class="active">Matchmaking</a></li>
-      </ul>
-    </div>
-
-    <div class="matchmaking-content">
-      <header>
-        <h1>Find Your Match</h1>
-        <p>Search and connect with peers based on skills, learning goals, and projects.</p>
-      </header>
-
-      <section class="search-section">
-        <input 
-          type="text" 
-          id="search-bar" 
-          placeholder="Search for skills, interests, or projects..."
-        />
-        <button id="search-btn">Search</button>
-      </section>
-
-      <section class="filter-section">
-        <h3>Filters</h3>
-        <form id="filters-form">
-          <div class="filter-group">
-            <label for="skills">Skills</label>
-            <select id="skills">
-              <option value="">Select Skill</option>
-              <option value="javascript">JavaScript</option>
-              <option value="python">Python</option>
-              <option value="react">React.js</option>
-              <option value="ai">AI/ML</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="location">Location</label>
-            <select id="location">
-              <option value="">Select Location</option>
-              <option value="remote">Remote</option>
-              <option value="lagos">Lagos</option>
-              <option value="rivers">Rivers</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label for="projects">Project Preferences</label>
-            <select id="projects">
-              <option value="">Select Preference</option>
-              <option value="frontend">Frontend Development</option>
-              <option value="backend">Backend Development</option>
-              <option value="fullstack">Fullstack</option>
-              <option value="data">Data Science</option>
-            </select>
-          </div>
-          <button type="submit" id="filter-btn">Apply Filters</button>
-        </form>
-      </section>
-
-      <section class="results-section">
-        <h3>Matched Peers</h3>
-        <div class="results-grid">
-          <!-- Dynamic User Cards -->
+<body style="overflow: hidden;">
+    <div class="dashboard-md">Dashboard</div>
+    <div class="bottom-nav-md">
+        <div class="icons">
+            <i class="fa fa-dashboard" style="font-size:36px"></i>
+            <p>Dashboard</p>
         </div>
-      </section>
+        <div class="icons">2</div>
+        <div class="icons">3</div>
+        <div class="icons">4</div>
+        <div class="icons">5</div>
     </div>
-  </div>
+    <section class="header">
+        <div class="logo">
+            <a href="index.html"><span class="logo-short">CBY</span><span class="logo-full">Collabify</span></span></a>
+        </div>
+        <div class="container">
+            <div class="dashboard">
+                <button id="dashboard-btn">
+                    <i class="fa fa-align-justify" style="font-size:20px;"></i>
+                    <p>Dashboard</p>
+                </button>
+                
+            </div>
+
+            <div class="right">
+                <div class="search">
+                    <i class="fa fa-search" style="font-size:20px"></i>
+                    <input type="text" placeholder="Search"/>
+                </div>
+                <div class="profile" id="profileIcon">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+            </div>
+            <!-- dropdown menu -->
+            <div class='dropdown-profile' id="dropdownMenu" style="display: none;">
+                <ul>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    
+
+    <main>
+        <div class="container">
+            <aside id="side-bar" class="red">
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="index.html">
+                            <i class="fa fa-dashboard" style="font-size:23px"></i>
+                            <div class="details"><p>Dashboard</p></div>
+                            <!-- <p id="details">Dashboard</p> -->
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="fellows.html">
+                            <i class="material-icons" style="font-size:23px">people</i>
+                            <div class="details"><p>Learners</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red" id="admin">
+                    <div class="dashboard activec">
+                        <a href="directory.html">
+                            <i class="material-icons" style="font-size:23px">people</i>
+                            <div class="details"><p>Directory</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="group.html">
+                            <i class="fa fa-group" style="font-size:23px"></i>
+                            <div class="details"><p>Groups</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="event.html">
+                            <i class="material-icons" style="font-size:23px">event</i>
+                            <div class="details"><p>Events</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="follow_up.html">
+                            <i class="fa fa-handshake-o" style="font-size:23px"></i>
+                            <div class="details"><p>Follow Up</p></div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="onboarding.html">
+                            <i class="fa-solid fa-hand-holding-hand" style="font-size:23px"></i>
+                            <div class="details"><p>Onboarding</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard-not activec">
+                        <a href="notification.html">
+                            <div class="notification">
+                                <i class="material-icons" style="font-size:23px">notifications</i>
+                                <div class="details"><p>Notifications</p></div>
+                            </div>
+                            <div class="red" style="color: blue; font-size: 15px; font-weight: bold;">3</div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard active">
+                        <a href="index.html" style="color: white;">
+                            <i class="fa fa-users" style="font-size:23px"></i>
+                            <div class="details"><p>Matchmaking</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="users.html">
+                            <i class="fa fa-users" style="font-size:23px"></i>
+                            <div class="details"><p>Users & Roles</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="settings.html">
+                            <i class="material-icons" style="font-size:23px">settings</i>
+                            <div class="details"><p>Settings</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="help.html">
+                            <i class="material-icons" style="font-size:23px">help</i>
+                            <div class="details"><p>Help</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <form id="logout">
+                            <button type="button" onclick="logout()" class="" style="display: flex; margin-left: 13px; margin-top: 6px; border: none; background-color: transparent; gap: 5px; cursor: pointer;">
+                                <i class="fa fa-sign-out" style="font-size:23px"></i>
+                                <div class="details"><p>Log Out</p></div>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+            </aside>
+
+            <div class="body">
+                <div class="container">
+                    <div class="matchmaking-content">
+                        <header>
+                          <h1>Find Your Match</h1>
+                          <p>Search and connect with peers based on skills, learning goals, and projects.</p>
+                        </header>
+                  
+                        <section class="search-section">
+                          <input 
+                            type="text" 
+                            id="search-bar" 
+                            placeholder="Search for skills, interests, or projects..."
+                          />
+                          <button id="search-btn">Search</button>
+                        </section>
+                  
+                        <section class="filter-section">
+                          <h3>Filters</h3>
+                          <form id="filters-form">
+                            <div class="filter-group">
+                              <label for="skills">Skills</label>
+                              <select id="skills">
+                                <option value="">Select Skill</option>
+                                <option value="javascript">JavaScript</option>
+                                <option value="python">Python</option>
+                                <option value="react">React.js</option>
+                                <option value="ai">AI/ML</option>
+                              </select>
+                            </div>
+                            <div class="filter-group">
+                              <label for="location">Location</label>
+                              <select id="location">
+                                <option value="">Select Location</option>
+                                <option value="remote">Remote</option>
+                                <option value="lagos">Lagos</option>
+                                <option value="rivers">Rivers</option>
+                              </select>
+                            </div>
+                            <div class="filter-group">
+                              <label for="projects">Project Preferences</label>
+                              <select id="projects">
+                                <option value="">Select Preference</option>
+                                <option value="frontend">Frontend Development</option>
+                                <option value="backend">Backend Development</option>
+                                <option value="fullstack">Fullstack</option>
+                                <option value="data">Data Science</option>
+                              </select>
+                            </div>
+                            <button type="submit" id="filter-btn">Apply Filters</button>
+                          </form>
+                        </section>
+                  
+                        <section class="results-section">
+                          <h3>Matched Peers</h3>
+                          <div class="results-grid">
+                            <!-- Dynamic User Cards -->
+                          </div>
+                        </section>
+                      </div>
+                </div>
+            </div>
+        </div>
+        
+    </main>
 
   <script src="../assets/scripts/matchmaking.js"></script>
+    <script src="../assets/scripts/index.js"></script>
+    <script src="../assets/scripts/logout.js"></script>
 </body>
 </html>
