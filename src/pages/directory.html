@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="../styles/index.css">
+    <link rel="stylesheet" href="../styles/directory.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Home</title>
 </head>
@@ -85,12 +86,51 @@
                         </a>
                     </div>
                 </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="group.html">
+                            <i class="fa fa-group" style="font-size:23px"></i>
+                            <div class="details"><p>Groups</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="event.html">
+                            <i class="material-icons" style="font-size:23px">event</i>
+                            <div class="details"><p>Events</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="follow_up.html">
+                            <i class="fa fa-handshake-o" style="font-size:23px"></i>
+                            <div class="details"><p>Follow Up</p></div>
+                        </a>
+                    </div>
+                </div>
                 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="onboarding.html">
                             <i class="fa-solid fa-hand-holding-hand" style="font-size:23px"></i>
                             <div class="details"><p>Onboarding</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard-not activec">
+                        <a href="notification.html">
+                            <div class="notification">
+                                <i class="material-icons" style="font-size:23px">notifications</i>
+                                <div class="details"><p>Notifications</p></div>
+                            </div>
+                            <div class="red" style="color: blue; font-size: 15px; font-weight: bold;">3</div>
                         </a>
                     </div>
                 </div>
@@ -115,6 +155,24 @@
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
+                        <a href="settings.html">
+                            <i class="material-icons" style="font-size:23px">settings</i>
+                            <div class="details"><p>Settings</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
+                        <a href="help.html">
+                            <i class="material-icons" style="font-size:23px">help</i>
+                            <div class="details"><p>Help</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="nav-icons red">
+                    <div class="dashboard activec">
                         <form id="logout">
                             <button type="button" onclick="logout()" class="" style="display: flex; margin-left: 13px; margin-top: 6px; border: none; background-color: transparent; gap: 5px; cursor: pointer;">
                                 <i class="fa fa-sign-out" style="font-size:23px"></i>
@@ -128,8 +186,73 @@
 
             <div class="body">
                 <div class="container">
-                    <!-- TODO: Work on the Directory body -->
-                    Directory
+                    <!--  -->
+                    <div class="users-container">
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Abigail Abi</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> atbyjamezz@gmail.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-search"></i> Data Analyst</p>
+                          </div>
+                        </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Gideon Gideon</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> gideon.edghotu@cyphercrescent.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-lock"></i> Backend Developer</p>
+                          </div>
+                        </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Janny J</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> chidinduezeta1@gmail.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-user"></i> UI/UX Designer</p>
+                          </div>
+                        </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Sammy Gee</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> samuelchimdidibiah@gmail.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-code"></i> Frontend Developer</p>
+                          </div>
+                        </div>
+                    
+                        <!-- User Card -->
+                        <div class="user-card">
+                          <div class="profile-icon">
+                            <i class="fas fa-user-circle"></i>
+                          </div>
+                          <div class="user-info">
+                            <p class="user-name">Tim Edo</p>
+                            <p class="user-email"><i class="fas fa-envelope"></i> edoghotudaniel@yahoo.com</p>
+                            <p class="user-phone"><i class="fas fa-phone-alt"></i> 07031170092</p>
+                            <p class="user-stack"><i class="fas fa-lock"></i> Backend Developer</p>
+                          </div>
+                        </div>
+                      </div>
                 </div>
             </div>
         </div>

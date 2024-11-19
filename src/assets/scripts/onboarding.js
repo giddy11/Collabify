@@ -17,10 +17,10 @@ window.addEventListener("click", (event) => {
 });
 
 /**
- * TODO: Chanege the host name to the main host
+ * 
  */
 // Initialise API Connection
-const API_BASE_URL = "http://localhost:4001/api/onboarding";
+const API_BASE_URL = "https://collabify-oloy.onrender.com/api/onboarding";
 
 async function fetchOnboardings() {
   const token = localStorage.getItem("accessToken");  // Get token from localStorage

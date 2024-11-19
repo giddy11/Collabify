@@ -1,0 +1,68 @@
+.users-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;margin-top: 30px;
+  }
+  
+  /* User Card */
+  .users-container .user-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Profile Icon */
+  .users-container .profile-icon {
+    font-size: 50px;
+    color: #1fb5c2;
+    margin-bottom: 15px;
+  }
+  
+  /* User Info */
+  .users-container .user-info {
+    text-align: center;
+  }
+  
+  .users-container .user-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #1fb5c2;
+    margin-bottom: 10px;
+  }
+  
+  .users-container .user-email,
+  .users-container .user-phone {
+    font-size: 14px;
+    color: #333333;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .users-container .user-email i,
+  .users-container .user-phone i {
+    margin-right: 8px;
+    color: #1fb5c2;
+  }
+  
+  .users-container .user-stack {
+    font-size: 14px;
+    color: #666666;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .users-container .user-stack i {
+    margin-right: 8px;
+    color: #1fb5c2;
+  }
+  
