@@ -193,64 +193,59 @@
             </aside>
             <div class="body">
                 <div class="add-week">
-                    <span id="tooltipText">Add New</span>                    
-                    <button class="add-btn">
-                      <img src="../assets/svgs/library_add.svg" alt="add-record" />
-                    </button>
-                  </div>
-                  <div class="container">
-                      <div class="up-overview">
-                          <button class="box-link" target="_blank">
-                            <div class="two-details">
-                                <h1>Week 2</h1>
-                                <p class="topic">HTML, CSS</p>
-                                <p class="date stack-head-software">Software Development</p>
-                                <p><span>35</span> Fellows Understands</p>
-                            </div>
-                        </button>
-  
+                  <span id="tooltipText">Add New</span>
+                  <button class="add-btn">
+                    <img src="../assets/svgs/library_add.svg" alt="add-record" />
+                  </button>
+                </div>
+                <div class="container" id="item-container">
+                  <!-- Items will be dynamically added here -->
+                </div>
+                <div id="event-modal" class="modal">
+                  <div class="modal-content">
+                    <button class="close-btn">&times;</button>
+                    <h3 class="modal-title">Onboarding Details</h3>
+                    <form id="item-form">
+                      <input type="hidden" id="item-id" name="id" />
+                      <div class="form-group">
+                        <label for="week">Week:</label>
+                        <input type="text" id="week" name="week" placeholder="Enter week" />
                       </div>
-  
+                      <div class="form-group">
+                        <label for="lessonTitle">Lesson Title:</label>
+                        <input type="text" id="lessonTitle" name="lessonTitle" placeholder="Enter lesson title" />
+                      </div>
+                      <div class="form-group">
+                        <label for="link">Link:</label>
+                        <input type="text" id="link" name="link" placeholder="Enter lesson link" />
+                      </div>
+                      <div class="form-group">
+                        <label for="class">Class:</label>
+                        <select id="class" name="class">
+                          <option value="" disabled selected>Select option</option>
+                          <option value="software">Software Development</option>
+                          <option value="qa">Quality Assurance</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="numberOfFellows">Number of Fellows:</label>
+                        <input type="number" id="numberOfFellows" name="numberOfFellows" min="0" placeholder="Enter number of fellows" />
+                      </div>
+                      <button type="submit" class="form-btn">Submit</button>
+                    </form>
                   </div>
-                  <div id="event-modal" class="modal">
-                      <div class="modal-content">
-                        <button class="close-btn">&times;</button>
-                        <h3 class="modal-title">Onboarding Details</h3>
-                        <form class="red">
-                            <div class="form-group">
-                                <label for="week">Week:</label>
-                                <input type="text" id="week" name="week" placeholder="Enter week">
-                            </div>
-                
-                            <div class="form-group">
-                                <label for="lessonTitle">Lesson Title:</label>
-                                <input type="text" id="lessonTitle" name="lessonTitle" placeholder="Enter lesson title">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="lessonTitle">Link:</label>
-                                <input type="text" id="lessonTitle" name="lessonTitle" placeholder="Enter lesson link">
-                            </div>
-                
-                            <div class="form-group">
-                                <label for="class">Class:</label>
-                                <select id="class" name="class">
-                                    <option value="" disabled selected>Select option</option>
-                                    <option value="software">Software Development</option>
-                                    <option value="qa">Quality Assurance</option>
-                                </select>
-                            </div>
-                
-                            <div class="form-group">
-                                <label for="numberOfFellows">Number of Fellows:</label>
-                                <input type="number" id="numberOfFellows" name="numberOfFellows" min="0" placeholder="Enter number of fellows">
-                            </div>
-                
-                            <button type="submit" class="form-btn">Submit</button>
-                        </form>
+                </div>
+                <div id="view-modal" class="modal">
+                  <div class="modal-content">
+                    <button class="close-btn view-close-btn">&times;</button>
+                    <div id="view-details">
+                      <!-- Item details will be dynamically added here -->
                     </div>
+                    <button id="edit-btn">Edit</button>
                   </div>
-            </div>
+                </div>
+              </div>
+              
         </div>
         
     </main>
