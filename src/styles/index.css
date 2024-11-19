@@ -231,6 +231,68 @@ main .body {
     overflow: scroll;
 }
 
+main .body .container {
+    display: block;
+    width: 97%;
+    /* background-color: red; */
+    margin: auto;
+    padding-bottom: 60px; /* Add some padding to prevent overlap with bottom navbar */
+}
+
+main .body .container .up-overview {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    /* justify-content: center; */
+    align-items: center;
+    padding: 20px 0px;
+}
+
+main .body .container .up-overview a {
+    text-decoration: none;
+    display: inline-block;
+}
+
+main .body .container .up-overview a .two-details {
+    display: flex;
+    flex: 1 1 16rem;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 16rem;
+    max-width: 16rem;
+    height: 10rem;
+    /* padding: 50px 0px; */
+    /* background-color: greenyellow; */
+    background-color: white;
+    /* cursor: pointer; */
+    box-shadow: rgb(240, 232, 232) 5px 0px 0px 0px;
+}
+
+main .body .container .up-overview a .two-details h1 {
+    color: #0f8792;
+}
+
+main .body .container .up-overview .two-details p {
+    color: rgb(129, 112, 112);
+    font-weight: 600;
+}
+
+main .body .container .up-overview a .two-details .topic {
+    padding-top: 10px;
+}
+
+main .body .container .up-overview a .two-details p span {
+    color: #0f8792;
+    font-size: 30px;
+
+}
+
+main .body .container .up-overview a .two-details .date {
+    padding-bottom: 30px;
+}
+
 
 main .body .container .down {
     display: flex;

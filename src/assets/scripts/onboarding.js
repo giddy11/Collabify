@@ -20,71 +20,144 @@ window.addEventListener("click", (event) => {
 const API_BASE_URL = "http://localhost:4001/api/onboarding";
 
 async function fetchOnboardings() {
-  const response = await fetch(`${API_BASE_URL}s`); // Matches "/api/onboardings"
+  const token = localStorage.getItem("accessToken");  // Get token from localStorage
+  
+  if (!token) {
+    throw new Error("No token found. Please log in first.");
+  }
+
+  const response = await fetch(`${API_BASE_URL}s`, {
+    method: "GET", // Ensure it's a GET request
+    headers: {
+      "Authorization": `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
+
   if (!response.ok) {
     throw new Error(`Failed to fetch onboardings: ${response.statusText}`);
   }
-  return response.json();
+
+  const data = await response.json();
+  console.log("Fetched Onboardings:", data); // Inspect response
+  return data.onboardings; // Return the onboardings array
 }
 
+
 async function createOnboarding(data) {
+  const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
+
   const response = await fetch(`${API_BASE_URL}`, {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`, // Add the token to the Authorization header
+    },
     body: JSON.stringify(data),
   });
+
   if (!response.ok) {
     throw new Error(`Failed to create onboarding: ${response.statusText}`);
   }
-  return response.json();
+
+  const result = await response.json();
+  return result.onboarding;
 }
 
 async function fetchOnboardingDetails(id) {
-  const response = await fetch(`${API_BASE_URL}/${id}`); // Matches "/api/onboarding/:id"
+  if (!id) {
+    throw new Error("ID is required");
+  }
+
+  const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
+
+  const response = await fetch(`${API_BASE_URL}/${id}`, {
+    method: "GET", // Ensure method is GET for fetching details
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`, // Add the token to the Authorization header
+    },
+  });
+
   if (!response.ok) {
     throw new Error(`Failed to fetch onboarding: ${response.statusText}`);
   }
+
   return response.json();
 }
 
 async function updateOnboarding(id, data) {
+  const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
+
   const response = await fetch(`${API_BASE_URL}/${id}`, {
     method: "PUT",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`, // Add the token to the Authorization header
+    },
     body: JSON.stringify(data),
   });
+
   if (!response.ok) {
     throw new Error(`Failed to update onboarding: ${response.statusText}`);
   }
+
   return response.json();
 }
 
 async function deleteOnboarding(id) {
+  const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
+
   const response = await fetch(`${API_BASE_URL}/${id}`, {
     method: "DELETE",
+    headers: {
+      "Authorization": `Bearer ${token}`, // Add the token to the Authorization header
+    },
   });
+
   if (!response.ok) {
     throw new Error(`Failed to delete onboarding: ${response.statusText}`);
   }
+
   return response.json();
 }
+
 
 // Dynamic Item Rendering:
 const itemContainer = document.getElementById("item-container");
 
+function updateItemInDOM(item) {
+  const itemButton = Array.from(itemContainer.children).find(
+    (child) => child.getAttribute('data-id') === item._id // Use _id to find the correct item
+  );
+
+  if (itemButton) {
+    // Update the button content with the new item data
+    itemButton.innerHTML = `
+      <div class="two-details">
+        <h1>${item.name}</h1>
+        <p class="topic">${item.topic}</p>
+        <p class="date">${item.department}</p>
+        <p><span>${item.noOfAcceptance}</span> Fellows Understands</p>
+      </div>`;
+  }
+}
+
 function renderItem(item) {
   const button = document.createElement("button");
   button.className = "box-link";
+  button.setAttribute('data-id', item._id); // Add the _id to the button as data attribute
   button.innerHTML = `
     <div class="two-details">
-      <h1>${item.week}</h1>
-      <p class="topic">${item.lessonTitle}</p>
-      <p class="date">${item.class}</p>
-      <p><span>${item.numberOfFellows}</span> Fellows Understands</p>
+      <h1>${item.name}</h1>
+      <p class="topic">${item.topic}</p>
+      <p class="date">${item.department}</p>
+      <p><span>${item.noOfAcceptance}</span> Fellows Understands</p>
     </div>`;
-  button.addEventListener("click", () => openViewModal(item.id));
+  button.addEventListener("click", () => openViewModal(item._id));
   itemContainer.appendChild(button);
 }
+
 
 async function loadItems() {
   const items = await fetchOnboardings();
@@ -99,38 +172,99 @@ const viewDetails = document.getElementById("view-details");
 
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
+  
+  // Collect form data
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
-  if (data.id) {
-    await updateItem(data.id, data);
+
+  console.log(`data is - ${data._id}`);
+
+  // Check if _id exists to distinguish between creating and updating
+  if (data._id) {
+    // Update existing onboarding
+    const updatedItem = await updateOnboarding(data._id, data);
+
+    // Update the DOM immediately with the updated item
+    updateItemInDOM(updatedItem);
   } else {
-    const newItem = await createItem(data);
-    renderItem(newItem);
+    // Create new onboarding
+    const newItem = await createOnboarding(data);
+    renderItem(newItem);  // Render the new item
   }
+
+  // Close modal and reset form
   modal.style.display = "none";
   form.reset();
 });
 
-function openViewModal(id) {
-  fetchItemDetails(id).then((item) => {
+
+function openViewModal(_id) {
+  fetchOnboardingDetails(_id).then((response) => {
+    const item = response.onboarding;  // Extract the onboarding object
+
+    console.log(item);  // Log the item object to check its structure
+
     viewDetails.innerHTML = `
-      <h1>Week: ${item.week}</h1>
-      <p>Lesson: ${item.lessonTitle}</p>
-      <p>Link: ${item.link}</p>
-      <p>Class: ${item.class}</p>
-      <p>Fellows: ${item.numberOfFellows}</p>`;
+      <h1>Week: ${item.name || 'N/A'}</h1>
+      <p>Lesson: ${item.topic || 'N/A'}</p>
+      <p>Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
+      <p>Class: ${item.department || 'N/A'}</p>
+      <p>Fellows: ${item.noOfAcceptance || '0'}</p>`;
+
     viewModal.style.display = "flex";
+
+    // Set up Edit button
     document.getElementById("edit-btn").onclick = () => openEditForm(item);
+
+    // Set up Delete button
+    document.getElementById("delete-btn").onclick = async () => {
+      if (confirm("Are you sure you want to delete this item?")) {
+        try {
+          await deleteOnboarding(_id);
+          viewModal.style.display = "none";
+          // Remove the item from the DOM
+          const itemButton = Array.from(itemContainer.children).find(
+            (child) => child.textContent.includes(item.name)
+          );
+          if (itemButton) itemContainer.removeChild(itemButton);
+        } catch (error) {
+          alert("Failed to delete item. Please try again.");
+        }
+      }
+    };
+  }).catch((error) => {
+    console.error("Error fetching onboarding details:", error);
   });
 }
 
+
 function openEditForm(item) {
-  form.week.value = item.week;
-  form.lessonTitle.value = item.lessonTitle;
-  form.link.value = item.link;
-  form.class.value = item.class;
-  form.numberOfFellows.value = item.numberOfFellows;
-  form.id.value = item.id;
+  form.name.value = item.name || '';
+  form.topic.value = item.topic || '';
+  form.link.value = item.link || '';
+  form.department.value = item.department || '';
+  form.noOfAcceptance.value = item.noOfAcceptance || '';
+  form._id.value = item._id || '';
   modal.style.display = "flex";
   viewModal.style.display = "none";
 }
+
+// Close Modals on Background Click:
+window.addEventListener("click", (event) => {
+  if (event.target === modal) modal.style.display = "none";
+  if (event.target === viewModal) viewModal.style.display = "none";
+});
+
+// Initialize the Page:
+document.querySelector(".add-btn").addEventListener("click", () => {
+  modal.style.display = "flex";
+});
+
+document.querySelectorAll(".close-btn").forEach((btn) => {
+  btn.addEventListener("click", () => {
+    btn.closest(".modal").style.display = "none";
+  });
+});
+
+loadItems();
+

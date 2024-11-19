@@ -1,6 +1,21 @@
 const Onboarding = require("../models/onboarding");
+const mongoose = require('mongoose');
 
 // Create Onboarding
+/** 
+ * POST: http://localhost:4001/api/onboarding
+ * Creates a new onboarding item.
+ * @param {Object} data - The onboarding data to create.
+ * Example:
+ * {
+ *   "name": "John Doe",
+ *   "department": "Engineering",
+ *   "topic": "Software Design",
+ *   "noOfAcceptance": 15,
+ *   "link": "http://example.com"
+ * }
+ * @returns {Promise<Object>} The created onboarding item.
+ */
 const createOnboarding = async (req, res) => {
   const { name, department, topic, noOfAcceptance, link } = req.body;
 
@@ -28,7 +43,11 @@ const createOnboarding = async (req, res) => {
   }
 };
 
-// Get All Onboardings
+/** 
+ * GET: http://localhost:4001/api/onboardings
+ * Fetches all onboarding items from the backend.
+ * @returns {Promise<Array>} List of onboarding items.
+ */
 const getAllOnboardings = async (req, res) => {
   try {
     const onboardings = await Onboarding.find();
@@ -42,8 +61,19 @@ const getAllOnboardings = async (req, res) => {
 };
 
 // Get Onboarding by ID
+/** 
+ * GET: http://localhost:4001/api/onboarding/:id
+ * Fetches details of a specific onboarding item.
+ * @param {string} id - The ID of the onboarding item.
+ * @returns {Promise<Object>} The onboarding item details.
+ */
 const getOnboardingById = async (req, res) => {
   const { id } = req.params;
+
+  // Check if the ID is valid
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({ success: false, message: "Invalid ID format" });
+  } 
 
   try {
     const onboarding = await Onboarding.findById(id);
@@ -64,13 +94,28 @@ const getOnboardingById = async (req, res) => {
 };
 
 // Update Onboarding
+/** 
+ * PUT: http://localhost:4001/api/onboarding/:id
+ * Updates an existing onboarding item.
+ * @param {string} id - The ID of the onboarding item to update.
+ * @param {Object} data - The updated onboarding data.
+ * Example:
+ * {
+ *   "name": "Jane Doe",
+ *   "department": "HR",
+ *   "topic": "Team Management",
+ *   "noOfAcceptance": 20,
+ *   "link": "http://example.com"
+ * }
+ * @returns {Promise<Object>} The updated onboarding item.
+ */
 const updateOnboarding = async (req, res) => {
   const { id } = req.params;
   const { name, department, topic, noOfAcceptance, link } = req.body;
 
   try {
     const onboarding = await Onboarding.findById(id);
-
+ 
     if (!onboarding) {
       return res
         .status(404)
@@ -99,6 +144,12 @@ const updateOnboarding = async (req, res) => {
 };
 
 // Delete Onboarding
+/** 
+ * DELETE: http://localhost:4001/api/onboarding/:id
+ * Deletes an onboarding item.
+ * @param {string} id - The ID of the onboarding item to delete.
+ * @returns {Promise<Object>} Success or failure message.
+ */
 const deleteOnboarding = async (req, res) => {
   const { id } = req.params;
 
@@ -111,7 +162,8 @@ const deleteOnboarding = async (req, res) => {
         .json({ success: false, message: "Onboarding not found" });
     }
 
-    await onboarding.remove();
+    // Use deleteOne() or findByIdAndDelete()
+    await Onboarding.findByIdAndDelete(id);
 
     return res
       .status(200)
