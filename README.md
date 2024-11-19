@@ -23,7 +23,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 3. **Collaboration Search**: Enables searching for learners outside the location to collaborate on projects.
 4. **Admin User Management**: Admins can create accounts for learners.
 5. **Change Password**: Learners can update their passwords securely.
-6. **Forgot Password**: Provides a recovery option for forgotten passwords.
+6. **Forgot Password**: Provides a recovery option for forgotten passwords. (COMPLETED).
 
 ---
 
