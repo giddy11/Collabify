@@ -8,11 +8,11 @@ const corsOptions = require('./config/corsOptions');
 const express = require("express");
 const cookieParser = require('cookie-parser');
 const http = require('http');
-// Auth Routes
-const authRoutes = require('./routes/authRoutes');
 
-// User Routes
+// Routes
+const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
+const onboardingRoutes = require('./routes/onboardingRoutes');
 
 // Set up the PORT
 const PORT = process.env.PORT || 3000;
@@ -36,6 +36,7 @@ app.get('/', (req, res) => {
 // routes'
 app.use('/api/auth', authRoutes);
 app.use('/api', userRoutes);
+app.use('/api', onboardingRoutes);
 
 // Start the server
 mongoose.connection.once('open', () => {

@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/a11a819e40.js" crossorigin="anonymous"></script>
     
     
-    <title>Home</title>
+    <title>Onboarding</title>
 </head>
 <body style="overflow: hidden;">
     <div class="dashboard-md">Dashboard</div>
@@ -27,7 +27,7 @@
     </div>
     <section class="header red">
         <div class="logo yellow">
-            <a href="index.html"><span class="logo-short">TFC</span><span class="logo-full">Collabify</span></span></a>
+            <a href="index.html"><span class="logo-short">CBY</span><span class="logo-full">Collabify</span></span></a>
         </div>
         <div class="container green">
             <div class="dashboard">
@@ -42,12 +42,15 @@
                     <i class="fa fa-search" style="font-size:20px"></i>
                     <input type="text" placeholder="Search"/>
                 </div>
-                <div class="profile">
-                    <select name="" id="">
-                        <option value="">Admin View</option>
-                        <option value="">Member View</option>
-                    </select>
+                <div class="profile" id="profileIcon">
+                    <i class="fa-regular fa-user"></i>
                 </div>
+            </div>
+            <!-- dropdown menu -->
+            <div class='dropdown-profile' id="dropdownMenu" style="display: none;">
+                <ul>
+                    <li><a href="profile.html">Profile</a></li>
+                </ul>
             </div>
         </div>
     </section>
@@ -67,43 +70,52 @@
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
-                        <a href="index.html">
+                        <a href="fellows.html">
                             <i class="material-icons" style="font-size:23px">people</i>
-                            <div class="details"><p>Fellows</p></div>
+                            <div class="details"><p>Learners</p></div>
                         </a>
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <div class="nav-icons red" id="admin">
+                    <div class="dashboard activec">
+                        <a href="directory.html">
+                            <i class="material-icons" style="font-size:23px">people</i>
+                            <div class="details"><p>Directory</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="fa fa-group" style="font-size:23px"></i>
                             <div class="details"><p>Groups</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="material-icons" style="font-size:23px">event</i>
                             <div class="details"><p>Events</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="follow_up.html">
                             <i class="fa fa-handshake-o" style="font-size:23px"></i>
                             <div class="details"><p>Follow Up</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="nav-icons red">
                     <div class="dashboard active">
-                        <a href="index.html" style="color: white;">
+                        <a href="onboarding.html" style="color: white;">
                             <i class="fa-solid fa-hand-holding-hand" style="font-size:23px"></i>
                             <div class="details"><p>Onboarding</p></div>
                         </a>
@@ -112,14 +124,23 @@
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
+                        <a href="matchmaking.html">
+                            <i class="fa fa-users" style="font-size:23px"></i>
+                            <div class="details"><p>Matchmaking</p></div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- <div class="nav-icons red">
+                    <div class="dashboard activec">
                         <a href="onboarding.html">
                             <i class="fa-solid fa-award" style="font-size:23px"></i>
                             <div class="details"><p>Awards and Appreciation</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard-not activec">
                         <a href="index.html">
                             <div class="notification">
@@ -129,163 +150,112 @@
                             <div class="red" style="color: blue; font-size: 15px; font-weight: bold;">3</div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
-                        <a href="index.html">
+                        <a href="users.html">
                             <i class="fa fa-users" style="font-size:23px"></i>
                             <div class="details"><p>Users & Roles</p></div>
                         </a>
                     </div>
                 </div>
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="material-icons" style="font-size:23px">settings</i>
                             <div class="details"><p>Settings</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
-                <div class="nav-icons red">
+                <!-- <div class="nav-icons red">
                     <div class="dashboard activec">
                         <a href="index.html">
                             <i class="material-icons" style="font-size:23px">help</i>
                             <div class="details"><p>Help</p></div>
                         </a>
                     </div>
-                </div>
+                </div> -->
 
                 <div class="nav-icons red">
                     <div class="dashboard activec">
-                        <a href="login.html">
-                            <i class="fa fa-sign-out" style="font-size:23px"></i>
-                            <div class="details"><p>Log Out</p></div>
-                        </a>
+                        <form id="logout">
+                            <button type="button" onclick="logout()" class="" style="display: flex; margin-left: 13px; margin-top: 6px; border: none; background-color: transparent; gap: 5px; cursor: pointer;">
+                                <i class="fa fa-sign-out" style="font-size:23px"></i>
+                                <div class="details"><p>Log Out</p></div>
+                            </button>
+                        </form>
                     </div>
                 </div>
                 
             </aside>
             <div class="body">
-                <div class="container">
-                    <div class="up-overview">
-                        <a href="https://docs.google.com/document/d/1YxTbM8VjgG9IT3mMdhMTRNSEV4czLkZt1-3hNVgVT8U/edit?usp=sharing" class="box-link" target="_blank">
-                            <div class="two-details">
-                                <h1>Week 1</h1>
-                                <p class="topic">Introduction to Software Dev.</p>
-                                <p class="date stack-head-software">Software Development</p>
-                                <p><span>7</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 1</h1>
-                                <p class="topic">Introduction to Quality Assurance</p>
-                                <p class="date stack-head-qa">Quality Assurance</p>
-                                <p><span>12</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="https://docs.google.com/document/d/1fEbB4sGGeUc71p0f-U3eXr2VR-pAXrRdG_BIxCOfVDk/edit?usp=sharing" class="box-link" target="_blank">
-                            <div class="two-details">
-                                <h1>Week 2</h1>
-                                <p class="topic">HTML, CSS</p>
-                                <p class="date stack-head-software">Software Development</p>
-                                <p><span>35</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 2</h1>
-                                <p class="topic">Introduction to Quality Assurance</p>
-                                <p class="date stack-head-qa">Quality Assurance</p>
-                                <p><span>13</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 3</h1>
-                                <p class="topic">Introduction to Software Dev.</p>
-                                <p class="date stack-head-software">Software Development</p>
-                                <p><span>30</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 3</h1>
-                                <p class="topic">Introduction to Quality Assurance</p>
-                                <p class="date stack-head-qa">Quality Assurance</p>
-                                <p><span>26</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 4</h1>
-                                <p class="topic">Introduction to Software Dev.</p>
-                                <p class="date stack-head-software">Software Development</p>
-                                <p><span>9</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 4</h1>
-                                <p class="topic">Introduction to Quality Assurance</p>
-                                <p class="date stack-head-qa">Quality Assurance</p>
-                                <p><span>7</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 5</h1>
-                                <p class="topic">Introduction to Software Dev.</p>
-                                <p class="date stack-head-software">Software Development</p>
-                                <p><span>4</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 5</h1>
-                                <p class="topic">Introduction to Quality Assurance</p>
-                                <p class="date stack-head-qa">Quality Assurance</p>
-                                <p><span>13</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 6</h1>
-                                <p class="topic">Introduction to Software Dev.</p>
-                                <p class="date stack-head-software">Software Development</p>
-                                <p><span>6</span> Fellows Understands</p>
-                            </div>
-                        </a>
-
-                        <a href="#" class="box-link">
-                            <div class="two-details">
-                                <h1>Week 6</h1>
-                                <p class="topic">Introduction to Quality Assurance</p>
-                                <p class="date stack-head-qa">Quality Assurance</p>
-                                <p><span>13</span> Fellows Understands</p>
-                            </div>
-                        </a>
-                    </div>
-
+                <div class="add-week">
+                  <span id="tooltipText">Add New</span>
+                  <button class="add-btn">
+                    <img src="../assets/svgs/library_add.svg" alt="add-record" />
+                  </button>
                 </div>
-            </div>
+                <div class="container" id="item-container">
+                  <!-- Items will be dynamically added here -->
+                </div>
+                <div id="event-modal" class="modal">
+                  <div class="modal-content">
+                    <button class="close-btn">&times;</button>
+                    <h3 class="modal-title">Onboarding Details</h3>
+                    <form id="item-form">
+                      <input type="hidden" id="_id" name="_id" />
+                      <div class="form-group">
+                        <label for="name">Week:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter week" />
+                      </div>
+                      <div class="form-group">
+                        <label for="topic">Lesson Title:</label>
+                        <input type="text" id="topic" name="topic" placeholder="Enter lesson title" />
+                      </div>
+                      <div class="form-group">
+                        <label for="link">Link:</label>
+                        <input type="text" id="link" name="link" placeholder="Enter lesson link" />
+                      </div>
+                      <div class="form-group">
+                        <label for="department">Class:</label> 
+                        <select id="department" name="department">
+                          <option value="" disabled selected>Select option</option>
+                          <option value="software">Software Development</option>
+                          <option value="qa">Quality Assurance</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="noOfAcceptance">Number of Fellows:</label>
+                        <input type="number" id="noOfAcceptance" name="noOfAcceptance" min="0" placeholder="Enter number of fellows" />
+                      </div>
+                      <button type="submit" class="form-btn">Submit</button>
+                    </form>
+                  </div>
+                </div>
+                <div id="view-modal" class="modal">
+                    <div class="modal-content">
+                      <button class="close-btn view-close-btn">&times;</button>
+                      <div id="view-details">
+                        <!-- Item details will be dynamically added here -->
+                      </div>
+                      <div class="view-actions">
+                        <button id="edit-btn">Edit</button>
+                        <button id="delete-btn">Delete</button>
+                      </div>
+                    </div>
+                  </div>
+                  
+              </div>
+              
         </div>
         
     </main>
-
+    
+    <script src="../assets/scripts/onboarding.js"></script>
     <script src="../assets/scripts/index.js"></script>
+    <script src="../assets/scripts/logout.js"></script>
 </body>
 </html>
