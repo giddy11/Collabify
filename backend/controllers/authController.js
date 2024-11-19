@@ -23,7 +23,17 @@ const signup = async (req, res) => {
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ message: "User already exists" });
+      return res.status(400).json({ success: false, message: "User already exists" });
+    }
+
+    // Password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+    if (!passwordRegex.test(password)) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Password must contain at least 8 characters, including uppercase, lowercase, number, and special character.",
+      });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -167,6 +177,16 @@ const changePassword = async (req, res) => {
         });
     }
 
+    // Password validation
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#])[A-Za-z\d@$!%*?&#]{8,}$/;
+    if (!passwordRegex.test(newPassword)) {
+      return res.status(400).json({
+        success: false,
+        message:
+          "Password must contain at least 8 characters, including uppercase, lowercase, number, and special character.",
+      });
+    }
+
     // Fetch user from the database
     const user = await User.findById(userId);
     if (!user) {
@@ -216,15 +236,15 @@ const login = async (req, res) => {
     const { email, password } = req.body;
 
     if (!email || !password) {
-      return res.status(400).json({ error: "Email and password are required" });
+      return res.status(400).json({ success: false, error: "Email and password are required" });
     }
 
     const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ error: "email not found" });
+    if (!user) return res.status(401).json({ success: false, error: "email not found" });
 
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid)
-      return res.status(401).json({ error: "wrong password" });
+      return res.status(401).json({ success: false, message: "invalid password", error: "wrong password" });
 
     // Generate tokens
     const accessToken = jwt.sign(
@@ -268,7 +288,7 @@ const login = async (req, res) => {
 const refreshAccessToken = async (req, res) => {
   const { refreshToken } = req.cookies;
   if (!refreshToken)
-    return res.status(403).json({ message: "Refresh token required" });
+    return res.status(403).json({ success: false, message: "Refresh token required" });
 
   try {
     // Verify refresh token
@@ -278,7 +298,7 @@ const refreshAccessToken = async (req, res) => {
     );
     const user = await User.findById(decoded.id);
     if (!user || user.refreshToken !== refreshToken) {
-      return res.status(403).json({ message: "Invalid refresh token" });
+      return res.status(403).json({ success: false, message: "Invalid refresh token" });
     }
 
     // Generate new access token
@@ -299,6 +319,7 @@ const refreshAccessToken = async (req, res) => {
     res
       .status(403)
       .json({
+        success: false,
         message: "Refresh token expired or invalid",
         error: error.message,
       });

@@ -39,7 +39,7 @@ registerForm.onsubmit = async function (e) {
   const fullName = document.getElementById('name').value;
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  
+
   const formData = { fullName, email, password };
 
   try {
@@ -47,11 +47,12 @@ registerForm.onsubmit = async function (e) {
 
     if (response.success) {
       localStorage.setItem('accessToken', response.accessToken);
-      
+
       // Redirect to the index page on successful signup
-      window.location.href = 'index.html';
+      alert(response.message); // Display success message from backend
+      window.location.href = './index.html';
     } else {
-      alert('Signup failed. Please try again.');
+      alert(response.message || 'Signup failed. Please try again.'); // Display backend message if available
     }
   } catch (error) {
     console.error('Error:', error);
