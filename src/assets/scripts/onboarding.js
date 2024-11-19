@@ -16,6 +16,9 @@ window.addEventListener("click", (event) => {
   }
 });
 
+/**
+ * TODO: Chanege the host name to the main host
+ */
 // Initialise API Connection
 const API_BASE_URL = "http://localhost:4001/api/onboarding";
 
@@ -267,5 +270,4 @@ document.querySelectorAll(".close-btn").forEach((btn) => {
   });
 });
 
-loadItems();
-
+loadItems()
