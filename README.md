@@ -19,13 +19,15 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 ## Features
 
 1. **Onboarding Page**: Allows learners to view introductory information and guidelines. (COMPLETED)
-2. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning ie the Follow up module functionality.
-3. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
-5. **Learners Directory**: Enable Learners to view their director so as to interact with them.
-6. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it diplays the list of all users and their roles.
-7. **Change Password**: Learners can update their passwords securely (COMPLETED).
-8. **Profile Page integration**: Functional Profile Page to be dynamic.
-9. **Forgot Password**: Provides a recovery option for forgotten passwords (COMPLETED).
+2. **Change Password**: Learners can update their passwords securely (COMPLETED).
+3. **Forgot Password**: Provides a recovery option for forgotten passwords (COMPLETED).
+4. **Authentication**: User and regiters and login with valid email (COMPLETED).
+5. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning ie the Follow up module functionality.
+6. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
+7. **Learners Directory**: Enable Learners to view their director so as to interact with them.
+8. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it diplays the list of all users and their roles.
+9. **Profile Page integration**: Functional Profile Page to be dynamic.
+
 10. **Protected Routes**: Makiing the pages protected for unauthorised users. 
 11. **A functional Dashboard**: The dashboard will capture data for number of important information to display.
 12. **Admin / User View**: Some Views wont be visible by the users.
@@ -33,7 +35,6 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 14. **Settings**: This can have notifcations settings to turn off or on notifications.
 15. **Events**: Learners can create events meetings oonline to explain certain concept.
 16. **Gruops**: Groups can be created by he admin for the learners.
-17. **Authentication**: User and regiters and login with valid email (COMPLETED).
 18. **The Search Feature (Header)**: The feature searches for learners, groups, users, events.
 19. **Admin Creates multiple Communities**: So instead of one account for one learning location, we can now have multiple locations for one account as been added to the admin.
 ---
