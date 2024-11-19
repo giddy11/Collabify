@@ -3,20 +3,20 @@ async function logout() {
   localStorage.removeItem('accessToken');
 
   /**
- * TODO: Remember to switch to the deployment host name for logout
+ * 
  */
   try {
     // Make the logout request to the backend
-    const apiUrl = 'http://localhost:4001/api/auth/signup';
-    // const response = await fetch('https://collabify-oloy.onrender.com/api/auth/logout', {
-    //   method: 'POST',
-    //   credentials: 'include', // Ensure cookies are sent with the request
-    // });
-
-    const response = await fetch('http://localhost:4001/api/auth/logout', {
+    // const apiUrl = 'http://localhost:4001/api/auth/signup';
+    const response = await fetch('https://collabify-oloy.onrender.com/api/auth/logout', {
       method: 'POST',
       credentials: 'include', // Ensure cookies are sent with the request
     });
+
+    // const response = await fetch('http://localhost:4001/api/auth/logout', {
+    //   method: 'POST',
+    //   credentials: 'include', // Ensure cookies are sent with the request
+    // });
 
     const data = await response.json();
     if (data.success) {
