@@ -1,8 +1,8 @@
 ---
 
-# TaskMaster
+# Collabify
 
-TaskMaster is a web-based task management application that allows users to efficiently create, view, update, delete, and filter tasks. Users can also search for tasks based on specific keywords. This application leverages MongoDB for data storage and implements secure user authentication using JWT, bcrypt, and Express Validator. Additionally, it includes protection against XSS and SQL injection attacks.
+Collabify is a collaborative learning platform designed to enhance peer-to-peer mentorship and project-based collaboration for learners. The platform streamlines onboarding, facilitates connections across locations, and provides an admin panel for managing learner accounts.
 
 ## Table of Contents
 - [Features](#features)
@@ -12,11 +12,7 @@ TaskMaster is a web-based task management application that allows users to effic
 - [Environment Variables](#environment-variables)
 - [API Endpoints](#api-endpoints)
 - [Usage](#usage)
-- [Testing](#testing)
-- [Security](#security)
 - [Deployment](#deployment)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 
