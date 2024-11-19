@@ -2,6 +2,18 @@ const addBtn = document.querySelector(".add-btn");
 const modal = document.getElementById("event-modal");
 const closeBtn = document.querySelector(".close-btn");
 
+const loader = document.getElementById("loader"); // Get the loader element
+
+// Show the loader
+function showLoader() {
+  loader.style.display = "flex"; // Show loader
+}
+
+// Hide the loader
+function hideLoader() {
+  loader.style.display = "none"; // Hide loader
+}
+
 addBtn.addEventListener("click", () => {
   modal.style.display = "flex";
 });
@@ -21,6 +33,7 @@ window.addEventListener("click", (event) => {
  */
 // Initialise API Connection
 const API_BASE_URL = "https://collabify-oloy.onrender.com/api/onboarding";
+// const API_BASE_URL = "https://collabify-oloy.onrender.com/api/onboarding";
 
 async function fetchOnboardings() {
   const token = localStorage.getItem("accessToken");  // Get token from localStorage
@@ -175,31 +188,66 @@ const viewModal = document.getElementById("view-modal");
 const viewDetails = document.getElementById("view-details");
 
 form.addEventListener("submit", async (event) => {
-  event.preventDefault();
+  event.preventDefault(); // Prevent the default form submission
   
-  // Collect form data
+  // Show the loader
+  showLoader();
+
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
   console.log(`data is - ${data._id}`);
 
   // Check if _id exists to distinguish between creating and updating
-  if (data._id) {
-    // Update existing onboarding
-   await updateOnboarding(data._id, data);
-
-  } else {
-    // Create new onboarding
-    await createOnboarding(data);
-    // renderItem(newItem);  // Render the new item
+  try {
+    if (data._id) {
+      // Update existing onboarding
+      await updateOnboarding(data._id, data);
+    } else {
+      // Create new onboarding
+      await createOnboarding(data);
+    }
+    
+    // Reload the page after submission
+    window.location.reload();
+  } catch (error) {
+    console.error("Error during submission:", error);
+  } finally {
+    // Hide the loader after the operation is complete
+    hideLoader();
+    // form.reset(); // Reset form
+    submitModal.style.display = "none"; // Close the modal
   }
-
-  window.location.reload();
-
-  // Close modal and reset form
-  modal.style.display = "none";
-  form.reset();
 });
+
+function openDeleteModal(id) {
+  deleteModal.style.display = "flex";
+
+  confirmDeleteBtn.onclick = async () => {
+    try {
+      // Show loader while deleting
+      showLoader();
+
+      await deleteOnboarding(id);
+      deleteModal.style.display = "none";
+      
+      // Remove the item from the DOM
+      const itemButton = Array.from(itemContainer.children).find(
+        (child) => child.textContent.includes(item.name)
+      );
+      if (itemButton) itemContainer.removeChild(itemButton);
+    } catch (error) {
+      alert("Failed to delete item. Please try again.");
+    } finally {
+      // Hide the loader after the operation is complete
+      hideLoader();
+    }
+  };
+
+  cancelDeleteBtn.onclick = () => {
+    deleteModal.style.display = "none"; // Close the delete modal
+  };
+}
 
 
 function openViewModal(_id) {
