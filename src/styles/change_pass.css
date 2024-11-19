@@ -1,0 +1,60 @@
+/* Reset and base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Container styles */
+.change-pass-container {
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* Form styles */
+.change-pass-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-label {
+  text-align: left;
+  font-size: 0.9rem;
+  color: #000;
+  margin-bottom: 5px;
+}
+
+.form-input {
+  padding: 10px 15px;
+  border: 2px solid #1fb5c2;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.change-pass-button {
+  padding: 12px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #1fb5c2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.change-pass-button:hover {
+  background-color: #168da0;
+}
+
