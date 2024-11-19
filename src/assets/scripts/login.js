@@ -50,7 +50,8 @@ loginForm.onsubmit = async function (e) {
       // Redirect to homepage on successful login
       window.location.href = './index.html';
     } else {
-      alert('Login failed. Please check your email and password.');
+      alert(response.message || 'Login failed. Please check your email and password.');
+      // alert('Login failed. Please check your email and password.');
     }
   } catch (error) {
     console.error('Error:', error);
