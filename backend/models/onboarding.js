@@ -6,7 +6,7 @@ const onboardingSchema = new Schema({
     department: {type: String, required: true},
     topic: {type: String, required: true},
     noOfAcceptance: Number,
-    link: String,
+    link: String, 
 }, {timestamps: true});
 
 module.exports = mongoose.model("Onboarding", onboardingSchema);

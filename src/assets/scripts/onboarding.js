@@ -128,7 +128,7 @@ const itemContainer = document.getElementById("item-container");
 
 function updateItemInDOM(item) {
   const itemButton = Array.from(itemContainer.children).find(
-    (child) => child.getAttribute('data-id') === item._id // Use _id to find the correct item
+    (child) => child.getAttribute('item-form') === item._id // Use _id to find the correct item
   );
 
   if (itemButton) {
@@ -146,7 +146,7 @@ function updateItemInDOM(item) {
 function renderItem(item) {
   const button = document.createElement("button");
   button.className = "box-link";
-  button.setAttribute('data-id', item._id); // Add the _id to the button as data attribute
+
   button.innerHTML = `
     <div class="two-details">
       <h1>${item.name}</h1>
@@ -182,15 +182,15 @@ form.addEventListener("submit", async (event) => {
   // Check if _id exists to distinguish between creating and updating
   if (data._id) {
     // Update existing onboarding
-    const updatedItem = await updateOnboarding(data._id, data);
+   await updateOnboarding(data._id, data);
 
-    // Update the DOM immediately with the updated item
-    updateItemInDOM(updatedItem);
   } else {
     // Create new onboarding
-    const newItem = await createOnboarding(data);
-    renderItem(newItem);  // Render the new item
+    await createOnboarding(data);
+    // renderItem(newItem);  // Render the new item
   }
+
+  window.location.reload();
 
   // Close modal and reset form
   modal.style.display = "none";
