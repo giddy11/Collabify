@@ -1,108 +1,66 @@
-.body .container .up-overview .stack-head-software {
+.form-group .stack-head-software {
     color: blue !important;
   }
   
-  .body .container .up-overview .stack-head-qa {
+  .form-group .stack-head-qa {
     color: red !important;
   }
 
   main .body .container {
     display: block;
     width: 97%;
+    flex-wrap: wrap;
+    /* height: 90vh; */
+    display: flex;
+    gap: 30px;
     /* background-color: red; */
     margin: auto;
+    padding-top: 20px;
     padding-bottom: 60px; /* Add some padding to prevent overlap with bottom navbar */
 }
 
-main .body .container .up-overview {
+main .body .container .box-link   {
     display: flex;
-    gap: 15px;
-    flex-wrap: wrap;
-    /* justify-content: center; */
+    justify-content: center;
     align-items: center;
-    padding: 20px 0px;
-}
-
-main .body .container .up-overview a {
-    text-decoration: none;
-    display: inline-block;
-}
-
-main .body .container .up-overview button {
-    border: none;
+    width: 16rem;
+    height: 12rem;
     cursor: pointer;
-}
-
-main .body .container .up-overview a .two-details {
-    display: flex;
-    flex: 1 1 16rem;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 16rem;
-    max-width: 16rem;
-    height: 10rem;
-    /* padding: 50px 0px; */
-    /* background-color: greenyellow; */
-    background-color: white;
-    /* cursor: pointer; */
     box-shadow: rgb(240, 232, 232) 5px 0px 0px 0px;
 }
 
-main .body .container .up-overview button .two-details {
-    display: flex;
-    flex: 1 1 16rem;
-    text-align: center;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 16rem;
-    max-width: 16rem;
-    height: 10rem;
-    /* padding: 50px 0px; */
-    /* background-color: greenyellow; */
-    background-color: white;
-    /* cursor: pointer; */
-    box-shadow: rgb(240, 232, 232) 5px 0px 0px 0px;
-}
-
-main .body .container .up-overview a .two-details h1 {
+main .body .container .two-details h1 {
     color: #0f8792;
 }
 
-main .body .container .up-overview button .two-details h1 {
-    color: #0f8792;
-}
-
-main .body .container .up-overview .two-details p {
+main .body .container .two-details p {
     color: rgb(129, 112, 112);
     font-weight: 600;
 }
 
-main .body .container .up-overview a .two-details .topic {
+main .body .container .two-details .topic {
     padding-top: 10px;
 }
 
-main .body .container .up-overview button .two-details .topic {
+main .body .container .two-details .topic {
     padding-top: 10px;
 }
 
-main .body .container .up-overview a .two-details p span {
+main .body .container .two-details p span {
     color: #0f8792;
     font-size: 30px;
 }
 
-main .body .container .up-overview a .two-details .date {
+main .body .container .two-details .date {
     padding-bottom: 30px;
 }
 
-main .body .container .up-overview button .two-details p span {
+main .body .container  .two-details p span {
     color: #0f8792;
     font-size: 30px;
 }
 
-main .body .container .up-overview button .two-details .date {
+main .body .container .two-details .date {
     padding-bottom: 30px;
 }
   
@@ -157,6 +115,16 @@ main .body .container .up-overview button .two-details .date {
   top: -68%;
   visibility: visible;
   }
+
+.view-actions button {
+    padding: 5px 10px;
+    background-color: #0f8792;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    margin-top: 30px;
+    cursor: pointer;
+}
   
   .modal {
   align-items: center;
@@ -199,6 +167,45 @@ main .body .container .up-overview button .two-details .date {
   color: #e2e8f0;
   }
   
+  .modal-title {
+    color: #000000;
+  }
+  
+  .form-group,
+  .form-btn,
+  .edit-data,
+  .view-actions {
+    margin-top: 18px;
+  }
+
+  .edit-data > a {
+    word-wrap: break-word;
+  }
+
+  .view-actions button {
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    padding: 10px 20px;
+  }
+
+  #edit-btn {
+    background-color: #4caf50;
+    margin-right: 8px;
+  }
+
+  #edit-btn:hover {
+    background-color: #3ecf43;
+  }
+
+  #delete-btn {
+    background-color: #ff0000;
+  }
+
+  #delete-btn:hover {
+    background-color: #964242;
+
+  }
   
   .modal-title {
   color: #000000;
@@ -237,7 +244,7 @@ main .body .container .up-overview button .two-details .date {
   }
   
   .form-btn {
-  background-color: #4caf50;
+  background-color: #0f8792;
   color: #ffffff;
   padding: 10px 15px;
   border: none;
@@ -248,6 +255,25 @@ main .body .container .up-overview button .two-details .date {
   }
   
   .form-btn:hover {
-  background-color: #45a049;
+  background-color: #0b7a84;
   }
   
+  /* .red {
+    border: 1px solid red;
+}
+
+.green {
+    border: 1px solid green;
+}
+
+.black {
+    border: 1px solid black;
+}
+
+.blue {
+    border: 1px solid blue;
+}
+
+.yellow {
+    border: 1px solid yellow;
+} */
