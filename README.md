@@ -23,7 +23,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 1. **Onboarding Page**: Allows learners to view introductory information and guidelines. (COMPLETED)
 2. **Change Password**: Learners can update their passwords securely (COMPLETED).
 3. **Forgot Password**: Provides a recovery option for forgotten passwords (COMPLETED).
-4. **Authentication**: User and regiters and login with valid email (COMPLETED).
+4. **Authentication**: User registers and login with valid email (COMPLETED).
 5. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning ie the Follow up module functionality.
 6. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
 7. **Learners Directory**: Enable Learners to view their director so as to interact with them.

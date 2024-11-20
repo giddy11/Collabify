@@ -167,6 +167,45 @@ main .body .container .two-details .date {
   color: #e2e8f0;
   }
   
+  .modal-title {
+    color: #000000;
+  }
+  
+  .form-group,
+  .form-btn,
+  .edit-data,
+  .view-actions {
+    margin-top: 18px;
+  }
+
+  .edit-data > a {
+    word-wrap: break-word;
+  }
+
+  .view-actions button {
+    border: none;
+    border-radius: 6px;
+    color: #fff;
+    padding: 10px 20px;
+  }
+
+  #edit-btn {
+    background-color: #4caf50;
+    margin-right: 8px;
+  }
+
+  #edit-btn:hover {
+    background-color: #3ecf43;
+  }
+
+  #delete-btn {
+    background-color: #ff0000;
+  }
+
+  #delete-btn:hover {
+    background-color: #964242;
+
+  }
   
   .modal-title {
   color: #000000;

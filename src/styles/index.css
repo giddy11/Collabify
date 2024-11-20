@@ -105,7 +105,7 @@
 }
 
 .header .container .right .profile {
-    height: 3.2rem;
+    height: 3.2rem; 
     width: 3.2rem;
     border-radius: 3.2rem;
     display: flex;
@@ -226,6 +226,10 @@ main .container aside .nav-icons .dashboard-not a .notification {
 main .container aside .nav-icons p {
     font-size: 20px;
 }
+
+main .container aside .nav-icons:hover {
+    background-color: #88f5ff;
+  }
 
 main .body {
     overflow: scroll;

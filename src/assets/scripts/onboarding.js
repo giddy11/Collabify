@@ -32,8 +32,8 @@ window.addEventListener("click", (event) => {
  * 
  */
 // Initialise API Connection
-// const API_BASE_URL = "https://collabify-oloy.onrender.com/api/onboarding";
-const API_BASE_URL = "http://localhost:4001/api/onboarding";
+const API_BASE_URL = "https://collabify-oloy.onrender.com/api/onboarding";
+// const API_BASE_URL = "http://localhost:4001/api/onboarding";
 
 async function fetchOnboardings() {
   const token = localStorage.getItem("accessToken");  // Get token from localStorage
@@ -141,7 +141,8 @@ async function deleteOnboarding(id) {
 
 
 // Dynamic Item Rendering:
-const itemContainer = document.getElementById("item-container");
+// const itemContainer = document.getElementById("item-container");
+const itemContainer = document.querySelector(".up-overview");
 
 function updateItemInDOM(item) {
   const itemButton = Array.from(itemContainer.children).find(
@@ -256,12 +257,18 @@ function openViewModal(_id) {
 
     console.log(item);  // Log the item object to check its structure
 
+    // viewDetails.innerHTML = `
+    //   <h1>Week: ${item.name || 'N/A'}</h1>
+    //   <p>Lesson: ${item.topic || 'N/A'}</p>
+    //   <p>Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
+    //   <p>Class: ${item.department || 'N/A'}</p>
+    //   <p>Fellows: ${item.noOfAcceptance || '0'}</p>`;
     viewDetails.innerHTML = `
-      <h1>Week: ${item.name || 'N/A'}</h1>
-      <p>Lesson: ${item.topic || 'N/A'}</p>
-      <p>Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
-      <p>Class: ${item.department || 'N/A'}</p>
-      <p>Fellows: ${item.noOfAcceptance || '0'}</p>`;
+      <h1>Week: ${item.name.slice(4) || 'N/A'}</h1>
+      <p class="edit-data">Lesson: ${item.topic || 'N/A'}</p>
+      <p class="edit-data">Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
+      <p class="edit-data">Class: ${item.department || 'N/A'}</p>
+      <p class="edit-data">Fellows: ${item.noOfAcceptance || '0'}</p>`;
 
     viewModal.style.display = "flex";
 
