@@ -263,6 +263,9 @@ function openViewModal(_id) {
     //   <p>Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
     //   <p>Class: ${item.department || 'N/A'}</p>
     //   <p>Fellows: ${item.noOfAcceptance || '0'}</p>`;
+    /**
+     * TODO: Handle line 270 to handle case for when a user inputs a number instead of week 4.
+     */
     viewDetails.innerHTML = `
       <h1>Week: ${item.name.slice(4) || 'N/A'}</h1>
       <p class="edit-data">Lesson: ${item.topic || 'N/A'}</p>
