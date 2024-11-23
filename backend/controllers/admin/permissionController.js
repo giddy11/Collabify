@@ -20,7 +20,7 @@ const addPermission = async (req, res) => {
       });
     }
 
-    const { permission_name, is_default } = req.body;
+    const { permission_name, permission_value } = req.body;
     const isExists = await Permission.findOne({
       permission_name: {
         $regex: permission_name,
@@ -35,12 +35,12 @@ const addPermission = async (req, res) => {
     }
 
     var obj = {
-      permission_name,
-      is_default,
+      permission_name, 
+      permission_value,
     };
 
-    if (req.body.default) {
-      obj.is_default = parseInt(req.body.default);
+    if (req.body.permission_value) {
+      obj.permission_value = parseInt(req.body.permission_value);
     }
 
     const permission = new Permission(obj);
@@ -147,8 +147,8 @@ const updatePermission = async (req, res) => {
       permission_name,
     };
 
-    if (req.body.default != null) {
-      updatePermission.is_default = parseInt(req.body.default);
+    if (req.body.permission_value != null) {
+      updatePermission.permission_value = parseInt(req.body.permission_value);
     }
 
     const updatedPermission = await Permission.findByIdAndUpdate(

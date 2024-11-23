@@ -3,6 +3,10 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 const randomString = require("randomstring");
+const mongoose = require('mongoose');
+const UserPermission = require('../models/userPermission');
+const Permission = require('../models/permission');
+const userPermission = require("../models/userPermission");
 
 // Create User
 const createUser = async (req, res) => {
@@ -49,6 +53,34 @@ const createUser = async (req, res) => {
 
     await newUser.save();
 
+    // add permission to user if coming in request
+    if(req.body.permissions != undefined && req.body.permissions.length > 0) {
+      const addPermission = req.body.permissions;
+
+      const permissionArray = [];
+
+      await Promise.all(addPermission.map(async(permission) => {
+        const permissionData = await Permission.findOne({_id: permission.id});
+
+      console.log(`permissionData: ${permission.value}`);
+
+
+        permissionArray.push({
+          permission_name: permissionData.permission_name,
+          permission_value: permission.value,
+        });
+
+      }));
+
+      const userPermission = new UserPermission({
+        user_id: newUser._id,
+        permissions: permissionArray        
+      });
+      // console.log(userPermission);
+
+      await userPermission.save();
+    }
+
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -88,11 +120,55 @@ const createUser = async (req, res) => {
 // Get All Users
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find({
-      _id: {
-        $ne: req.user._id,
+    // const users = await User.find({
+    //   _id: {
+    //     $ne: req.user._id,
+    //   },
+    // });
+
+    const users = await User.aggregate([
+      {
+        $match: {
+          _id:{
+            // $ne: req.user._id
+            $ne: new mongoose.Types.ObjectId(req.user._id)
+          }
+        }
       },
-    });
+      {
+        $lookup: {
+          from: "userpermissions",
+          localField: "_id",
+          foreignField: "user_id",
+          as: "permissions"
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          fullName:1,
+          email:1,
+          role:1,
+          permissions:{
+            $cond:{
+              if: {$isArray: "$permissions"},
+              then: {$arrayElemAt: ["$permissions", 0]},
+              else:null
+            }
+          }
+        }
+      },
+      {
+        $addFields:{
+          "permissions":{
+            "permissions": "$permissions.permissions"
+          }
+        }
+      }
+    ])
+
+
+
     return res
       .status(200)
       .json({
@@ -176,6 +252,30 @@ const updateUser = async (req, res) => {
       },
       { new: true }
     );
+
+    // add permission to user if coming in request
+    if(req.body.permissions != undefined && req.body.permissions.length > 0) {
+      const addPermission = req.body.permissions;
+
+      const permissionArray = [];
+
+      await Promise.all(addPermission.map(async(permission) => {
+        const permissionData = await Permission.findOne({_id: permission.id});
+
+        permissionArray.push({
+          permission_name: permissionData.permission_name,
+          permission_value: permissionData.value,
+        });
+
+      }));
+
+      await UserPermission.findOneAndUpdate(
+        {user_id: updatedData._id},
+        {permissions: permissionArray},
+        {upsert: true, new:true, setDefaultsOnInsert:true}
+    )
+
+    }
 
     return res.status(200).json({
       success: true,

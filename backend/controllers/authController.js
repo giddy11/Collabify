@@ -83,7 +83,7 @@ const signup = async (req, res) => {
 
     //assign default permissions
     const defaultPermissions = await Permission.find({
-      is_default: 1
+      permission_value: 1
     });
 
     if(defaultPermissions.length > 0){
@@ -277,28 +277,28 @@ const login = async (req, res) => {
       });
     }
 
-    const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ success: false, error: "email not found" });
+    const userData = await User.findOne({ email });
+    if (!userData) return res.status(401).json({ success: false, error: "email not found" });
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, userData.password);
     if (!isPasswordValid)
       return res.status(401).json({ success: false, message: "invalid password", error: "wrong password" });
 
     // Generate tokens
     const accessToken = jwt.sign(
-      { id: user._id, role: user.role },
+      { id: userData._id, role: userData.role },
       process.env.TOKEN_SECRET_KEY,
       { expiresIn: "150m" }
     );
     const refreshToken = jwt.sign(
-      { id: user._id },
+      { id: userData._id },
       process.env.REFRESH_TOKEN_SECRET_KEY,
       { expiresIn: "7d" }
     );
 
     // Update user's refresh token in DB
-    user.refreshToken = refreshToken;
-    await user.save();
+    userData.refreshToken = refreshToken;
+    await userData.save();
 
     // Set cookies
     res.cookie("accessToken", accessToken, {
@@ -310,12 +310,51 @@ const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
+    // get user data with all permissions
+    const result = await User.aggregate([
+      {
+        $match: {email: userData.email}
+      },
+      {
+        $lookup: {
+          from: "userpermissions",
+          localField: "_id",
+          foreignField: "user_id",
+          as: "permissions"
+        }
+      },
+      {
+        $project: {
+          _id: 1,
+          fullName:1,
+          email:1,
+          role:1,
+          permissions:{
+            $cond:{
+              if: {$isArray: "$permissions"},
+              then: {$arrayElemAt: ["$permissions", 0]},
+              else:null
+            }
+          }
+        }
+      },
+      {
+        $addFields:{
+          "permissions":{
+            "permissions": "$permissions.permissions"
+          }
+        }
+      }
+    ])
+
     return res.status(200).json({
       success: true,
       message: "Login successful",
       tokenType: 'Bearer',
       accessToken, // Include accessToken here for client storage
-      data: { email: user.email, _id: user._id, fullName: user.fullName, role: user.role },
+      // data: { email: userData.email, _id: userData._id, fullName: userData.fullName, role: userData.role },
+      // data: userData
+      data: result[0]
     });
   } catch (error) {
     res
