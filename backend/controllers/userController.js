@@ -1,11 +1,23 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
+const { validationResult } = require("express-validator");
+const randomString = require("randomstring");
 
 // Create User
 const createUser = async (req, res) => {
-  const { email, fullName, field, password, role } = req.body;
+  const { email, fullName, field, role } = req.body;
   try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: "Errors",
+        errors: errors.array(),
+      });
+    }
+
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
@@ -13,23 +25,27 @@ const createUser = async (req, res) => {
         .json({ success: false, message: "Email is already in use." });
     }
 
-    const validRoles = ["user", "admin"];
-    if (!validRoles.includes(role)) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Invalid role specified." });
-    }
+    const password = randomString.generate(8);
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-
-    const newUser = new User({
+    var obj = {
       email,
       fullName,
       field,
-      password: hashedPassword,
       role,
-    });
+      password: hashedPassword,
+    };
+
+    if (req.body.role && req.body.role == 1) {
+      return res.status(400).json({
+        success: false,
+        message: "You cant create Admin",
+      });
+    } else if (req.body.role) {
+      obj.role = req.body.role;
+    }
+
+    const newUser = new User(obj);
 
     await newUser.save();
 
@@ -54,11 +70,11 @@ const createUser = async (req, res) => {
       success: true,
       message:
         "User created successfully. Login details have been sent to the user's email.",
-      user: {
+      data: {
         email: newUser.email,
         fullName: newUser.fullName,
         field: newUser.field,
-        role: newUser.role,
+        role,
       },
     });
   } catch (error) {
@@ -72,8 +88,18 @@ const createUser = async (req, res) => {
 // Get All Users
 const getAllUsers = async (req, res) => {
   try {
-    const users = await User.find();
-    return res.status(200).json({ success: true, users });
+    const users = await User.find({
+      _id: {
+        $ne: req.user._id,
+      },
+    });
+    return res
+      .status(200)
+      .json({
+        success: true,
+        message: "Users Fetched Successfully",
+        data: users,
+      });
   } catch (error) {
     console.error(error);
     return res
@@ -103,45 +129,58 @@ const getUserById = async (req, res) => {
 
 // Update User
 const updateUser = async (req, res) => {
-  const { id } = req.params;
-  const { email, fullName, field, dob, phone, country, city, address } =
-    req.body;
-
   try {
-    const user = await User.findById(id); // Fetch user by ID
+    const errors = validationResult(req);
 
-    if (!user) {
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: "Errors",
+        errors: errors.array(),
+      });
+    }
+
+    const { id, email, fullName, field, dob, phone, country, city, address } =
+      req.body;
+
+    const isExists = await User.findOne({
+      _id: id,
+    });
+
+    if (!isExists) {
       return res.status(404).json({
         success: false,
         message: "User not found",
       });
     }
 
-    // Only update fields that are not excluded
-    if (email) user.email = email;
-    if (fullName) user.fullName = fullName;
-    if (field) user.field = field;
-    if (dob) user.dob = dob;
-    if (phone) user.phone = phone;
-    if (country) user.country = country;
-    if (city) user.city = city;
-    if (address) user.address = address;
+    var updateObj = {
+      email,
+      fullName,
+      field,
+      dob,
+      phone,
+      country,
+      city,
+      address,
+    };
 
-    await user.save(); // Save the updated user
+    if (req.body.role != undefined) {
+      updateObj.role = req.body.role;
+    }
+
+    const updatedData = await User.findByIdAndUpdate(
+      { _id: id },
+      {
+        $set: updateObj,
+      },
+      { new: true }
+    );
 
     return res.status(200).json({
       success: true,
       message: "User updated successfully",
-      user: {
-        email: user.email,
-        fullName: user.fullName,
-        field: user.field,
-        dob: user.dob,
-        phone: user.phone,
-        country: user.country,
-        city: user.city,
-        address: user.address,
-      },
+      data: updatedData,
     });
   } catch (error) {
     console.error(error);
@@ -155,19 +194,36 @@ const updateUser = async (req, res) => {
 
 // Delete User
 const deleteUser = async (req, res) => {
-  const { id } = req.params;
   try {
-    const user = await User.findById(id);
-    if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: "Errors",
+        errors: errors.array(),
+      });
     }
 
-    await user.remove();
+    const { id } = req.body;
+
+    const isExists = await User.findOne({
+      _id: id,
+    });
+
+    if (!isExists) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    await User.findByIdAndDelete({ _id: id });
+
     return res
       .status(200)
       .json({ success: true, message: "User deleted successfully" });
+      
   } catch (error) {
     console.error(error);
     return res
@@ -176,10 +232,31 @@ const deleteUser = async (req, res) => {
   }
 };
 
+const getProfile = async (req, res) => {
+  try {
+    console.log("hello");
+    const user_id = req.user.id;
+    console.log(user_id);
+    const userData = await User.findOne({ _id: user_id });
+
+    return res.status(200).json({
+      success: true,
+      message: "Profile Data",
+      data: userData,
+    });
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
 module.exports = {
   createUser,
   getAllUsers,
   getUserById,
+  getProfile,
   updateUser,
   deleteUser,
 };

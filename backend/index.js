@@ -13,6 +13,8 @@ const http = require('http');
 const authRoutes = require('./routes/authRoutes');
 const userRoutes = require('./routes/userRoutes');
 const onboardingRoutes = require('./routes/onboardingRoutes');
+const permissionRoutes = require('./routes/admin/permissionRoutes');
+const roleRoutes = require('./routes/admin/roleRoutes');
 
 // Set up the PORT
 const PORT = process.env.PORT || 3000;
@@ -35,6 +37,8 @@ app.get('/', (req, res) => {
 
 // routes'
 app.use('/api/auth', authRoutes);
+app.use('/api/auth/admin', permissionRoutes);
+app.use('/api/auth/admin', roleRoutes);
 app.use('/api', userRoutes);
 app.use('/api', onboardingRoutes);
 

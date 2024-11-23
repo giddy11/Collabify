@@ -5,6 +5,9 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
 const firebaseAdmin = require("../config/firebase");
 const cookie = require("cookie");
+const { validationResult } = require('express-validator');
+const UserPermission = require('../models/userPermission');
+const Permission = require('../models/permission');
 
 /** POST: http://localhost:4001/api/auth/signup 
  * @param : {
@@ -16,14 +19,20 @@ const signup = async (req, res) => {
   const { email, password, fullName } = req.body;
 
   try {
-    // Check if fullName is provided
-    if (!fullName) {
-      return res.status(400).json({ message: "Full name is required." });
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation errors",
+        errors: errors.array(),
+      });
     }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ success: false, message: "User already exists" });
+      return res.status(400).json({ success: false, message: "Email already exists" });
     }
 
     // Password validation
@@ -49,7 +58,7 @@ const signup = async (req, res) => {
 
     // Generate access and refresh tokens
     const accessToken = jwt.sign(
-      { id: newUser._id, email: newUser.email, fullName: newUser.fullName },
+      { id: newUser._id, email: newUser.email, fullName: newUser.fullName, role: newUser.role },
       process.env.TOKEN_SECRET_KEY,
       { expiresIn: "150m" } // Short expiry for access token
     );
@@ -72,23 +81,46 @@ const signup = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
+    //assign default permissions
+    const defaultPermissions = await Permission.find({
+      is_default: 1
+    });
+
+    if(defaultPermissions.length > 0){
+      const permissionArray = [];
+      defaultPermissions.forEach(permission => {
+        permissionArray.push({
+          permission_name:permission.permission_name,
+          permission_value:[0,1,2,3]
+        });
+      });
+
+      const userPermission = new UserPermission({
+        user_id: newUser._id,
+        permissions: permissionArray
+      });
+
+      await userPermission.save();
+    }
+
     // Include the tokens in the response body
     return res.status(201).json({
       success: true,
+      tokenType: "Bearer",
       message: "Registration successful",
-      user: {
+      data: {
         email: newUser.email,
-        id: newUser._id,
+        _id: newUser._id,
         fullName: newUser.fullName,
         role: newUser.role,
       },
       accessToken, // Add the access token to the response body
       refreshToken, // Add the refresh token to the response body (if needed)
-    });
+    }); 
   } catch (error) {
     console.error(error);
     return res
-      .status(500)
+      .status(500) 
       .json({ success: false, message: "Server error", error: error.message });
   }
 };
@@ -235,8 +267,14 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ success: false, error: "Email and password are required" });
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty()){
+      return res.status(200).json({ 
+        success: false,
+        message: 'Errors', 
+        errors: errors.array()
+      });
     }
 
     const user = await User.findOne({ email });
@@ -248,7 +286,7 @@ const login = async (req, res) => {
 
     // Generate tokens
     const accessToken = jwt.sign(
-      { id: user._id },
+      { id: user._id, role: user.role },
       process.env.TOKEN_SECRET_KEY,
       { expiresIn: "150m" }
     );
@@ -275,8 +313,9 @@ const login = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Login successful",
+      tokenType: 'Bearer',
       accessToken, // Include accessToken here for client storage
-      user: { email: user.email, id: user._id },
+      data: { email: user.email, _id: user._id, fullName: user.fullName, role: user.role },
     });
   } catch (error) {
     res
