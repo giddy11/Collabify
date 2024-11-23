@@ -69,3 +69,13 @@ exports.userUpdateValidator = [
 exports.userDeleteValidator = [
     check('id', 'ID is Required').not().isEmpty(),
 ];
+
+exports.routerPermissionAddValidator = [
+    check('router_endpoint', 'router_endpoint is Required').not().isEmpty(),
+    check('role', 'role is Required').not().isEmpty(),
+    check('permission', 'permission must be an array').isArray()
+];
+
+exports.getRouterPermissionValidator = [
+    check('router_endpoint', 'router_endpoint is Required').not().isEmpty(),
+];

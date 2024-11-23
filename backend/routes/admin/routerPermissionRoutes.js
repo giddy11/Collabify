@@ -1,22 +1,23 @@
 const express = require("express");
 const {
-    addRoute,
-    getRoutes,
-    updateRoute,
-    deleteRoute,
+    addRouterPermission,
+    getRouterPermissions,
+    updateRouterPermission,
+    deleteRouterPermission,
 } = require("../../controllers/admin/routerPermissionController");
 const authMiddleware = require("../../middlewares/authMiddleware");
 const {
-  roleAddValidator,
   roleUpdateValidator,
   roleDeleteValidator,
+  routerPermissionAddValidator,
+  getRouterPermissionValidator,
 } = require("../../validators/adminValidator");
 const { onlyAdminAccess } = require("../../middlewares/adminMiddleware");
 const router = express.Router();
 
-router.post("/route", authMiddleware, onlyAdminAccess, roleAddValidator, addRoute);
-router.get("/routes", authMiddleware, onlyAdminAccess, getRoutes);
-router.put("/route", authMiddleware, onlyAdminAccess, roleUpdateValidator, updateRoute);
-router.delete("/route", authMiddleware, onlyAdminAccess, roleDeleteValidator, deleteRoute);
+router.post("/router", authMiddleware, onlyAdminAccess, routerPermissionAddValidator, addRouterPermission);
+router.get("/routers", authMiddleware, onlyAdminAccess, getRouterPermissionValidator, getRouterPermissions);
+router.put("/router", authMiddleware, onlyAdminAccess, roleUpdateValidator, updateRouterPermission);
+router.delete("/router", authMiddleware, onlyAdminAccess, roleDeleteValidator, deleteRouterPermission);
 
 module.exports = router;

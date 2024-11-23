@@ -18,7 +18,7 @@ const roleRoutes = require('./routes/admin/roleRoutes');
 const routerPermissionRoutes = require('./routes/admin/routerPermissionRoutes');
 const authMiddleware = require("./middlewares/authMiddleware");
 const { onlyAdminAccess } = require("./middlewares/adminMiddleware");
-const { getRoutes } = require("./controllers/admin/routerPermissionController");
+const { getRouterPermissions, getRouters } = require("./controllers/admin/routerPermissionController");
 
 // Set up the PORT
 const PORT = process.env.PORT || 3000;
@@ -34,7 +34,7 @@ app.use(express.json());
 // Connect to MongoDB
 connectDB();
 
-app.get("/api/auth/admin/routes", authMiddleware, onlyAdminAccess, getRoutes);
+app.get("/api/auth/admin/routes", authMiddleware, onlyAdminAccess, getRouters);
 
 
 // Welcome route

@@ -1,7 +1,7 @@
 const { validationResult } = require("express-validator");
 const RouterPermission = require("../../models/routerPermission");
 
-const addRoute = async (req, res) => {
+const addRouterPermission = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -13,32 +13,49 @@ const addRoute = async (req, res) => {
       });
     }
 
-    const { role_name, value } = req.body;
-
-    const isExists = await Role.findOne({
-      name: {
-        $regex: role_name,
-        $options: "i",
-      },
-    });
-
-    if (isExists) {
-      return res
-        .status(400)
-        .json({ success: false, message: "Role Name already exists!" });
-    }
-
-    const role = new Role({
-      role_name,
-      value,
-    });
-
-    const roleData = await role.save();
+    const { router_endpoint, role, permission } = req.body;
+    const routerPermission = await RouterPermission.findOneAndUpdate(
+      {router_endpoint, role},
+      {router_endpoint, role, permission},
+      {upsert:true, new:true, setDefaultsOnInsert:true},
+    )
 
     return res.status(200).json({
       success: true,
-      message: "Role added Successfully!",
-      data: roleData,
+      message: "Router Permission added/updated Successfully!",
+      data: routerPermission,
+    });
+
+  } catch (error) {
+    return res.status(400).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+const getRouterPermissions = async (req, res) => {
+  try {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: "Errors",
+        errors: errors.array(),
+      });
+    }
+
+    const { router_endpoint } = req.body;
+
+    const routerPermissions = await RouterPermission.find({
+      router_endpoint
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Router Permissions Fetched Successfully!",
+      data: routerPermissions,
     });
   } catch (error) {
     return res.status(400).json({
@@ -48,7 +65,7 @@ const addRoute = async (req, res) => {
   }
 };
 
-const getRoutes = async (req, res) => {
+const getRouters = async (req, res) => {
   try {
     const routes = [];
     const stack = req.app._router.stack;
@@ -83,7 +100,7 @@ const getRoutes = async (req, res) => {
   }
 };
 
-const updateRoute = async (req, res) => {
+const updateRouterPermission = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -152,7 +169,7 @@ const updateRoute = async (req, res) => {
   }
 };
 
-const deleteRoute = async (req, res) => {
+const deleteRouterPermission = async (req, res) => {
   try {
     const errors = validationResult(req);
 
@@ -190,8 +207,9 @@ const deleteRoute = async (req, res) => {
 };
 
 module.exports = {
-  addRoute,
-  getRoutes,
-  updateRoute,
-  deleteRoute,
+  addRouterPermission,
+  getRouterPermissions,
+  updateRouterPermission,
+  deleteRouterPermission,
+  getRouters
 };
