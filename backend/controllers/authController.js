@@ -86,23 +86,6 @@ const signup = async (req, res) => {
       permission_value: 1
     });
 
-    if(defaultPermissions.length > 0){
-      const permissionArray = [];
-      defaultPermissions.forEach(permission => {
-        permissionArray.push({
-          permission_name:permission.permission_name,
-          permission_value:[0,1,2,3]
-        });
-      });
-
-      const userPermission = new UserPermission({
-        user_id: newUser._id,
-        permissions: permissionArray
-      });
-
-      await userPermission.save();
-    }
-
     // Include the tokens in the response body
     return res.status(201).json({
       success: true,
@@ -310,43 +293,6 @@ const login = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
-    // get user data with all permissions
-    const result = await User.aggregate([
-      {
-        $match: {email: userData.email}
-      },
-      {
-        $lookup: {
-          from: "userpermissions",
-          localField: "_id",
-          foreignField: "user_id",
-          as: "permissions"
-        }
-      },
-      {
-        $project: {
-          _id: 1,
-          fullName:1,
-          email:1,
-          role:1,
-          permissions:{
-            $cond:{
-              if: {$isArray: "$permissions"},
-              then: {$arrayElemAt: ["$permissions", 0]},
-              else:null
-            }
-          }
-        }
-      },
-      {
-        $addFields:{
-          "permissions":{
-            "permissions": "$permissions.permissions"
-          }
-        }
-      }
-    ])
-
     return res.status(200).json({
       success: true,
       message: "Login successful",
@@ -354,7 +300,7 @@ const login = async (req, res) => {
       accessToken, // Include accessToken here for client storage
       // data: { email: userData.email, _id: userData._id, fullName: userData.fullName, role: userData.role },
       // data: userData
-      data: result[0]
+      data: userData
     });
   } catch (error) {
     res

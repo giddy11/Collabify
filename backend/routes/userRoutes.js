@@ -25,7 +25,7 @@ router.get('/profile', authMiddleware, getProfile);
 
 // Update user by ID
 // router.put("/user/:id", authMiddleware, onlyAdminAccess, updateUser);
-router.put("/user", authMiddleware, onlyAdminAccess, userUpdateValidator, updateUser);
+router.put("/user", authMiddleware, userUpdateValidator, updateUser);
 
 // Delete user by ID
 // router.delete("/user/:id", authMiddleware, deleteUser);
