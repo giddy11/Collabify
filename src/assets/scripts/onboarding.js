@@ -39,7 +39,7 @@ window.addEventListener("click", (event) => {
 // const API_BASE_URL = "https://collabify-oloy.onrender.com/api/onboarding";
 const API_BASE_URL = "http://localhost:4001/api/onboarding";
 
-async function fetchOnboardings() {
+async function fetchUsers() {
   const token = localStorage.getItem("accessToken");  // Get token from localStorage
 
   if (!token) {
@@ -206,7 +206,7 @@ function renderItem(item) {
 
 
 async function loadItems() {
-  const items = await fetchOnboardings();
+  const items = await fetchUsers();
   items.forEach(renderItem);
 }
 

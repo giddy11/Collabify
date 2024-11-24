@@ -1,5 +1,5 @@
 /**
- * 
+ * TODO: change hosting
  */
 const apiUrl = 'http://localhost:4001/api/auth/login';
 // const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login';

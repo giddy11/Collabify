@@ -3,10 +3,6 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 const randomString = require("randomstring");
-const mongoose = require('mongoose');
-const UserPermission = require('../models/userPermission');
-const Permission = require('../models/permission');
-const userPermission = require("../models/userPermission");
 
 // Create User
 const createUser = async (req, res) => {
