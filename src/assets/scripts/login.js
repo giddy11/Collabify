@@ -44,16 +44,20 @@ loginForm.onsubmit = async function (e) {
     const response = await apiRequest(apiUrl, 'POST', formData);
 
     if (response.success) {
-      // Save the token in localStorage
+      // Save the token and user data in localStorage
       localStorage.setItem('accessToken', response.accessToken);
       localStorage.setItem("refreshToken", response.refreshToken);
       localStorage.setItem("user", JSON.stringify(response.data));
 
-      // Redirect to homepage on successful login
-      window.location.href = './index.html';
+      // Check user role and redirect accordingly
+      const userRole = response.data.role; // Assuming the role is part of the response data
+      if (userRole === 0) {
+        window.location.href = './directory.html'; // Redirect to directory page for role 0 (regular user)
+      } else {
+        window.location.href = './index.html'; // Redirect to homepage for role 1 (admin)
+      }
     } else {
       alert(response.message || 'Login failed. Please check your email and password.');
-      // alert('Login failed. Please check your email and password.');
     }
   } catch (error) {
     console.error('Error:', error);

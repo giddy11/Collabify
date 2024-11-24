@@ -3,11 +3,11 @@ const filterForm = document.getElementById("filters-form");
 const resultsGrid = document.querySelector(".results-grid");
 
 //check for token
-const token = localStorage.getItem('accessToken');
-console.log(token);
-if(!token) {
-  window.location.href = './signin.html';
-}
+// const token = localStorage.getItem('accessToken');
+// console.log(token);
+// if(!token) {
+//   window.location.href = './signin.html';
+// }
 
 // Simulated user data
 const users = [

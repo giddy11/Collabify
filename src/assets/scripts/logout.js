@@ -3,7 +3,7 @@ async function logout() {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('user');
   /**
- * 
+ * TODO: hosting
  */
   try {
     // Make the logout request to the backend
