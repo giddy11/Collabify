@@ -8,7 +8,7 @@ const routerPermissionSchema = new Schema(
     permission_id: {type: mongoose.Schema.Types.ObjectId, required: true, ref:'Permission'},
     permission: {type: Array, required: true } // 0,1,2,3
   },
-  { timestamps: true }
+  { timestamps: true } 
 );
 
 module.exports = mongoose.model("RouterPermission", routerPermissionSchema);
