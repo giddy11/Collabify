@@ -47,6 +47,8 @@ registerForm.onsubmit = async function (e) {
 
     if (response.success) {
       localStorage.setItem('accessToken', response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       // Redirect to the index page on successful signup
       alert(response.message); // Display success message from backend

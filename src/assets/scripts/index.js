@@ -1,3 +1,10 @@
+//check for token
+const token = localStorage.getItem('accessToken');
+console.log(token);
+if(!token) {
+  window.location.href = './signin.html';
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const dashboardBtn = document.getElementById("dashboard-btn");
   const logo = document.querySelector(".logo");

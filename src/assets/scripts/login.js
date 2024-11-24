@@ -1,8 +1,8 @@
 /**
  * 
  */
-// const apiUrl = 'http://localhost:4001/api/auth/login';
-const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login'; // Adjust to your login endpoint
+const apiUrl = 'http://localhost:4001/api/auth/login';
+// const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login';
 const loader = document.getElementById('loader');
 const loginForm = document.getElementById('login-form');
 
@@ -46,6 +46,8 @@ loginForm.onsubmit = async function (e) {
     if (response.success) {
       // Save the token in localStorage
       localStorage.setItem('accessToken', response.accessToken);
+      localStorage.setItem("refreshToken", response.refreshToken);
+      localStorage.setItem("user", JSON.stringify(response.data));
 
       // Redirect to homepage on successful login
       window.location.href = './index.html';
