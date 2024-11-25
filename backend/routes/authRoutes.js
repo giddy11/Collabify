@@ -5,7 +5,9 @@ const { signup, login, forgotPassword, changePassword, logout, googleLogin, refr
 const authMiddleware = require('../middlewares/authMiddleware');
 const { registerValidator, loginValidator } = require('../validators/authValidator');
 const router = express.Router();
-
+// Trust the first proxy (for reverse proxies)
+const app = express();
+app.set('trust proxy', 1);
 // Set up rate limiter
 const loginLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
