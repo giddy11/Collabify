@@ -1,5 +1,6 @@
 const editBtn = document.getElementById("edit-btn");
 const modal = document.getElementById("event-modal");
+const viewModal = document.getElementById("view-modal");
 
 const API_BASE_URL = "https://collabify-oloy.onrender.com/api/profile";
 const API_USER_URL = "https://collabify-oloy.onrender.com/api/user";
