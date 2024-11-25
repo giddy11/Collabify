@@ -5,6 +5,9 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require('nodemailer');
 const firebaseAdmin = require("../config/firebase");
 const cookie = require("cookie");
+const { validationResult } = require('express-validator');
+const UserPermission = require('../models/userPermission');
+const Permission = require('../models/permission');
 
 /** POST: http://localhost:4001/api/auth/signup 
  * @param : {
@@ -16,14 +19,20 @@ const signup = async (req, res) => {
   const { email, password, fullName } = req.body;
 
   try {
-    // Check if fullName is provided
-    if (!fullName) {
-      return res.status(400).json({ message: "Full name is required." });
+
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        success: false,
+        message: "Validation errors",
+        errors: errors.array(),
+      });
     }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({ success: false, message: "User already exists" });
+      return res.status(400).json({ success: false, message: "Email already exists" });
     }
 
     // Password validation
@@ -49,7 +58,7 @@ const signup = async (req, res) => {
 
     // Generate access and refresh tokens
     const accessToken = jwt.sign(
-      { id: newUser._id, email: newUser.email, fullName: newUser.fullName },
+      { id: newUser._id, email: newUser.email, fullName: newUser.fullName, role: newUser.role },
       process.env.TOKEN_SECRET_KEY,
       { expiresIn: "150m" } // Short expiry for access token
     );
@@ -72,23 +81,29 @@ const signup = async (req, res) => {
       maxAge: 7 * 24 * 60 * 60 * 1000,
     });
 
+    //assign default permissions
+    const defaultPermissions = await Permission.find({
+      permission_value: 1
+    });
+
     // Include the tokens in the response body
     return res.status(201).json({
       success: true,
+      tokenType: "Bearer",
       message: "Registration successful",
-      user: {
+      data: {
         email: newUser.email,
-        id: newUser._id,
+        _id: newUser._id,
         fullName: newUser.fullName,
         role: newUser.role,
       },
       accessToken, // Add the access token to the response body
       refreshToken, // Add the refresh token to the response body (if needed)
-    });
+    }); 
   } catch (error) {
     console.error(error);
     return res
-      .status(500)
+      .status(500) 
       .json({ success: false, message: "Server error", error: error.message });
   }
 };
@@ -235,32 +250,38 @@ const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    if (!email || !password) {
-      return res.status(400).json({ success: false, error: "Email and password are required" });
+    const errors = validationResult(req);
+
+    if(!errors.isEmpty()){
+      return res.status(200).json({ 
+        success: false,
+        message: 'Errors', 
+        errors: errors.array()
+      });
     }
 
-    const user = await User.findOne({ email });
-    if (!user) return res.status(401).json({ success: false, error: "email not found" });
+    const userData = await User.findOne({ email });
+    if (!userData) return res.status(401).json({ success: false, error: "email not found" });
 
-    const isPasswordValid = await bcrypt.compare(password, user.password);
+    const isPasswordValid = await bcrypt.compare(password, userData.password);
     if (!isPasswordValid)
       return res.status(401).json({ success: false, message: "invalid password", error: "wrong password" });
 
     // Generate tokens
     const accessToken = jwt.sign(
-      { id: user._id },
+      { id: userData._id, role: userData.role },
       process.env.TOKEN_SECRET_KEY,
       { expiresIn: "150m" }
     );
     const refreshToken = jwt.sign(
-      { id: user._id },
+      { id: userData._id },
       process.env.REFRESH_TOKEN_SECRET_KEY,
       { expiresIn: "7d" }
     );
 
     // Update user's refresh token in DB
-    user.refreshToken = refreshToken;
-    await user.save();
+    userData.refreshToken = refreshToken;
+    await userData.save();
 
     // Set cookies
     res.cookie("accessToken", accessToken, {
@@ -275,8 +296,11 @@ const login = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "Login successful",
+      tokenType: 'Bearer',
       accessToken, // Include accessToken here for client storage
-      user: { email: user.email, id: user._id },
+      // data: { email: userData.email, _id: userData._id, fullName: userData.fullName, role: userData.role },
+      // data: userData
+      data: userData
     });
   } catch (error) {
     res

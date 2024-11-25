@@ -1,7 +1,7 @@
 async function logout() {
   // Clear the access token from localStorage
   localStorage.removeItem('accessToken');
-
+  localStorage.removeItem('user');
   /**
  * 
  */

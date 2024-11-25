@@ -429,26 +429,26 @@ main .container .body {
     }
 
     main .body .container .down {
-        display: block; /* Change flex to block for smaller screens */
+        display: block;
         width: 100%;
     }
 
     main .body .container .down .upcoming,
     main .body .container .down .attendance {
-        width: 50%; /* Make each element take full width on smaller screens */
-        margin-bottom: 20px; /* Add spacing between sections */
+        width: 50%;
+        margin-bottom: 20px;
     }
 
-    .bottom-nav-md {
+    /* .bottom-nav-md {
         background-color: white;
     display: flex;
     justify-content: space-evenly;
     width: 100%;
     border: 1px solid rgb(222, 222, 222);
-    position: fixed; /* Changed from absolute to fixed */
-    bottom: 0; /* Ensure it stays at the bottom of the viewport */
-    z-index: 10; /* Add a higher z-index to ensure it stays above other content */
-    }
+    position: fixed; 
+    bottom: 0; 
+    z-index: 10;
+    } */
 
     main .body .container .up-overview {
         justify-content: left;
