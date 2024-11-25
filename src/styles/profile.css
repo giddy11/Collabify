@@ -171,3 +171,126 @@
 .info-item strong {
   color: #1fb5c2;
 }
+
+.modal {
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  display: none;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  }
+  
+  .modal-content {
+  background-color: #ffffff;
+  border-radius: 8px;
+  color: #64748b;
+  height: fit-content;
+  width: fit-content;
+  padding: 22px 24px;
+  position: relative;
+  }
+  
+  .close-btn {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 20px;
+  height: 26px;
+  width: 26px;
+  position: absolute;
+  right: 24px;
+  top: 20px;
+  }
+  
+  .close-btn:hover {
+  background-color: #ff0000;
+  color: #e2e8f0;
+  }
+
+
+/* Container styles */
+.edit-profile-container {
+  max-width: 800px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.edit-profile-container edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Row styles */
+.edit-profile-container .form-row {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+}
+
+.edit-profile-container .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-profile-container .form-label {
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+  color: #000;
+}
+
+.edit-profile-container .form-input {
+  padding: 10px 15px;
+  border: 2px solid #1fb5c2;
+  border-radius: 5px;
+  font-size: 1rem;
+  outline: none;
+}
+
+.edit-profile-container .form-input::placeholder {
+  color: #aaa;
+}
+
+/* Button styles */
+.edit-profile-container .form-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.edit-profile-container .save-button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  color: #ffffff;
+  background-color: #1fb5c2;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-profile-container .save-button:hover {
+  background-color: #168da0;
+}
+
+.edit-profile-container .cancel-button {
+  padding: 12px 30px;
+  font-size: 1rem;
+  color: #1fb5c2;
+  background-color: transparent;
+  border: 2px solid #1fb5c2;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.edit-profile-container .cancel-button:hover {
+  background-color: #e6f8fa;
+}

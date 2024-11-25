@@ -183,7 +183,7 @@ Challenges Faced During Development
 4. Team member assigned to handle the frontend struggled to consume endpoints from the backend, thereby giving more workloads by the fellow who was handling the backend to also consume endpoints at the frontend. (SOLUTION: Impacting knowledge to the fellow and giving small projects to do that require endpoints consumption).
 
 
-## Acknowledgments
+## Acknowledgements
 
 - [Express](https://expressjs.com/)
 - [MongoDB](https://www.mongodb.com/)

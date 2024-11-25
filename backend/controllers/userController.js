@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 const randomString = require("randomstring");
-
+const mongoose = require('mongoose');
 // Create User
 const createUser = async (req, res) => {
   const { email, fullName, field, role } = req.body;
@@ -110,21 +110,55 @@ const getAllUsers = async (req, res) => {
 };
 
 // Get User by ID
+// const getUserById = async (req, res) => {
+//   const { id } = req.params;
+//   try {
+//     const user = await User.findById(id);
+//     if (!user) {
+//       return res
+//         .status(404)
+//         .json({ success: false, message: "User not found" });
+//     }
+//     return res.status(200).json({ success: true, user });
+//   } catch (error) {
+//     console.error(error);
+//     return res
+//       .status(500)
+//       .json({ success: false, message: "Server error", error: error.message });
+//   }
+// };
+
 const getUserById = async (req, res) => {
   const { id } = req.params;
+
+  // Validate if the provided id is a valid ObjectId
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).json({
+      success: false,
+      message: "Invalid user ID format",
+    });
+  }
+
   try {
     const user = await User.findById(id);
     if (!user) {
-      return res
-        .status(404)
-        .json({ success: false, message: "User not found" });
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
     }
-    return res.status(200).json({ success: true, user });
+
+    return res.status(200).json({
+      success: true,
+      user,
+    });
   } catch (error) {
-    console.error(error);
-    return res
-      .status(500)
-      .json({ success: false, message: "Server error", error: error.message });
+    console.error("Error fetching user:", error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    }); 
   }
 };
 
@@ -173,7 +207,7 @@ const updateUser = async (req, res) => {
       { _id: id },
       {
         $set: updateObj,
-      },
+      }, 
       { new: true }
     );
 
@@ -181,7 +215,7 @@ const updateUser = async (req, res) => {
       success: true,
       message: "User updated successfully",
       data: updatedData,
-    });
+    }); 
   } catch (error) {
     console.error(error);
     return res.status(500).json({
