@@ -59,7 +59,7 @@ exports.userAddValidator = [
     check('email', 'Please include a valid email').isEmail().normalizeEmail({gmail_remove_dots:true}),
     check('fullName', 'Full Name is Required').not().isEmpty(),
     check('role', 'Role is Required').not().isEmpty(),
-    check('field', 'Field is Required').not().isEmpty(),
+    // check('phone', 'Field is Required').not().isEmpty(),
 ];
 
 exports.userUpdateValidator = [

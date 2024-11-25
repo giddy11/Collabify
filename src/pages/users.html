@@ -199,7 +199,7 @@
                     <div class="container">
                         <div class="header">
                             <div>
-                                <button onclick="openModal()" class="add-user-btn">+ Add User</button>
+                                <button onclick="openCreateModal()" class="add-user-btn">+ Add User</button>
                                 <button id="edit-btn" class="add-user-btn">Edit User</button>
                                 <button id="del-btn" class="add-user-btn">Delete User</button>
                             </div>
@@ -207,7 +207,7 @@
                           <div class="search-filter">
                             <select id="roleFilter">
                               <option value="All">Role: All</option>
-                              <option value="Owner">Owner</option>
+                              <option value="User">User</option>
                               <option value="Admin">Admin</option>
                             </select>
                             <input type="text" id="searchInput" placeholder="Search by name, username, email or mobile" />
@@ -220,7 +220,7 @@
                               <th>FULL NAME</th>
                               <th>EMAIL</th>
                               <th>ROLE</th>
-                              <th>FIELD</th>
+                              <th>PHONE</th>
                               <th>LAST ACCESS DATE</th>
                             </tr>
                           </thead>
@@ -240,48 +240,85 @@
     </div>
   </div>
   
+  <div id="editUserModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2>Edit User</h2>
+            <span class="close-btn" onclick="closeEditModal()">&times;</span>
+        </div>
+        <form id="editUserForm">
+            <div class="form-group">
+                <label for="role">Role <span class="required">*</span></label>
+                <select id="role" name="role" required>
+                    <option value="0">0</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <!-- No need for the user ID field -->
+            <div class="form-actions">
+                <button type="button" class="cancel-btn" onclick="closeEditModal()">Cancel</button>
+                <button type="submit" class="save-btn">Save</button>
+            </div>
+        </form>
+    </div>
+</div>
 
                 <div id="addUserModal" class="modal">
                     <div class="modal-content">
                         <div class="modal-header">
                             <h2>Add User</h2>
-                            <span class="close-btn" onclick="closeModal()">&times;</span>
+                            <span class="close-btn" onclick="closeCreateModal()">&times;</span>
                         </div>
                         <form id="addUserForm">
                             <div class="form-group">
-                                <label for="role">Role <span class="required">*</span></label>
+                                <!-- <label for="role">Role <span class="required">*</span></label>
                                 <select id="role" name="role" required>
-                                    <option value="1">Admin</option>
-                                    <option value="0">User</option>
-                                </select>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                </select> -->
+                                <!-- <div>
+                                    <label>
+                                      <input type="radio" name="role" value="0" required>
+                                      User
+                                    </label>
+                                    <label>
+                                      <input type="radio" name="role" value="1" required>
+                                      Admin
+                                    </label>  
+                                  </div> -->
+
+                                  <div>
+                                    <label for="role">Role:</label>
+                                    <input type="checkbox" id="role" name="role">
+                                    <span id="role-label">User</span>
+                                  </div>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email <span class="required">*</span></label>
                                 <input type="email" id="email" name="email" placeholder="Enter email" required />
                             </div>
                             <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" id="username" name="username" placeholder="Enter username" disabled />
+                                <label for="fullName">Full Name <span class="required">*</span></label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Enter full name" required />
                             </div>
                             <div class="form-group">
-                                <label for="firstName">First Name <span class="required">*</span></label>
-                                <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="lastName">Last Name <span class="required">*</span></label>
-                                <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="mobilePhone">Mobile Phone</label>
-                                <input type="tel" id="mobilePhone" name="mobilePhone" placeholder="Enter mobile phone" />
+                                <label for="phone">Mobile Phone</label>
+                                <input type="tel" id="phone" name="phone" placeholder="Enter mobile phone" />
                             </div>
                             <div class="form-actions">
-                                <button type="button" class="cancel-btn" onclick="closeModal()">Cancel</button>
+                                <button type="button" class="cancel-btn" onclick="closeCreateModal()">Cancel</button>
                                 <button type="submit" class="save-btn">Save</button>
                             </div>
                         </form>
                     </div>
+
+                    
             </div>
+
+            
+
+            
+            
         </div>
 </div>
 
