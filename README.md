@@ -182,6 +182,8 @@ Challenges Faced During Development
 
 4. Team member assigned to handle the frontend struggled to consume endpoints from the backend, thereby giving more workloads by the fellow who was handling the backend to also consume endpoints at the frontend. (SOLUTION: Impacting knowledge to the fellow and giving small projects to do that require endpoints consumption).
 
+5. My greatest challenge was implementing the role. When changing the role of another user, it doesnt persist the role changed. Still trying to fix this. (ONGOING)
+
 
 ## Acknowledgements
 

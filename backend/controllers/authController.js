@@ -60,7 +60,7 @@ const signup = async (req, res) => {
     const accessToken = jwt.sign(
       { id: newUser._id, email: newUser.email, fullName: newUser.fullName, role: newUser.role },
       process.env.TOKEN_SECRET_KEY,
-      { expiresIn: "150m" } // Short expiry for access token
+      { expiresIn: "550m" } // Short expiry for access token
     );
     const refreshToken = jwt.sign(
       { id: newUser._id },
@@ -79,11 +79,6 @@ const signup = async (req, res) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 7 * 24 * 60 * 60 * 1000,
-    });
-
-    //assign default permissions
-    const defaultPermissions = await Permission.find({
-      permission_value: 1
     });
 
     // Include the tokens in the response body
@@ -271,7 +266,7 @@ const login = async (req, res) => {
     const accessToken = jwt.sign(
       { id: userData._id, role: userData.role },
       process.env.TOKEN_SECRET_KEY,
-      { expiresIn: "150m" }
+      { expiresIn: "550m" }
     );
     const refreshToken = jwt.sign(
       { id: userData._id },

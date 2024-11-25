@@ -6,6 +6,7 @@ const {
   getProfile,
   updateUser,
   deleteUser,
+  changeUserRole,
 } = require("../controllers/userController");
 const authMiddleware = require("../middlewares/authMiddleware");
 const { onlyAdminAccess } = require("../middlewares/adminMiddleware");
@@ -26,10 +27,12 @@ router.get('/profile', authMiddleware, getProfile);
 // Update user by ID
 // router.put("/user/:id", authMiddleware, onlyAdminAccess, updateUser);
 router.put("/user", authMiddleware, userUpdateValidator, updateUser);
+router.put("/user-role", authMiddleware, onlyAdminAccess, changeUserRole)
 
 // Delete user by ID
 // router.delete("/user/:id", authMiddleware, deleteUser);
 router.delete("/user", authMiddleware, onlyAdminAccess, userDeleteValidator, deleteUser);
+
 
 
 module.exports = router;

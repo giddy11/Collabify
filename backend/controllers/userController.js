@@ -6,7 +6,8 @@ const randomString = require("randomstring");
 const mongoose = require('mongoose');
 // Create User
 const createUser = async (req, res) => {
-  const { email, fullName, field, role } = req.body;
+  const { email, fullName, phone, role } = req.body;
+  console.log("From creat user backend ", role);
   try {
     const errors = validationResult(req);
 
@@ -16,6 +17,11 @@ const createUser = async (req, res) => {
         message: "Errors",
         errors: errors.array(),
       });
+    }
+
+    // Validate the role value
+    if (![0, 1].includes(role)) {
+      return res.status(400).json({ message: "Invalid role value" });
     }
 
     const existingUser = await User.findOne({ email });
@@ -31,19 +37,23 @@ const createUser = async (req, res) => {
     var obj = {
       email,
       fullName,
-      field,
+      phone,
       role,
       password: hashedPassword,
     };
 
-    if (req.body.role && req.body.role == 1) {
-      return res.status(400).json({
-        success: false,
-        message: "You cant create Admin",
-      });
-    } else if (req.body.role) {
-      obj.role = req.body.role;
-    }
+    // if (req.body.role && req.body.role == 1) {
+    //   return res.status(400).json({
+    //     success: false,
+    //     message: "You cant create Admin",
+    //   });
+    // } else if (req.body.role) {
+    //   obj.role = req.body.role;
+    // }
+
+    // if (req.body.role) {
+    //   obj.role = req.body.role;
+    // }
 
     const newUser = new User(obj);
 
@@ -64,16 +74,16 @@ const createUser = async (req, res) => {
       text: `Hello ${fullName},\n\nYour account has been created successfully.\n\nHere are your login details:\nEmail: ${email}\nPassword: ${password}\n\nPlease log in and change your password immediately.\n\nThank you,\nThe Team`,
     };
 
-    await transporter.sendMail(mailOptions);
+    // await transporter.sendMail(mailOptions);  
 
     return res.status(201).json({
       success: true,
       message:
         "User created successfully. Login details have been sent to the user's email.",
-      data: {
+      data: { 
         email: newUser.email,
         fullName: newUser.fullName,
-        field: newUser.field,
+        phone: newUser.phone,
         role,
       },
     });
@@ -95,12 +105,12 @@ const getAllUsers = async (req, res) => {
     });
 
     return res
-      .status(200)
-      .json({
+      .status(200) 
+      .json({   
         success: true,
         message: "Users Fetched Successfully",
-        data: users,
-      });
+        data: users,  
+      }); 
   } catch (error) {
     console.error(error); 
     return res
@@ -286,6 +296,46 @@ const getProfile = async (req, res) => {
   }
 };
 
+// Change User Role
+const changeUserRole = async (req, res) => {
+  const { id, role } = req.body;
+
+  if (role === undefined) {
+    return res.status(400).json({
+      success: false,
+      message: "Role is required",
+    });
+  }
+
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    // Updating the user's role
+    user.role = role;
+ 
+    await user.save();
+
+    return res.status(200).json({
+      success: true,
+      message: "User role updated successfully",
+      data: user,
+    });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({
+      success: false,
+      message: "Server error",
+      error: error.message,
+    });
+  }
+};
+
 module.exports = {
   createUser,
   getAllUsers,
@@ -293,4 +343,5 @@ module.exports = {
   getProfile,
   updateUser,
   deleteUser,
+  changeUserRole
 };
