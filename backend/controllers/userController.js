@@ -95,12 +95,12 @@ const getAllUsers = async (req, res) => {
     });
 
     return res
-      .status(200)
-      .json({
+      .status(200) 
+      .json({   
         success: true,
         message: "Users Fetched Successfully",
-        data: users,
-      });
+        data: users,  
+      }); 
   } catch (error) {
     console.error(error); 
     return res

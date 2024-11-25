@@ -1,8 +1,8 @@
 /**
  * 
  */
-// const apiUrl = 'http://localhost:4001/api/auth/login';
-const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login';
+const apiUrl = 'http://localhost:4001/api/auth/login';
+// const apiUrl = 'https://collabify-oloy.onrender.com/api/auth/login';
 const loader = document.getElementById('loader');
 const loginForm = document.getElementById('login-form');
 
