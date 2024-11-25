@@ -26,22 +26,24 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 2. **Change Password**: Learners can update their passwords securely (COMPLETED).
 3. **Forgot Password**: Provides a recovery option for forgotten passwords (COMPLETED).
 4. **Authentication**: User registers and login with valid email (COMPLETED).
-5. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning i.e the Follow up module functionality.
-6. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
-7. **Learners Directory**: Enable Learners to view their directory so as to interact with them (COMPLETED).
-8. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it displays the list of all users and their roles (IN PROGRESS).
-9. **Profile Page integration**: Functional Profile Page to be dynamic (COMPLETED).
-10. **Protected Routes**: Making the pages protected for unauthorized users (COMPLETED). 
-11. **A functional Dashboard**: The dashboard will capture data for number of important information to display.
-12. **Admin / User View**: Some Views wont be visible by the users (COMPLETED).
-13. **Notification**: Users and admin can have a functional notification for incomings.
-14. **Settings**: This can have notifications settings to turn off or on notifications.
-15. **Events**: Learners can create events meetings online to explain certain concept.
-16. **Groups**: Groups can be created by he admin for the learners.
+5. **Profile Page integration**: Functional Profile Page to be dynamic (COMPLETED).
+6. **Learners Directory**: Enable Learners to view their directory so as to interact with them (COMPLETED).
+7. **Protected Routes**: Making the pages protected for unauthorized users (COMPLETED).
+8. **Admin / User View**: Some Views wont be visible by the users (COMPLETED).
+
+9. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it displays the list of all users and their roles (IN PROGRESS).
+10.**Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks (IN PROGRESS).
+
+11. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning i.e the Follow up module functionality.
+12. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
+13. **A functional Dashboard**: The dashboard will capture data for number of important information to display.
+14. **Notification**: Users and admin can have a functional notification for incomings.
+15. **Settings**: This can have notifications settings to turn off or on notifications.
+16. **Events**: Learners can create events meetings online to explain certain concept.
+17. **Groups**: Groups can be created by he admin for the learners.
 18. **The Search Feature (Header)**: The feature searches for learners, groups, users, events.
 19. **Admin Creates multiple Communities**: So instead of one account for one learning location, we can now have multiple locations for one account as been added to the admin.
 20. **Mobile Responsiveness**: It will be responsive across devices.
-21. **Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks (IN PROGRESS).
 
 ---
 
@@ -175,14 +177,14 @@ Challenges Faced During Development
 
 2. Frontend Update Issue
 
-    During development, I struggled with windows not reloading automatically after updating a field. After troubleshooting, I resolved the issue by using window.location.reload() to refresh the page and reflect the updates.
+    During development, we struggled with windows not reloading automatically after updating a field. After troubleshooting, we resolved the issue by using window.location.reload() to refresh the page and reflect the updates.
     Unrestricted Access (CONSIDERATION: UseState effects in React)
 
-3. Currently, there’s a challenge where any user can sign up and gain access to view my works and activities without restrictions. This raises concerns about content privacy and security, and I'm working on a solution to enforce proper user access control. (SOLUTION: This was handled after linking a user to the created model).
+3. Currently, there’s a challenge where any user can sign up and gain access to view my works and activities without restrictions. This raises concerns about content privacy and security, and we're working on a solution to enforce proper user access control. (SOLUTION: This was handled after linking a user to the created model).
 
 4. Team member assigned to handle the frontend struggled to consume endpoints from the backend, thereby giving more workloads by the fellow who was handling the backend to also consume endpoints at the frontend. (SOLUTION: Impacting knowledge to the fellow and giving small projects to do that require endpoints consumption).
 
-5. My greatest challenge was implementing the role. When changing the role of another user, it doesnt persist the role changed. Still trying to fix this. (ONGOING)
+5. Our greatest challenge was implementing the role. When changing the role of another user, it doesnt persist the role changed. We are Still trying to fix this. (ONGOING)
 
 
 ## Acknowledgements
@@ -194,5 +196,9 @@ Challenges Faced During Development
 ---
 
 [Top](#top)
+
+Use this to login as user becuase automatically when you regieter, you become an admin.
+email: edoghotugiddy@gmail.com
+password: gV4wQ4Z2
 
 Happy Collaboration!
