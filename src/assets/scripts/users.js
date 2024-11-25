@@ -1,4 +1,4 @@
-const API_USER_URL = "http://localhost:4001/api/user";
+const API_USER_URL = "https://collabify-oloy.onrender.com/api/user";
 
 // Select buttons, modal, and form elements
 const editBtn = document.getElementById('edit-btn');
@@ -238,10 +238,10 @@ cancelDeleteBtn.addEventListener('click', cancelDelete);
 userFormCreate.addEventListener("submit", async function (e) {
     e.preventDefault();
   
-    const roleCheckbox = document.getElementById("role");
-const role = roleCheckbox.checked ? 1 : 0; // Admin if checked, User otherwise
+    // const roleCheckbox = document.getElementById("role");
+// const role = roleCheckbox.checked ? 1 : 0;
     // Retrieve values from the form
-    // const role = parseInt(document.getElementById("role").value, 10);
+    const role = parseInt(document.getElementById("role").value, 10);
     // const role = parseInt(document.querySelector('input[name="role"]:checked').value, 10);
     const email = document.getElementById("email").value;
     const fullName = document.getElementById("fullName").value;
@@ -301,7 +301,7 @@ userFormEdit.addEventListener("submit", function (event) {
 
     const role = document.getElementById("role").value;
 
-    fetch("http://localhost:4001/api/user-role", {
+    fetch("https://collabify-oloy.onrender.com/api/user-role", {
         method: "PUT",
         headers: {
           Authorization: `Bearer ${token}`,
