@@ -85,8 +85,8 @@ async function saveUser() {
     // const userId = userFormCreate.dataset.userId;
     const updatedData = {
       fullName: userFormCreate.elements['fullName'].value,
-    role : parseInt(userFormCreate.elements['role'].value, 10),
-    //   role: userFormCreate.elements['role'].value,
+    // role : parseInt(userFormCreate.elements['role'].value, 10),
+      role: userFormCreate.elements['role'].value,
       email: userFormCreate.elements['email'].value,
     //   dob: userFormCreate.elements['dob'].value,
       phone: userFormCreate.elements['phone'].value,
@@ -173,7 +173,7 @@ async function populateTable() {
       <td><input type="checkbox" class="user-checkbox" data-id="${user._id}"></td>
       <td>${user.fullName || user.name}</td>
       <td>${user.email}</td>
-      <td>${user.role === 0 ? "User" : "Admin"}</td>
+      <td>${user.role}</td>
       <td>${user.field || "N/A"}</td>
       <td>${user.lastAccess || "N/A"}</td>
     `;
@@ -181,19 +181,19 @@ async function populateTable() {
   });
 
   // Add event listeners to checkboxes
-  document.querySelectorAll(".user-checkbox").forEach(checkbox => {
-    checkbox.addEventListener("change", function () {
-      if (this.checked) {
-        selectedUserId = this.dataset.id;
-      console.log("selectedUserId in edit", selectedUserId);
-        handleUserSelection(selectedUserId);
-      } else {
-        selectedUserId = null;
-        editBtn.style.display = "none";
-        delBtn.style.display = "none";
-      }
-    });
-  });
+  // document.querySelectorAll(".user-checkbox").forEach(checkbox => {
+  //   checkbox.addEventListener("change", function () {
+  //     if (this.checked) {
+  //       selectedUserId = this.dataset.id;
+  //     console.log("selectedUserId in edit", selectedUserId);
+  //       handleUserSelection(selectedUserId);
+  //     } else {
+  //       selectedUserId = null;
+  //       editBtn.style.display = "none";
+  //       delBtn.style.display = "none";
+  //     }
+  //   });
+  // });
 }
 
 // Open the modal
@@ -238,10 +238,10 @@ cancelDeleteBtn.addEventListener('click', cancelDelete);
 userFormCreate.addEventListener("submit", async function (e) {
     e.preventDefault();
   
-    const roleCheckbox = document.getElementById("role");
-const role = roleCheckbox.checked ? 1 : 0; // Admin if checked, User otherwise
+    // const roleCheckbox = document.getElementById("role");
+// const role = roleCheckbox.checked ? 1 : 0; // Admin if checked, User otherwise
     // Retrieve values from the form
-    // const role = parseInt(document.getElementById("role").value, 10);
+    const role = document.getElementById("role").value;
     // const role = parseInt(document.querySelector('input[name="role"]:checked').value, 10);
     const email = document.getElementById("email").value;
     const fullName = document.getElementById("fullName").value;
@@ -285,9 +285,9 @@ const role = roleCheckbox.checked ? 1 : 0; // Admin if checked, User otherwise
   });
 
   // Update label dynamically (optional)
-roleCheckbox.addEventListener("change", () => {
-    document.getElementById("role-label").textContent = roleCheckbox.checked ? "Admin" : "User";
-  });
+// roleCheckbox.addEventListener("change", () => {
+//     document.getElementById("role-label").textContent = roleCheckbox.checked ? "Admin" : "User";
+//   });
   
 
 //edit

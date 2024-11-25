@@ -20,8 +20,8 @@ const userSchema = new Schema(
       type: String,
     },
     role: {
-      type: Number,
-      default: 1,
+      type: String,
+      default: "Admin",
     },
   },
   { timestamps: true }

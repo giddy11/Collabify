@@ -19,10 +19,10 @@ const createUser = async (req, res) => {
       });
     }
 
-    // Validate the role value
-    if (![0, 1].includes(role)) {
-      return res.status(400).json({ message: "Invalid role value" });
-    }
+    // // Validate the role value
+    // if (![0, 1].includes(role)) {
+    //   return res.status(400).json({ message: "Invalid role value" });
+    // }
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -103,6 +103,8 @@ const getAllUsers = async (req, res) => {
         $ne: req.user._id,
       },
     });
+
+    console.log(users)
 
     return res
       .status(200) 

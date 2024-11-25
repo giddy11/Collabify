@@ -9,7 +9,7 @@ const onlyAdminAccess = async (req, res, next) => {
         });
       }
   
-      if (req.user.role !== 1) { // Assuming 1 represents admin role
+      if (req.user.role !== "Admin") { // Assuming 1 represents admin role
         return res.status(403).json({
           success: false,
           message: "You don't have permission to access this route!",
