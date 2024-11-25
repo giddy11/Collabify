@@ -17,10 +17,10 @@ const router = express.Router();
 router.post("/user", authMiddleware, onlyAdminAccess, userAddValidator, createUser);
 
 // Get all users
-router.get("/users", authMiddleware, onlyAdminAccess, getAllUsers);
+router.get("/users", authMiddleware, onlyAdminAccess, getAllUsers); 
 
 // Get user by ID
-router.get("/user/:id", authMiddleware, onlyAdminAccess, getUserById);
+router.get("/user/:id", authMiddleware, getUserById);
 router.get('/profile', authMiddleware, getProfile);
 
 // Update user by ID
