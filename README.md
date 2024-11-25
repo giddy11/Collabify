@@ -28,12 +28,12 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 4. **Authentication**: User registers and login with valid email (COMPLETED).
 5. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning i.e the Follow up module functionality.
 6. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
-7. **Learners Directory**: Enable Learners to view their directory so as to interact with them (IN PROGRESS).
+7. **Learners Directory**: Enable Learners to view their directory so as to interact with them (COMPLETED).
 8. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it displays the list of all users and their roles (IN PROGRESS).
-9. **Profile Page integration**: Functional Profile Page to be dynamic (IN PROGRESS).
-10. **Protected Routes**: Making the pages protected for unauthorized users. 
+9. **Profile Page integration**: Functional Profile Page to be dynamic (COMPLETED).
+10. **Protected Routes**: Making the pages protected for unauthorized users (COMPLETED). 
 11. **A functional Dashboard**: The dashboard will capture data for number of important information to display.
-12. **Admin / User View**: Some Views wont be visible by the users (IN PROGRESS).
+12. **Admin / User View**: Some Views wont be visible by the users (COMPLETED).
 13. **Notification**: Users and admin can have a functional notification for incomings.
 14. **Settings**: This can have notifications settings to turn off or on notifications.
 15. **Events**: Learners can create events meetings online to explain certain concept.
@@ -41,7 +41,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 18. **The Search Feature (Header)**: The feature searches for learners, groups, users, events.
 19. **Admin Creates multiple Communities**: So instead of one account for one learning location, we can now have multiple locations for one account as been added to the admin.
 20. **Mobile Responsiveness**: It will be responsive across devices.
-21. **Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks.
+21. **Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks (IN PROGRESS).
 
 ---
 
