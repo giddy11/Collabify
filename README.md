@@ -14,9 +14,11 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 - [Usage](#usage)
 - [Deployment](#deployment)
 - [Challenges](#challenges)
-- [Acknowledgement](#acknowledgement)
+- [Acknowledgements](#acknowledgements)
 
 ---
+
+## Top
 
 ## Features
 
@@ -26,7 +28,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 4. **Authentication**: User registers and login with valid email (COMPLETED).
 5. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning i.e the Follow up module functionality.
 6. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
-7. **Learners Directory**: Enable Learners to view their director so as to interact with them (IN PROGRESS).
+7. **Learners Directory**: Enable Learners to view their directory so as to interact with them (IN PROGRESS).
 8. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it displays the list of all users and their roles (IN PROGRESS).
 9. **Profile Page integration**: Functional Profile Page to be dynamic (IN PROGRESS).
 10. **Protected Routes**: Making the pages protected for unauthorized users. 
@@ -188,5 +190,7 @@ Challenges Faced During Development
 - [JWT](https://jwt.io/)
 
 ---
+
+[Top](#top)
 
 Happy Collaboration!

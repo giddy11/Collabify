@@ -1,4 +1,5 @@
-const API_BASE_URL = "http://localhost:4001/api/user";
+const API_BASE_URL = "https://collabify-oloy.onrender.com/api/user";
+
 
 async function fetchUsers() {
     const token = localStorage.getItem("accessToken"); 
