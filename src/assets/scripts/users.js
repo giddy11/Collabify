@@ -284,12 +284,6 @@ userFormCreate.addEventListener("submit", async function (e) {
     }
   });
 
-  // Update label dynamically (optional)
-roleCheckbox.addEventListener("change", () => {
-    document.getElementById("role-label").textContent = roleCheckbox.checked ? "Admin" : "User";
-  });
-  
-
 //edit
 userFormEdit.addEventListener("submit", function (event) {
     event.preventDefault();
