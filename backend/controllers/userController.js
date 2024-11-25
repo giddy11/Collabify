@@ -74,7 +74,7 @@ const createUser = async (req, res) => {
       text: `Hello ${fullName},\n\nYour account has been created successfully.\n\nHere are your login details:\nEmail: ${email}\nPassword: ${password}\n\nPlease log in and change your password immediately.\n\nThank you,\nThe Team`,
     };
 
-    // await transporter.sendMail(mailOptions);  
+    await transporter.sendMail(mailOptions);  
 
     return res.status(201).json({
       success: true,
