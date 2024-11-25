@@ -6,17 +6,17 @@ const authMiddleware = require('../middlewares/authMiddleware');
 const { registerValidator, loginValidator } = require('../validators/authValidator');
 const router = express.Router();
 // Trust the first proxy (for reverse proxies)
-const app = express();
-app.set('trust proxy', 1);
-// Set up rate limiter
-const loginLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 5, // Limit each IP to 5 requests per windowMs
-    message: 'Too many login attempts, please try again later.',
-  });
+// const app = express();
+// app.set('trust proxy', 1);
+// // Set up rate limiter
+// const loginLimiter = rateLimit({
+//     windowMs: 15 * 60 * 1000, // 15 minutes
+//     max: 5, // Limit each IP to 5 requests per windowMs
+//     message: 'Too many login attempts, please try again later.',
+//   });
 
-router.post('/signup', registerValidator, loginLimiter, signup);
-router.post('/login', loginValidator, loginLimiter, login);
+router.post('/signup', registerValidator, signup);
+router.post('/login', loginValidator, login);
 router.post('/forgot-password', forgotPassword);
 router.post('/change-password', authMiddleware, changePassword);
 router.post('/logout', logout);
