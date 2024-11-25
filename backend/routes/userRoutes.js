@@ -17,7 +17,7 @@ const router = express.Router();
 router.post("/user", authMiddleware, onlyAdminAccess, userAddValidator, createUser);
 
 // Get all users
-router.get("/users", authMiddleware, onlyAdminAccess, getAllUsers); 
+router.get("/users", authMiddleware, getAllUsers);
 
 // Get user by ID
 router.get("/user/:id", authMiddleware, getUserById);
