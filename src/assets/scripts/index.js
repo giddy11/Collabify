@@ -1,3 +1,10 @@
+//check for token
+const token = localStorage.getItem('accessToken');
+console.log(token);
+if(!token) {
+  window.location.href = './signin.html';
+}
+
 document.addEventListener("DOMContentLoaded", function () {
   const dashboardBtn = document.getElementById("dashboard-btn");
   const logo = document.querySelector(".logo");
@@ -46,4 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
       dropdownMenu.style.display = "none";
     }
   });
+
+  const user = JSON.parse(localStorage.getItem("user")); // Get user data from localStorage
+
+  if (user && user.role === 0) {
+    // If the user's role is 0, hide the admin navigation
+    const adminItems = document.querySelectorAll("#admin1, #admin2, #admin3, #admin4, #admin5, #admin6");
+    adminItems.forEach(item => item.style.display = "none");
+    // window.location.href = './directory.html';
+
+  }
 });

@@ -1,8 +1,12 @@
 const addBtn = document.querySelector(".add-btn");
 const modal = document.getElementById("event-modal");
 const closeBtn = document.querySelector(".close-btn");
+const user = JSON.parse(localStorage.getItem("user"));
+const loader = document.getElementById("loader");
 
-const loader = document.getElementById("loader"); // Get the loader element
+if (user && user.role === 0) {
+  addBtn.style.display = "none"; // Hide Edit button
+}
 
 // Show the loader
 function showLoader() {
@@ -35,11 +39,13 @@ window.addEventListener("click", (event) => {
 const API_BASE_URL = "https://collabify-oloy.onrender.com/api/onboarding";
 // const API_BASE_URL = "http://localhost:4001/api/onboarding";
 
-async function fetchOnboardings() {
+async function fetchUsers() {
   const token = localStorage.getItem("accessToken");  // Get token from localStorage
 
   if (!token) {
-    throw new Error("No token found. Please log in first.");
+    // Redirect to login page if no token is found
+    window.location.href = './signin.html';
+    return; // Ensure no further code is executed
   }
 
   const response = await fetch(`${API_BASE_URL}s`, {
@@ -59,10 +65,14 @@ async function fetchOnboardings() {
   return data.onboardings;  // Return the onboardings array
 }
 
-
-
 async function createOnboarding(data) {
   const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
+
+  if (!token) {
+    // Redirect to login page if no token is found
+    window.location.href = './signin.html';
+    return; // Ensure no further code is executed
+  }
 
   const response = await fetch(`${API_BASE_URL}`, {
     method: "POST",
@@ -88,6 +98,12 @@ async function fetchOnboardingDetails(id) {
 
   const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
 
+  if (!token) {
+    // Redirect to login page if no token is found
+    window.location.href = './signin.html';
+    return; // Ensure no further code is executed
+  }
+
   const response = await fetch(`${API_BASE_URL}/${id}`, {
     method: "GET", // Ensure method is GET for fetching details
     headers: {
@@ -105,6 +121,12 @@ async function fetchOnboardingDetails(id) {
 
 async function updateOnboarding(id, data) {
   const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
+
+  if (!token) {
+    // Redirect to login page if no token is found
+    window.location.href = './signin.html';
+    return; // Ensure no further code is executed
+  }
 
   const response = await fetch(`${API_BASE_URL}/${id}`, {
     method: "PUT",
@@ -124,6 +146,12 @@ async function updateOnboarding(id, data) {
 
 async function deleteOnboarding(id) {
   const token = localStorage.getItem("accessToken"); // Retrieve the token from localStorage
+
+  if (!token) {
+    // Redirect to login page if no token is found
+    window.location.href = './signin.html';
+    return; // Ensure no further code is executed
+  }
 
   const response = await fetch(`${API_BASE_URL}/${id}`, {
     method: "DELETE",
@@ -178,7 +206,7 @@ function renderItem(item) {
 
 
 async function loadItems() {
-  const items = await fetchOnboardings();
+  const items = await fetchUsers();
   items.forEach(renderItem);
 }
 
@@ -250,52 +278,55 @@ function openDeleteModal(id) {
   };
 }
 
-
 function openViewModal(_id) {
-  fetchOnboardingDetails(_id).then((response) => {
-    const item = response.onboarding;  // Extract the onboarding object
+  fetchOnboardingDetails(_id)
+    .then((response) => {
+      const item = response.onboarding; // Extract the onboarding object
 
-    console.log(item);  // Log the item object to check its structure
+      console.log(item); // Log the item object to check its structure
 
-    // viewDetails.innerHTML = `
-    //   <h1>Week: ${item.name || 'N/A'}</h1>
-    //   <p>Lesson: ${item.topic || 'N/A'}</p>
-    //   <p>Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
-    //   <p>Class: ${item.department || 'N/A'}</p>
-    //   <p>Fellows: ${item.noOfAcceptance || '0'}</p>`;
-    viewDetails.innerHTML = `
-      <h1>Week: ${item.name.slice(4) || 'N/A'}</h1>
-      <p class="edit-data">Lesson: ${item.topic || 'N/A'}</p>
-      <p class="edit-data">Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
-      <p class="edit-data">Class: ${item.department || 'N/A'}</p>
-      <p class="edit-data">Fellows: ${item.noOfAcceptance || '0'}</p>`;
+      viewDetails.innerHTML = `
+        <h1>Week: ${item.name.slice(4) || 'N/A'}</h1>
+        <p class="edit-data">Lesson: ${item.topic || 'N/A'}</p>
+        <p class="edit-data">Link: <a href="${item.link}" target="_blank">${item.link}</a></p>
+        <p class="edit-data">Class: ${item.department || 'N/A'}</p>
+        <p class="edit-data">Fellows: ${item.noOfAcceptance || '0'}</p>`;
 
-    viewModal.style.display = "flex";
+      // Show the modal
+      viewModal.style.display = "flex";
 
-    // Set up Edit button
-    document.getElementById("edit-btn").onclick = () => openEditForm(item);
+      const editButton = document.getElementById("edit-btn");
+      const deleteButton = document.getElementById("delete-btn");
 
-    // Set up Delete button
-    document.getElementById("delete-btn").onclick = async () => {
-      if (confirm("Are you sure you want to delete this item?")) {
-        try {
-          await deleteOnboarding(_id);
-          viewModal.style.display = "none";
-          // Remove the item from the DOM
-          const itemButton = Array.from(itemContainer.children).find(
-            (child) => child.textContent.includes(item.name)
-          );
-          if (itemButton) itemContainer.removeChild(itemButton);
-        } catch (error) {
-          alert("Failed to delete item. Please try again.");
-        }
+      if (user && user.role === 0) {
+        editButton.style.display = "none"; // Hide Edit button
+        deleteButton.style.display = "none"; // Hide Delete button
+      } else {
+        // Set up Edit button
+        editButton.onclick = () => openEditForm(item);
+
+        // Set up Delete button
+        deleteButton.onclick = async () => {
+          if (confirm("Are you sure you want to delete this item?")) {
+            try {
+              await deleteOnboarding(_id);
+              viewModal.style.display = "none";
+              // Remove the item from the DOM
+              const itemButton = Array.from(itemContainer.children).find(
+                (child) => child.textContent.includes(item.name)
+              );
+              if (itemButton) itemContainer.removeChild(itemButton);
+            } catch (error) {
+              alert("Failed to delete item. Please try again.");
+            }
+          }
+        };
       }
-    };
-  }).catch((error) => {
-    console.error("Error fetching onboarding details:", error);
-  });
+    })
+    .catch((error) => {
+      console.error("Error fetching onboarding details:", error);
+    });
 }
-
 
 function openEditForm(item) {
   form.name.value = item.name || '';
@@ -324,5 +355,16 @@ document.querySelectorAll(".close-btn").forEach((btn) => {
     btn.closest(".modal").style.display = "none";
   });
 });
+
+
+
+
+
+
+/**
+ * TODO: issues with the dashboard not working in the index to reflect
+ * so am repeating the code here
+ */
+
 
 loadItems()

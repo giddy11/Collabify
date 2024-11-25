@@ -31,7 +31,7 @@ const createOnboarding = async (req, res) => {
       topic,
       noOfAcceptance,
       link,
-      userId: req.user.id, // Associate with the logged-in user
+      // userId: req.user.id,
     });
 
     await newOnboarding.save();
@@ -56,34 +56,10 @@ const createOnboarding = async (req, res) => {
  * Fetches all onboarding items from the backend.
  * @returns {Promise<Array>} List of onboarding items.
  */
-const getAllOnboardings2 = async (req, res) => {
-  try {
-    // Ensure the user is authenticated
-    if (!req.user || !req.user._id) {
-      return res.status(401).json({ success: false, message: "Unauthorized" });
-    }
-
-    // Fetch onboarding items for the logged-in user
-    const onboardings = await Onboarding.find({ userId: req.user._id });
-
-    return res.status(200).json({ success: true, onboardings });
-  } catch (error) {
-    console.error(error);
-    return res
-      .status(500)
-      .json({ success: false, message: "Server error", error: error.message });
-  }
-};
-
 const getAllOnboardings = async (req, res) => {
   try {
-    // Ensure the user is authenticated
-    if (!req.user || !req.user.id) {
-      return res.status(401).json({ success: false, message: "Unauthorized" });
-    }
-
-    // Fetch onboarding items for the logged-in user
-    const onboardings = await Onboarding.find({ userId: req.user.id });
+    // Fetch all onboarding items
+    const onboardings = await Onboarding.find();
 
     return res.status(200).json({ success: true, onboardings });
   } catch (error) {

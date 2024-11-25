@@ -7,7 +7,7 @@ const onboardingSchema = new Schema({
     topic: { type: String, required: true },
     noOfAcceptance: Number,
     link: String,
-    userId: { type: Schema.Types.ObjectId, ref: "User", required: true }, // Reference to the User model
+    // userId: { type: Schema.Types.ObjectId, ref: "User", required: true },
   }, { timestamps: true });
   
   module.exports = mongoose.model("Onboarding", onboardingSchema);  
