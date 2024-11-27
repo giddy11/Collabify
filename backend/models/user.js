@@ -16,7 +16,7 @@ const userSchema = new Schema(
     country: String,
     city: String,
     address: String,
-    refreshToken: {
+    refreshToken: { 
       type: String,
     },
     role: {
