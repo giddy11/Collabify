@@ -30,10 +30,11 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 6. **Learners Directory**: Enable Learners to view their directory so as to interact with them (COMPLETED).
 7. **Protected Routes**: Making the pages protected for unauthorized users (COMPLETED).
 8. **Admin / User View**: Some Views wont be visible by the users (COMPLETED).
+9. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it displays the list of all users and their roles (COMPLETED).
 
-9. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it displays the list of all users and their roles (IN PROGRESS).
-10.**Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks (IN PROGRESS).
 
+
+10.**Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks ().
 11. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning i.e the Follow up module functionality.
 12. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
 13. **A functional Dashboard**: The dashboard will capture data for number of important information to display.
@@ -184,7 +185,7 @@ Challenges Faced During Development
 
 4. Team member assigned to handle the frontend struggled to consume endpoints from the backend, thereby giving more workloads by the fellow who was handling the backend to also consume endpoints at the frontend. (SOLUTION: Impacting knowledge to the fellow and giving small projects to do that require endpoints consumption).
 
-5. Our greatest challenge was implementing the role. When changing the role of another user, it doesnt persist the role changed. We are Still trying to fix this. (ONGOING)
+5. Our greatest challenge was implementing the role. When changing the role of another user, it doesnt persist the role changed. We are Still trying to fix this. (SOLUTION: We had to try other ways and noticed it worked. then we had to figure out why the first way didnt work which now led us to an error on our path ☺)
 
 
 ## Acknowledgements
@@ -197,8 +198,10 @@ Challenges Faced During Development
 
 [Top](#top)
 
-Use this to login as user becuase automatically when you regieter, you become an admin.
+Use this to login as user becuase automatically when you register, you become an admin.
 email: edoghotugiddy@gmail.com
 password: gV4wQ4Z2
+
+Also users created by admin will receive email of their login details
 
 Happy Collaboration!

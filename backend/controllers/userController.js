@@ -4,10 +4,10 @@ const nodemailer = require("nodemailer");
 const { validationResult } = require("express-validator");
 const randomString = require("randomstring");
 const mongoose = require('mongoose');
+
 // Create User
 const createUser = async (req, res) => {
-  const { email, fullName, phone, role } = req.body;
-  console.log("From creat user backend ", role);
+  const { email } = req.body; // Removed role from destructuring
   try {
     const errors = validationResult(req);
 
@@ -19,10 +19,8 @@ const createUser = async (req, res) => {
       });
     }
 
-    // Validate the role value
-    if (![0, 1].includes(role)) {
-      return res.status(400).json({ message: "Invalid role value" });
-    }
+    // Default the role to 0 (User)
+    const role = 0;
 
     const existingUser = await User.findOne({ email });
     if (existingUser) {
@@ -34,26 +32,11 @@ const createUser = async (req, res) => {
     const password = randomString.generate(8);
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    var obj = {
+    const obj = {
       email,
-      fullName,
-      phone,
-      role,
+      role, // Assign default role here
       password: hashedPassword,
     };
-
-    // if (req.body.role && req.body.role == 1) {
-    //   return res.status(400).json({
-    //     success: false,
-    //     message: "You cant create Admin",
-    //   });
-    // } else if (req.body.role) {
-    //   obj.role = req.body.role;
-    // }
-
-    // if (req.body.role) {
-    //   obj.role = req.body.role;
-    // }
 
     const newUser = new User(obj);
 
@@ -71,19 +54,17 @@ const createUser = async (req, res) => {
       from: process.env.EMAIL_USER,
       to: email,
       subject: "Welcome to Collabify",
-      text: `Hello ${fullName},\n\nYour account has been created successfully.\n\nHere are your login details:\nEmail: ${email}\nPassword: ${password}\n\nPlease log in and change your password immediately.\n\nThank you,\nThe Team`,
+      text: `Hello Sir / Ma,\n\nYour account has been created successfully.\n\nHere are your login details:\nEmail: ${email}\nPassword: ${password}\n\nPlease log in and change your password immediately.\n\nThank you,\nThe Team`,
     };
 
-    await transporter.sendMail(mailOptions);  
+    await transporter.sendMail(mailOptions);
 
     return res.status(201).json({
       success: true,
       message:
         "User created successfully. Login details have been sent to the user's email.",
-      data: { 
+      data: {
         email: newUser.email,
-        fullName: newUser.fullName,
-        phone: newUser.phone,
         role,
       },
     });
@@ -94,6 +75,7 @@ const createUser = async (req, res) => {
       .json({ success: false, message: "Server error", error: error.message });
   }
 };
+
 
 // Get All Users
 const getAllUsers = async (req, res) => {
@@ -119,24 +101,6 @@ const getAllUsers = async (req, res) => {
   }
 };
 
-// Get User by ID
-// const getUserById = async (req, res) => {
-//   const { id } = req.params;
-//   try {
-//     const user = await User.findById(id);
-//     if (!user) {
-//       return res
-//         .status(404)
-//         .json({ success: false, message: "User not found" });
-//     }
-//     return res.status(200).json({ success: true, user });
-//   } catch (error) {
-//     console.error(error);
-//     return res
-//       .status(500)
-//       .json({ success: false, message: "Server error", error: error.message });
-//   }
-// };
 
 const getUserById = async (req, res) => {
   const { id } = req.params;
@@ -317,7 +281,9 @@ const changeUserRole = async (req, res) => {
     }
 
     // Updating the user's role
-    user.role = role;
+    user.role = Number(role);
+
+    console.log("change role ",user.role);
  
     await user.save();
 
