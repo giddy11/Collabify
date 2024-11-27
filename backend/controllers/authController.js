@@ -6,21 +6,19 @@ const nodemailer = require('nodemailer');
 const firebaseAdmin = require("../config/firebase");
 const cookie = require("cookie");
 const { validationResult } = require('express-validator');
-const UserPermission = require('../models/userPermission');
-const Permission = require('../models/permission');
 
 /** POST: http://localhost:4001/api/auth/signup 
  * @param : {
   "email": "example@gmail.com",
-  "password": "admin123"
+  "password": "admin123" 
 }
-*/
+*/ 
 const signup = async (req, res) => {
   const { email, password, fullName } = req.body;
 
   try {
 
-    const errors = validationResult(req);
+    const errors = validationResult(req); 
 
     if (!errors.isEmpty()) {
       return res.status(400).json({
