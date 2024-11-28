@@ -1,3 +1,8 @@
+Please Note this:
+ ![image](https://github.com/user-attachments/assets/ad95d563-dc0f-4481-9851-3dcb2ffa9531)
+
+
+There will be delay when trying to login or signin because the hosting the hosting platform was inactive for some time. So please kindly be patient while you wait. Thanks
 ---
 
 Collabify
@@ -32,9 +37,7 @@ Collabify is a collaborative learning platform designed to enhance peer-to-peer 
 8. **Admin / User View**: Some Views wont be visible by the users (COMPLETED).
 9. **Admin User Management**: Admins can create accounts for learners and assign roles (users and roles),  it displays the list of all users and their roles (COMPLETED).
 
-
-
-10.**Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks ().
+10. **Rigid Security**: Implement basic security features such as input validation and protection against SQL injection or XSS attacks ().
 11. **Peer-to-Peer Mentorship**: Assigns learners to mentor others for enhanced learning i.e the Follow up module functionality.
 12. **Collaboration Search - Matchmaking**: Enables searching for learners outside the location to collaborate on projects.
 13. **A functional Dashboard**: The dashboard will capture data for number of important information to display.
