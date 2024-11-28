@@ -1,3 +1,8 @@
+Please Note this:
+ ![image](https://github.com/user-attachments/assets/ad95d563-dc0f-4481-9851-3dcb2ffa9531)
+
+
+There will be delay when trying to login or signin because the hosting the hosting platform was inactive for some time. So please kindly be patient while you wait. Thanks
 ---
 
 Collabify
