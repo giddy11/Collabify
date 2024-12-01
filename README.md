@@ -207,4 +207,6 @@ password: gV4wQ4Z2
 
 Also users created by admin will receive email of their login details
 
+Figma design link: https://www.figma.com/design/mXKqhi78ITo9byFHNr8e6N/My-Project?node-id=591-1168&node-type=canvas&t=l85oXTznenDtot9c-0
+
 Happy Collaboration!
